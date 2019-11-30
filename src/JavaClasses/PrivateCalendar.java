@@ -4,7 +4,9 @@ import java.util.ArrayList;
 
 public class PrivateCalendar
 {
+  // Field variables
   private ArrayList<Date> dates;
+  // Field variables
 
   // Constructor for PrivateCalendar object
   public PrivateCalendar()

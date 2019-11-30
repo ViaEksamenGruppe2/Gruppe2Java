@@ -2,8 +2,10 @@ package JavaClasses;
 
 public class Date
 {
+  // Field variables
   private int day, month, year;
   private boolean isPersonal;
+  // Field variables
 
   // Constructor for Date object
   public Date(int day, int month, int year)
@@ -32,6 +34,11 @@ public class Date
   {
     return year;
   }
+
+  public boolean isPersonalDate()
+  {
+    return isPersonal;
+  }
   // End of getters for Date object
 
   // Start of setters for Date object
@@ -48,6 +55,11 @@ public class Date
   }
   // End of setters for Date object
 
+  // Method to change the state of the isPersonal boolean
+  public void changePersonalDate(boolean state)
+  {
+    this.isPersonal = state;
+  }
 
   // Copy method
   public Date copy()
