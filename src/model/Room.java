@@ -1,4 +1,4 @@
-package JavaClasses;
+package model;
 
 public class Room
 {

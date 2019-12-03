@@ -1,4 +1,4 @@
-package JavaClasses;
+package model;
 
 import java.util.ArrayList;
 
@@ -96,7 +96,7 @@ public class Exam
   {
     this.priorityRoom = priorityRoom;
   }
-  
+
   public void addPerson(Person person)
   {
     attendees.add(person);
