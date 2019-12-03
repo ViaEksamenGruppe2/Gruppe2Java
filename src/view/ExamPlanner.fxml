@@ -13,9 +13,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane minHeight="500.0" minWidth="800.0" style="-fx-background-color: #D3D3D3;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane minHeight="500.0" minWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TabPane layoutX="-1.0" layoutY="-1.0" prefHeight="520.0" prefWidth="820.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutX="-1.0" prefHeight="519.0" prefWidth="820.0" style="-fx-background-color: #D4D4D4;" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Teachers &amp; Students">
             <content>
@@ -59,12 +59,12 @@
                               <Insets top="15.0" />
                            </padding>
                         </VBox>
-                        <TableView layoutX="139.0" prefHeight="472.0" prefWidth="662.0">
+                        <TableView layoutX="139.0" prefHeight="474.0" prefWidth="671.0">
                           <columns>
                             <TableColumn minWidth="0.0" prefWidth="78.0" text="VIA ID" />
                             <TableColumn prefWidth="221.0" text="NAME" />
                               <TableColumn prefWidth="296.0" text="COURSES" />
-                              <TableColumn minWidth="0.0" prefWidth="66.0" text="ROLE" />
+                              <TableColumn minWidth="0.0" prefWidth="74.0" text="ROLE" />
                           </columns>
                         </TableView>
                      </children>
@@ -105,12 +105,12 @@
                               <Insets top="15.0" />
                            </padding>
                         </VBox>
-                        <TableView layoutX="139.0" prefHeight="472.0" prefWidth="662.0">
+                        <TableView layoutX="139.0" prefHeight="472.0" prefWidth="670.0">
                            <columns>
                               <TableColumn minWidth="0.0" prefWidth="192.0" text="COURSE NAME" />
                               <TableColumn prefWidth="227.0" text="PRIORITY ROOM" />
                               <TableColumn prefWidth="137.0" text="DURATION" />
-                              <TableColumn minWidth="0.0" prefWidth="105.0" text="EXAM TYPE" />
+                              <TableColumn minWidth="0.0" prefWidth="112.0" text="EXAM TYPE" />
                            </columns>
                         </TableView>
                      </children>
@@ -151,11 +151,11 @@
                               <Insets top="15.0" />
                            </padding>
                         </VBox>
-                        <TableView layoutX="139.0" prefHeight="472.0" prefWidth="662.0">
+                        <TableView layoutX="139.0" prefHeight="472.0" prefWidth="671.0">
                            <columns>
                               <TableColumn minWidth="0.0" prefWidth="213.0" text="ROOM NAME" />
                               <TableColumn prefWidth="359.0" text="EQUIPMENT" />
-                              <TableColumn prefWidth="89.0" text="CAPACITY" />
+                              <TableColumn prefWidth="98.0" text="CAPACITY" />
                            </columns>
                         </TableView>
                      </children>
@@ -196,13 +196,13 @@
                               <Insets bottom="20.0" left="15.0" right="20.0" top="20.0" />
                            </padding>
                         </VBox>
-                        <TableView layoutX="203.0" prefHeight="473.0" prefWidth="598.0">
+                        <TableView layoutX="203.0" prefHeight="473.0" prefWidth="607.0">
                            <columns>
                               <TableColumn minWidth="0.0" prefWidth="83.0" text="DATE" />
                               <TableColumn prefWidth="122.0" text="COURSE NAME" />
                               <TableColumn prefWidth="124.0" text="ROOM" />
                               <TableColumn prefWidth="180.0" text="ASSIGNED TEACHER" />
-                              <TableColumn prefWidth="88.0" text="EXAM TYPE" />
+                              <TableColumn prefWidth="96.0" text="EXAM TYPE" />
                            </columns>
                         </TableView>
                      </children>
@@ -213,7 +213,7 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <VBox alignment="TOP_CENTER" layoutX="-1.0" layoutY="-1.0" prefHeight="473.0" prefWidth="800.0" style="-fx-background-color: #D3D3D3;">
+                        <VBox alignment="TOP_CENTER" layoutX="-1.0" layoutY="-1.0" prefHeight="473.0" prefWidth="811.0" style="-fx-background-color: #D3D3D3;">
                            <children>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Generate document with all information about preparation for written exams to service" textAlignment="CENTER" wrappingWidth="803.01953125">
                                  <font>
