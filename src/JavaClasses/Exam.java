@@ -96,17 +96,11 @@ public class Exam
   {
     this.priorityRoom = priorityRoom;
   }
-
-  // THESE ARE THE SAME??
-  public void addStudent(Person student)
+  
+  public void addPerson(Person person)
   {
-    attendees.add(student);
+    attendees.add(person);
   }
-  public void addTeacher(Person teacher)
-  {
-    attendees.add(teacher);
-  }
-  // THESE ARE THE SAME??
 
   // End of setters for Exam object
 
