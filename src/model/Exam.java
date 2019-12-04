@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Exam
 {
@@ -122,5 +123,29 @@ public class Exam
 
   // End of setters for Exam object
 
-  
+  // Start of Logic
+  public void removePerson(Person person){
+        attendees.remove(person);
+    }
+
+public String toString()
+  {
+    return "courseName= " + courseName + ", accentColour=" + accentColour + ", duration=" + duration + ", isGroupExam="
+        + isGroupExam + ", isWrittenExam=" + isWrittenExam + ", priorityRoom="
+        + priorityRoom + ", privateCalendar=" + privateCalendar + ", attendees="
+        + attendees;
+  }
+
+  public boolean equals(Object obj)
+  {
+    if (!(obj insteanceof Exam)){
+      return false;
+  }
+    Exam other = (Exam) obj;
+    return courseName == other.getCourseName() && accentColour ==
+        other.getAccentColour() && duration == other.getTotalExamDuration() &&
+
+  }
+
+  // End of logic
 }
