@@ -59,13 +59,31 @@ public class Exam
 
   public ArrayList<Person> getAllStudents()
   {
-    // NEEDS TO ONLY RETURN STUDENTS OF ATTENDEES, NOT TEACHERS.. ADD LOGIC..
-    return attendees;
+    ArrayList<Person> studentAmount = new ArrayList<Person>();
+    for (int i = 0; i < attendees.size(); i++)
+    {
+      if(!attendees.get(i).isTeacher())
+        studentAmount.add(attendees.get(i));
+    }
+    return studentAmount;
+  }
+  public ArrayList<Person> getTeacher()
+  {
+    ArrayList<Person> teacher = new ArrayList<>();
+    for (int i = 0; i < attendees.size(); i++)
+    {
+      if (attendees.get(i).isTeacher())
+        teacher.add(attendees.get(i));
+    }
+    return teacher;
   }
 
   public double getTotalExamDuration()
   {
-    // THIS ISN'T DONE YET. NEEDS TO RETURN DURATION IN MINUTES. OR HOURS... ALSO NEEDS OTHER LOGIC IF IT'S A GROUP EXAM
+    if(isGroupExam == true){
+//Needs to be attended to! after questions to Michael.
+    }
+
     return duration * attendees.size();
   }
 

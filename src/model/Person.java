@@ -24,6 +24,8 @@ public class Person
     exams = new ArrayList<>();
   }
 
+
+
   // Start of getters for Person object
   public String getName()
   {
@@ -56,10 +58,60 @@ public class Person
   }
   // End of getters for Person object
 
+
+
   // Start of setters for Person object
   public void addExam(Exam exam)
   {
     exams.add(exam);
   }
   // End of setters for Person object
+
+
+
+  //Start of logic
+  public boolean isAssignedCourse(String courseName) {
+    for (String assignedCourse : assignedCourses) {
+      if (assignedCourse.equals(courseName)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  public boolean isAvailable(Date day) {
+    return !(privateCalendar.isBooked(day));
+  }
+
+  public void reserveDate(Date day) {
+    privateCalendar.makeReservation(day);
+  }
+
+  public void reservePersonalDate(Date day) {
+    if(isTeacher) {
+      day.changePersonalDate(true);
+      privateCalendar.makeReservation(day);
+    }
+  }
+
+  public Date getNextAvailableDate(Date date) {
+    return privateCalendar.getNextAvailableDate(date);
+  }
+
+  public boolean equals(Object obj){
+    if(!(obj instanceof Person)){
+      return false;
+    }
+    Person other = (Person) obj;
+    return other.name.equals(this.name) && other.viaID == this.viaID && other.assignedCourses.equals(this.assignedCourses) && other.isTeacher == this.isTeacher;
+  }
+
+  //May need change for UI
+  @Override public String toString() {
+    return "Person{" + "name='" + name + '\'' + ", viaID=" + viaID
+        + ", assignedCourses=" + assignedCourses + ", isTeacher=" + isTeacher
+        + ", privateCalendar=" + privateCalendar + ", exams=" + exams + '}';
+  }
+
+  //End of logic
 }
