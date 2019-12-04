@@ -103,7 +103,7 @@ public class Person
       return false;
     }
     Person other = (Person) obj;
-    return other.name.equals(this.name) && other.viaID == this.viaID && other.assignedCourses.equals(this.assignedCourses) && other.isTeacher == this.isTeacher;
+    return other.name.equals(this.name) && other.viaID == this.viaID && other.assignedCourses.equals(this.assignedCourses) && other.isTeacher == this.isTeacher && other.privateCalendar.equals(this.privateCalendar) && other.exams.equals(this.exams);
   }
 
   //May need change for UI
