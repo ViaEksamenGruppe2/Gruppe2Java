@@ -26,6 +26,9 @@ public class PrivateCalendar
   public ArrayList<Date> getBookedDates(){
     return dates;
   }
+  public Date getDateFromIndex(int i){
+    return dates.get(i);
+  }
   public Date getNextAvailableDate(Date date){
     Date control = date.copy();
     Boolean look = true;
@@ -54,5 +57,12 @@ public class PrivateCalendar
     return "PrivateCalendar{" +
             "dates=" + dates +
             '}';
+  }
+
+  public boolean equals(Object obj){
+    if (!(obj instanceof PrivateCalendar))
+      return false;
+    PrivateCalendar other = (PrivateCalendar) obj;
+    return dates.equals(other.getBookedDates());
   }
 }
