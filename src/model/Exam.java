@@ -81,7 +81,7 @@ public class Exam
 
   public double getTotalExamDuration()
   {
-    if(isGroupExam == true){
+    if(isGroupExam){
 //Needs to be attended to! after questions to Michael.
     }
 
@@ -92,7 +92,7 @@ public class Exam
   {
     for (int i = 0; i < attendees.size(); i++)
     {
-      if(attendees.get(i).isTeacher() == true)
+      if(attendees.get(i).isTeacher())
       return true;
     }
     return false;
@@ -103,7 +103,7 @@ public class Exam
     int counter = 0; // int to count how many attendees is students
     for (int i = 0; i < attendees.size(); i++)
     {
-      if(attendees.get(i).isTeacher() == false) // if attendee isn't a teacher, then increase counter by one
+      if(attendees.get(i).isTeacher()) // if attendee isn't a teacher, then increase counter by one
         counter++;
     }
     return counter; // return the counted amount of students
@@ -156,15 +156,16 @@ public String toString()
         + attendees;
   }
 
+  //Logic doesn't work if missing priority room, returns null Pointer exception
   public boolean equals(Object obj)
   {
     if (!(obj instanceof Exam)){
       return false;
   }
     Exam other = (Exam) obj;
-    return courseName.equals(other.courseName) && accentColour.equals(other.accentColour) && duration == other.duration
-        && privateCalendar.equals(other.privateCalendar) && isGroupExam == other.isGroupExam
-        && isWrittenExam == other.isWrittenExam && priorityRoom.equals(other.priorityRoom);
+    return other.courseName.equals(this.courseName) && other.accentColour.equals(this.accentColour) && other.duration == this.duration
+        && other.privateCalendar.equals(this.privateCalendar) && other.isGroupExam == this.isGroupExam
+        && other.isWrittenExam == this.isWrittenExam && other.priorityRoom.equals(this.priorityRoom);
   }
 
   // End of logic
