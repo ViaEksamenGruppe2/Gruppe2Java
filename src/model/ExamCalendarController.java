@@ -7,7 +7,7 @@ public interface ExamCalendarController
   // Start of all getters
   public Object getPrivateCalendar(Object obj);
   public ArrayList<Person> getAllPersonsAssignedExam(Exam exam);
-  public ArrayList<Person> getAllPersons();
+  public ArrayList<Person> getPersons();
   public ArrayList<Room> getRooms();
   public ArrayList<Exam> getExams();
   // End of all getters

@@ -47,7 +47,7 @@ public class Controller implements ExamCalendarController
     return allPersons;
   };
 
-  public ArrayList<Person> getAllPersons()
+  public ArrayList<Person> getPersons()
   {
     return persons;
   }
