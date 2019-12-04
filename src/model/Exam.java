@@ -1,7 +1,6 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class Exam
 {
@@ -24,7 +23,7 @@ public class Exam
     this.isWrittenExam = isWrittenExam;
     privateCalendar = new PrivateCalendar();
     attendees = new ArrayList<>();
-    setAccentColour();
+    this.accentColour = getAColour();
   }
   // Second constructor for Exam object
   public Exam(String courseName, double duration, boolean isGroupExam, boolean isWrittenExam)
@@ -122,11 +121,28 @@ public class Exam
     attendees.add(person);
   }
 
-  public void setAccentColour() // NEEDS TO FILL METHOD BODY
+  public static String getAColour()
   {
+    String hex;
+    int r, g, b, difference = 110, largest;
+    do{
+      r = (int)Math.floor(Math.random() * (255 - 110)) + 110;
+      g = (int)Math.floor(Math.random() * (255 - 110)) + 110;
+      b = (int)Math.floor(Math.random() * (255 - 110)) + 110;
+      largest = r;
+      if(g > largest)
+        largest = g;
+      if(b > largest)
+        largest = b;
+    }
+    while((r + g + b) < (difference * 4.1) || largest < 200);
+    hex = String.format("#%02x%02x%02x", r, g, b);
+    return hex;
   }
   // End of setters for Exam object
-
+  public int getRandom(){
+    return (int)Math.floor(Math.random() * (255 - 110)) + 110;
+  }
   // Start of Logic
   public void removePerson(Person person){
         attendees.remove(person);
