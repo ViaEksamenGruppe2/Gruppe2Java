@@ -13,11 +13,43 @@ public class PrivateCalendar
   {
     dates = new ArrayList<>();
   }
+  public void makeReservation(Date date){
+    dates.add(date);
+  }
+  public void removeReservation(Date date){
+    dates.remove(date);
+  }
+  public boolean isBooked(Date date){
+    return dates.contains(date);
+  }
+  public ArrayList<Date> getBookedDates(){
+    return dates;
+  }
+  public Date getNextAvailableDate(Date date){
+    Date control = date.copy();
+    Boolean look = true;
+    while (look)
+    {
+      if (isBooked(control)){
+        control.stepForwardOneDay();
+        control = control.copy();
+      }
+      else
+        look = false;
+    }
+    return control;
+  }
+  public void removeAllNonPersonalDates(){
+    for (int i = 0; i < dates.size(); i++) {
+      if (!dates.get(i).isPersonalDate())
+        dates.remove(i);
+    }
+  }
 
-  // Start of getters for PrivateCalendar object
-  // End of getters for PrivateCalendar object
-
-  // Start of setters for PrivateCalendar object
-  // End of setters for PrivateCalendar object
-
+  @Override
+  public String toString() {
+    return "PrivateCalendar{" +
+            "dates=" + dates +
+            '}';
+  }
 }

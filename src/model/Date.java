@@ -210,7 +210,6 @@ public class Date
       return false;
 
     Date other = (Date) obj;
-
     return day == other.day && month == other.month && year == other.year;
   }
 
