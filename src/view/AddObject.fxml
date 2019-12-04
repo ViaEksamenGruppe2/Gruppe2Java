@@ -16,12 +16,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" userData="Add data" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ViewControllerAdd">
    <children>
       <TabPane prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab text="Add Person">
+          <Tab fx:id="addPerson" text="Add Person">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -104,6 +103,11 @@
                                                 <Insets top="100.0" />
                                              </VBox.margin>
                                           </Button>
+                                          <Button fx:id="closePerson" mnemonicParsing="false" onAction="#closeButtonPressed" text="Close">
+                                             <VBox.margin>
+                                                <Insets top="10.0" />
+                                             </VBox.margin>
+                                          </Button>
                                        </children>
                                     </VBox>
                                  </children>
@@ -117,7 +121,7 @@
                   </AnchorPane>
             </content>
           </Tab>
-          <Tab text="Add Exam">
+          <Tab fx:id="addExam" text="Add Exam">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -209,6 +213,7 @@
                                     <Insets top="50.0" />
                                  </VBox.margin>
                               </Button>
+                              <Button fx:id="closeExam" mnemonicParsing="false" onAction="#closeButtonPressed" text="Close" />
                            </children>
                            <padding>
                               <Insets top="10.0" />
@@ -218,7 +223,7 @@
                   </AnchorPane>
             </content>
           </Tab>
-            <Tab text="Add Room">
+            <Tab fx:id="addRoom" text="Add Room">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -300,6 +305,7 @@
                                     <Insets top="75.0" />
                                  </VBox.margin>
                               </Button>
+                              <Button fx:id="closeRoom" mnemonicParsing="false" onAction="#closeButtonPressed" text="Close" />
                            </children>
                            <padding>
                               <Insets top="10.0" />

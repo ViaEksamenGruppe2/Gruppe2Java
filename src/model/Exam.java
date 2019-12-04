@@ -1,7 +1,6 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class Exam
 {
@@ -24,7 +23,7 @@ public class Exam
     this.isWrittenExam = isWrittenExam;
     privateCalendar = new PrivateCalendar();
     attendees = new ArrayList<>();
-    setAccentColour();
+    this.accentColour = getAColour();
   }
   // Second constructor for Exam object
   public Exam(String courseName, double duration, boolean isGroupExam, boolean isWrittenExam)
@@ -37,8 +36,6 @@ public class Exam
     privateCalendar = new PrivateCalendar();
     attendees = new ArrayList<>();
   }
-
-
 
   // Start of getters for Exam object
   public String getCourseName()
@@ -59,19 +56,18 @@ public class Exam
   public String getAccentColour()
   {
     return accentColour;
-  } //Can't test yet
+  }
 
   public ArrayList<Person> getAllStudents()
   {
-    ArrayList<Person> studentAmount = new ArrayList<>();
+    ArrayList<Person> studentAmount = new ArrayList<Person>();
     for (int i = 0; i < attendees.size(); i++)
     {
-      if(!(attendees.get(i).isTeacher()))
+      if(!attendees.get(i).isTeacher())
         studentAmount.add(attendees.get(i));
     }
     return studentAmount;
   }
-
   public ArrayList<Person> getTeacher()
   {
     ArrayList<Person> teacher = new ArrayList<>();
@@ -83,10 +79,10 @@ public class Exam
     return teacher;
   }
 
-  public double getTotalExamDuration() //Can't test yet
+  public double getTotalExamDuration()
   {
-    if(isGroupExam){
-    //Needs to be attended to! after questions to Michael.
+    if(isGroupExam == true){
+//Needs to be attended to! after questions to Michael.
     }
 
     return duration * attendees.size();
@@ -96,7 +92,7 @@ public class Exam
   {
     for (int i = 0; i < attendees.size(); i++)
     {
-      if(attendees.get(i).isTeacher())
+      if(attendees.get(i).isTeacher() == true)
       return true;
     }
     return false;
@@ -105,16 +101,14 @@ public class Exam
   public int numberOfStudents()
   {
     int counter = 0; // int to count how many attendees is students
-    for(int i = 0; i < attendees.size(); i++)
+    for (int i = 0; i < attendees.size(); i++)
     {
-      if(!(attendees.get(i).isTeacher())) // if attendee isn't a teacher, then increase counter by one
+      if(attendees.get(i).isTeacher() == false) // if attendee isn't a teacher, then increase counter by one
         counter++;
     }
     return counter; // return the counted amount of students
   }
   // End of getters for Exam object
-
-
 
   // Start of setters for Exam object
   public void setPriorityRoom(Room priorityRoom)
@@ -127,40 +121,51 @@ public class Exam
     attendees.add(person);
   }
 
-  public void setAccentColour() // NEEDS TO FILL METHOD BODY //Can't test yet
+  public static String getAColour()
   {
+    String hex;
+    int r, g, b, difference = 110, largest;
+    do{
+      r = (int)Math.floor(Math.random() * (255 - 110)) + 110;
+      g = (int)Math.floor(Math.random() * (255 - 110)) + 110;
+      b = (int)Math.floor(Math.random() * (255 - 110)) + 110;
+      largest = r;
+      if(g > largest)
+        largest = g;
+      if(b > largest)
+        largest = b;
+    }
+    while((r + g + b) < (difference * 4.1) || largest < 200);
+    hex = String.format("#%02x%02x%02x", r, g, b);
+    return hex;
   }
   // End of setters for Exam object
-
-
-
+  public int getRandom(){
+    return (int)Math.floor(Math.random() * (255 - 110)) + 110;
+  }
   // Start of Logic
   public void removePerson(Person person){
         attendees.remove(person);
     }
 
-  public String toString()
+public String toString()
   {
-      return "courseName= " + courseName + ", accentColour=" + accentColour + ", duration=" + duration + ", isGroupExam="
-          + isGroupExam + ", isWrittenExam=" + isWrittenExam + ", priorityRoom="
-          + priorityRoom + ", privateCalendar=" + privateCalendar + ", attendees="
-          + attendees;
+    return "courseName= " + courseName + ", accentColour=" + accentColour + ", duration=" + duration + ", isGroupExam="
+        + isGroupExam + ", isWrittenExam=" + isWrittenExam + ", priorityRoom="
+        + priorityRoom + ", privateCalendar=" + privateCalendar + ", attendees="
+        + attendees;
   }
 
-  //Currently doesn't work due to accentColour missing. Can return false but not true
-  //Also doesn't work for exams missing a priority room, since it ends in null pointer exception
-  //Problematic functionality has been commented out
-
-  public boolean equals(Object obj) {
-    if (!(obj instanceof Exam)) {
+  public boolean equals(Object obj)
+  {
+    if (!(obj instanceof Exam)){
       return false;
   }
     Exam other = (Exam) obj;
-    return other.courseName.equals(this.courseName) && /*other.accentColour.equals(this.accentColour) &&*/ other.duration == this.duration
-        && other.privateCalendar.equals(this.privateCalendar) && other.isGroupExam == this.isGroupExam
-        && other.isWrittenExam == this.isWrittenExam /*&& other.priorityRoom.equals(this.priorityRoom)*/;
+    return courseName.equals(other.courseName) && accentColour.equals(other.accentColour) && duration == other.duration
+        && privateCalendar.equals(other.privateCalendar) && isGroupExam == other.isGroupExam
+        && isWrittenExam == other.isWrittenExam && priorityRoom.equals(other.priorityRoom);
   }
 
   // End of logic
-
 }
