@@ -89,7 +89,7 @@ public class Room
       return false;
     }
     Room other = (Room) obj;
-    return other.studentCapacity == this.studentCapacity && other.hasHDMI == this.hasHDMI && other.hasVGA == this.hasVGA && other.hasProjector == this.hasProjector && other.roomName.equals(this.roomName);
+    return other.studentCapacity == this.studentCapacity && other.hasHDMI == this.hasHDMI && other.hasVGA == this.hasVGA && other.hasProjector == this.hasProjector && other.roomName.equals(this.roomName) && other.privateCalendar.equals(this.privateCalendar);
   }
 
   @Override public String toString()
