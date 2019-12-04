@@ -23,17 +23,17 @@ public class ViewHandler {
     }
     public void start(Stage primaryStage){
         this.primaryStage = primaryStage;
-        openView("ExamPlanner");
+        openView("ExamPlanner",0);
     }
 
-    public void openView(String id) {
+    public void openView(String id, int tabInt) {
         Region root = null;
         switch (id){
             case "ExamPlanner":
                 root = loadViewMain("ExamPlanner.fxml");
                 break;
             case "AddObject":
-                root = loadViewAdd("AddObject.fxml");
+                root = loadViewAdd("AddObject.fxml",tabInt);
                 break;
         }
         currentScene.setRoot(root);
@@ -46,10 +46,9 @@ public class ViewHandler {
         primaryStage.setWidth(PREF_MIN_WIDTH);
         primaryStage.setHeight(PREF_MIN_HEIGHT);
         primaryStage.show();
-
     }
 
-    private Region loadViewAdd(String fxmlFile) {
+    private Region loadViewAdd(String fxmlFile, int tabInt) {
         if (viewControllerAdd == null){
             try{
                 FXMLLoader loader = new FXMLLoader();
@@ -65,6 +64,7 @@ public class ViewHandler {
         else{
             viewControllerAdd.reset();
         }
+        viewControllerAdd.setSpecificTab(tabInt);
         return viewControllerAdd.getRoot();
     }
 

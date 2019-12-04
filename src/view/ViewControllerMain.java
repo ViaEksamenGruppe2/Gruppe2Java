@@ -45,13 +45,13 @@ public class ViewControllerMain {
         try{
             switch (type){
                 case "personAdd":
-                    viewHandler.openView("AddObject");
+                    viewHandler.openView("AddObject", 0);
                     break;
                 case "examAdd":
-                    viewHandler.openView("AddObject");
+                    viewHandler.openView("AddObject",1);
                     break;
-                case "romAdd":
-                    viewHandler.openView("AddObject");
+                case "roomAdd":
+                    viewHandler.openView("AddObject",2);
                     break;
             }
         }
