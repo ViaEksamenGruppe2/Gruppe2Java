@@ -20,6 +20,8 @@ public class Room
     privateCalendar = new PrivateCalendar();
   }
 
+
+
   // Start of getters for Room object
   public int getCapacity()
   {
@@ -52,6 +54,8 @@ public class Room
   }
   // End of getters for Room object
 
+
+
   // Start of setters for Room object
   public void setHDMI(boolean state)
   {
@@ -63,4 +67,38 @@ public class Room
     hasVGA = state;
   }
   // End of setters for Room object
+
+
+
+  //Start of logic
+  public boolean isAvailable(Date day) {
+    return !(privateCalendar.isBooked(day));
+  }
+
+  public void reserveDate(Date day) {
+    privateCalendar.makeReservation(day);
+  }
+
+  public boolean useableForWrittenEx() {
+    int writtenSize = 30; //NOT FINAL SIZE EDIT
+    return studentCapacity >= writtenSize;
+  }
+
+  public boolean equals(Object obj){
+    if(!(obj instanceof Room)){
+      return false;
+    }
+    Room other = (Room) obj;
+    return other.studentCapacity == this.studentCapacity && other.hasHDMI == this.hasHDMI && other.hasVGA == this.hasVGA && other.hasProjector == this.hasProjector && other.roomName.equals(this.roomName);
+  }
+
+  @Override public String toString()
+  {
+    return "Room{" + "studentCapacity=" + studentCapacity + ", hasHDMI="
+        + hasHDMI + ", hasVGA=" + hasVGA + ", hasProjector=" + hasProjector
+        + ", roomName='" + roomName + '\'' + ", privateCalendar="
+        + privateCalendar + '}';
+  }
+
+  //End of logic
 }
