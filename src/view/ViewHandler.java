@@ -14,8 +14,8 @@ public class ViewHandler {
     private ExamCalendarController model;
     private ViewControllerMain viewControllerMain;
     private ViewControllerAdd viewControllerAdd;
-    private final int PREF_MIN_WIDTH = 820;
-    private final int PREF_MIN_HEIGHT = 550;
+    private int PREF_MIN_WIDTH = 820;
+    private int PREF_MIN_HEIGHT = 550;
 
     public ViewHandler(ExamCalendarController model){
         this.model = model;
@@ -31,9 +31,13 @@ public class ViewHandler {
         switch (id){
             case "ExamPlanner":
                 root = loadViewMain("ExamPlanner.fxml");
+                PREF_MIN_HEIGHT = 550;
+                PREF_MIN_WIDTH = 820;
                 break;
             case "AddObject":
                 root = loadViewAdd("AddObject.fxml",tabInt);
+                PREF_MIN_HEIGHT = 450;
+                PREF_MIN_WIDTH = 600;
                 break;
         }
         currentScene.setRoot(root);
