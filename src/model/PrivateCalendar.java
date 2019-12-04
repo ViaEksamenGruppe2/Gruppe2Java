@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class PrivateCalendar
 {
@@ -25,6 +26,9 @@ public class PrivateCalendar
   public ArrayList<Date> getBookedDates(){
     return dates;
   }
+  public Date getDateFromIndex(int i){
+    return dates.get(i);
+  }
   public Date getNextAvailableDate(Date date){
     Date control = date.copy();
     Boolean look = true;
@@ -40,9 +44,11 @@ public class PrivateCalendar
     return control;
   }
   public void removeAllNonPersonalDates(){
-    for (int i = 0; i < dates.size(); i++) {
-      if (!dates.get(i).isPersonalDate())
-        dates.remove(i);
+    Iterator<Date> i = dates.iterator();
+    while (i.hasNext()) {
+      Date s = i.next(); // must be called before you can call i.remove()
+      if (!s.isPersonalDate())
+        i.remove();
     }
   }
 
@@ -51,5 +57,12 @@ public class PrivateCalendar
     return "PrivateCalendar{" +
             "dates=" + dates +
             '}';
+  }
+
+  public boolean equals(Object obj){
+    if (!(obj instanceof PrivateCalendar))
+      return false;
+    PrivateCalendar other = (PrivateCalendar) obj;
+    return dates.equals(other.getBookedDates());
   }
 }

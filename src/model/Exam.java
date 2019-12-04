@@ -24,6 +24,7 @@ public class Exam
     this.isWrittenExam = isWrittenExam;
     privateCalendar = new PrivateCalendar();
     attendees = new ArrayList<>();
+    setAccentColour();
   }
   // Second constructor for Exam object
   public Exam(String courseName, double duration, boolean isGroupExam, boolean isWrittenExam)
@@ -121,6 +122,9 @@ public class Exam
     attendees.add(person);
   }
 
+  public void setAccentColour() // NEEDS TO FILL METHOD BODY
+  {
+  }
   // End of setters for Exam object
 
   // Start of Logic
@@ -138,13 +142,13 @@ public String toString()
 
   public boolean equals(Object obj)
   {
-    if (!(obj insteanceof Exam)){
+    if (!(obj instanceof Exam)){
       return false;
   }
     Exam other = (Exam) obj;
-    return courseName == other.getCourseName() && accentColour ==
-        other.getAccentColour() && duration == other.getTotalExamDuration() &&
-
+    return courseName.equals(other.courseName) && accentColour.equals(other.accentColour) && duration == other.duration
+        && privateCalendar.equals(other.privateCalendar) && isGroupExam == other.isGroupExam
+        && isWrittenExam == other.isWrittenExam && priorityRoom.equals(other.priorityRoom);
   }
 
   // End of logic
