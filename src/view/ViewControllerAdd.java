@@ -1,8 +1,7 @@
 package view;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
+import javafx.scene.control.*;
 import javafx.scene.layout.Region;
 import model.ExamCalendarController;
 
@@ -11,6 +10,20 @@ public class ViewControllerAdd {
     @FXML private Tab addExam;
     @FXML private Tab addRoom;
     @FXML private TabPane tabPane;
+    @FXML private TextField personNameField;
+    @FXML private TextField VIAIDField;
+    @FXML private CheckBox isTeacherCheckbox;
+    @FXML private CheckBox assignedCoursesCheckbox;
+    @FXML private TextField courseNameField;
+    @FXML private TextField examDurationField;
+    @FXML private ChoiceBox<model.Room> priorityRoomChoiceBox;
+    @FXML private CheckBox isWrittenCheckBox;
+    @FXML private CheckBox isGroupExamCheckBox;
+    @FXML private TextField roomNameField;
+    @FXML private TextField capacityField;
+    @FXML private CheckBox hasHDMICheckBox;
+    @FXML private CheckBox hasVGACheckBox;
+    @FXML private CheckBox hasProjectorCheckBox;
     private Region root;
     private ExamCalendarController model;
     private ViewHandler viewHandler;
@@ -19,7 +32,6 @@ public class ViewControllerAdd {
         this.model = model;
         this.viewHandler = viewHandler;
         this.root = root;
-        reset();
     }
 
     public void setSpecificTab(int tabInt)
@@ -30,6 +42,7 @@ public class ViewControllerAdd {
                 addPerson.setDisable(false);
                 addExam.setDisable(true);
                 addRoom.setDisable(true);
+                loadPersonTab();
                 tabPane.getSelectionModel().select(addPerson);
                 break;
             case 1:
@@ -47,8 +60,29 @@ public class ViewControllerAdd {
         }
     }
 
-    public void reset(){
-       // Reset all text fiels and button states
+    public void reset(int tab){
+        switch (tab) {
+            case 0:
+                personNameField.clear();
+                VIAIDField.clear();
+                isTeacherCheckbox.setSelected(false);
+                assignedCoursesCheckbox.setSelected(false);
+                break;
+            case 1:
+                courseNameField.clear();
+                examDurationField.clear();
+                priorityRoomChoiceBox.getSelectionModel().clearSelection();
+                isWrittenCheckBox.setSelected(false);
+                isGroupExamCheckBox.setSelected(false);
+                break;
+            case 2:
+                roomNameField.clear();
+                capacityField.clear();
+                hasHDMICheckBox.setSelected(false);
+                hasVGACheckBox.setSelected(false);
+                hasProjectorCheckBox.setSelected(false);
+                break;
+        }
     }
 
     public Region getRoot()
@@ -60,8 +94,23 @@ public class ViewControllerAdd {
         viewHandler.openView("ExamPlanner",0);
     }
 
-    @FXML public void submitButtonPressed(){
+    @FXML public void submitPersonPressed(){
         //Add swich to call depenging on the tab
-        reset();
+        reset(0);
+    }
+
+    @FXML public void submitExamPressed(){
+        //Add swich to call depenging on the tab
+        reset(1);
+    }
+
+    @FXML public void submitRoomPressed(){
+        //Add swich to call depenging on the tab
+        reset(2);
+    }
+
+    public void loadPersonTab()
+    {
+        model.getExams();
     }
 }

@@ -18,7 +18,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" userData="Add data" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ViewControllerAdd">
    <children>
-      <TabPane prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" fx:id="tabPane">
+      <TabPane fx:id="tabPane" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab fx:id="addPerson" text="Add Person">
             <content>
@@ -36,7 +36,7 @@
                                           <Insets right="10.0" />
                                        </HBox.margin>
                                     </Text>
-                                    <TextField prefHeight="26.0" prefWidth="300.0">
+                                    <TextField fx:id="personNameField" prefHeight="26.0" prefWidth="300.0">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -53,7 +53,7 @@
                                           <Insets right="10.0" />
                                        </HBox.margin>
                                     </Text>
-                                    <TextField prefHeight="26.0" prefWidth="300.0">
+                                    <TextField fx:id="VIAIDField" prefHeight="26.0" prefWidth="300.0">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -70,12 +70,12 @@
                               </Text>
                               <HBox prefHeight="273.0" prefWidth="343.0">
                                  <children>
-                                    <TableView prefHeight="152.0" prefWidth="287.0">
+                                    <TableView fx:id="assignedCoursesTable" prefHeight="152.0" prefWidth="287.0">
                                        <columns>
-                                          <TableColumn prefWidth="255.20001220703125" text="Course Name" />
-                                          <TableColumn minWidth="0.0" prefWidth="28.79998779296875">
+                                          <TableColumn fx:id="courseNameColumn" prefWidth="255.20001220703125" text="Course Name" />
+                                          <TableColumn fx:id="checkboxColumn" minWidth="0.0" prefWidth="28.79998779296875">
                                              <graphic>
-                                                <CheckBox mnemonicParsing="false" />
+                                                <CheckBox fx:id="assignedCoursesCheckbox" mnemonicParsing="false" />
                                              </graphic>
                                           </TableColumn>
                                        </columns>
@@ -87,12 +87,12 @@
                                                 <Font size="17.0" />
                                              </font>
                                           </Text>
-                                          <CheckBox mnemonicParsing="false" text="Teacher">
+                                          <CheckBox fx:id="isTeacherCheckbox" mnemonicParsing="false" text="Teacher">
                                              <VBox.margin>
                                                 <Insets />
                                              </VBox.margin>
                                           </CheckBox>
-                                          <Button mnemonicParsing="false" text="Submit">
+                                          <Button fx:id="submitPerson" mnemonicParsing="false" onAction="#submitPersonPressed" text="Submit">
                                              <padding>
                                                 <Insets bottom="20.0" left="50.0" right="50.0" top="20.0" />
                                              </padding>
@@ -137,7 +137,7 @@
                                           <Insets right="10.0" />
                                        </HBox.margin>
                                     </Text>
-                                    <TextField prefHeight="30.0" prefWidth="231.0">
+                                    <TextField fx:id="courseNameField" prefHeight="30.0" prefWidth="231.0">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -154,7 +154,7 @@
                                           <Insets right="10.0" />
                                        </HBox.margin>
                                     </Text>
-                                    <TextField prefHeight="30.0" prefWidth="149.0">
+                                    <TextField fx:id="examDurationField" prefHeight="30.0" prefWidth="149.0">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -179,12 +179,12 @@
                                           <Insets right="10.0" />
                                        </HBox.margin>
                                     </Text>
-                                    <ChoiceBox prefHeight="26.0" prefWidth="231.0" />
+                                    <ChoiceBox fx:id="priorityRoomChoiceBox" prefHeight="26.0" prefWidth="231.0" />
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER" prefHeight="53.0" prefWidth="600.0">
                                  <children>
-                                    <CheckBox mnemonicParsing="false" text="Written Exam">
+                                    <CheckBox fx:id="isWrittenCheckBox" mnemonicParsing="false" text="Written Exam">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -192,7 +192,7 @@
                                           <Insets right="25.0" />
                                        </HBox.margin>
                                     </CheckBox>
-                                    <CheckBox mnemonicParsing="false" text="Group Exam">
+                                    <CheckBox fx:id="isGroupExamCheckBox" mnemonicParsing="false" text="Group Exam">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -202,7 +202,7 @@
                                     </CheckBox>
                                  </children>
                               </HBox>
-                              <Button mnemonicParsing="false" text="Submit">
+                              <Button fx:id="submitExam" mnemonicParsing="false" onAction="#submitExamPressed" text="Submit">
                                  <padding>
                                     <Insets bottom="20.0" left="50.0" right="50.0" top="20.0" />
                                  </padding>
@@ -239,7 +239,7 @@
                                           <Insets right="10.0" />
                                        </HBox.margin>
                                     </Text>
-                                    <TextField prefHeight="30.0" prefWidth="231.0">
+                                    <TextField fx:id="roomNameField" prefHeight="30.0" prefWidth="231.0">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -256,7 +256,7 @@
                                           <Insets right="10.0" />
                                        </HBox.margin>
                                     </Text>
-                                    <TextField prefHeight="30.0" prefWidth="194.0">
+                                    <TextField fx:id="capacityField" prefHeight="30.0" prefWidth="194.0">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -268,7 +268,7 @@
                               </HBox>
                               <HBox alignment="CENTER" prefHeight="53.0" prefWidth="600.0">
                                  <children>
-                                    <CheckBox mnemonicParsing="false" text="Has HDMI">
+                                    <CheckBox fx:id="hasHDMICheckBox" mnemonicParsing="false" text="Has HDMI">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -276,7 +276,7 @@
                                           <Insets right="25.0" />
                                        </HBox.margin>
                                     </CheckBox>
-                                    <CheckBox mnemonicParsing="false" text="Has VGA">
+                                    <CheckBox fx:id="hasVGACheckBox" mnemonicParsing="false" text="Has VGA">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -284,7 +284,7 @@
                                           <Insets left="25.0" right="25.0" />
                                        </HBox.margin>
                                     </CheckBox>
-                                    <CheckBox mnemonicParsing="false" text="Has Projector">
+                                    <CheckBox fx:id="hasProjectorCheckBox" mnemonicParsing="false" text="Has Projector">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -294,7 +294,7 @@
                                     </CheckBox>
                                  </children>
                               </HBox>
-                              <Button mnemonicParsing="false" text="Submit">
+                              <Button fx:id="submitRoom" mnemonicParsing="false" onAction="#submitRoomPressed" text="Submit">
                                  <padding>
                                     <Insets bottom="20.0" left="50.0" right="50.0" top="20.0" />
                                  </padding>
