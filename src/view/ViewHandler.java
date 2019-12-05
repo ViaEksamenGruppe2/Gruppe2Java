@@ -49,6 +49,7 @@ public class ViewHandler {
         primaryStage.setScene(currentScene);
         primaryStage.setWidth(PREF_MIN_WIDTH);
         primaryStage.setHeight(PREF_MIN_HEIGHT);
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 
