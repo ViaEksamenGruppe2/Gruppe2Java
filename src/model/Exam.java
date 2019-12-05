@@ -35,6 +35,7 @@ public class Exam
     this.priorityRoom = null;
     privateCalendar = new PrivateCalendar();
     attendees = new ArrayList<>();
+    this.accentColour = getAColour();
   }
 
   // Start of getters for Exam object
