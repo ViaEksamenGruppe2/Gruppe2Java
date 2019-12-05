@@ -67,7 +67,7 @@ public class ViewHandler {
             }
         }
         else{
-            viewControllerAdd.reset();
+            viewControllerAdd.reset(tabInt);
         }
         viewControllerAdd.setSpecificTab(tabInt);
         return viewControllerAdd.getRoot();
