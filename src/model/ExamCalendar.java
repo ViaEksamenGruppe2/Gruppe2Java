@@ -21,6 +21,6 @@ public class ExamCalendar
 
   public void generateExamSchedule()
   {
-    
+
   }
 }
