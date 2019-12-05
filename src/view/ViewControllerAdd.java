@@ -1,19 +1,25 @@
 package view;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
+import model.Exam;
 import model.ExamCalendarController;
+
+import java.util.ArrayList;
 
 public class ViewControllerAdd {
     @FXML private Tab addPerson;
     @FXML private Tab addExam;
     @FXML private Tab addRoom;
+    @FXML private TableView assignedCoursesTable;
     @FXML private TabPane tabPane;
     @FXML private TextField personNameField;
     @FXML private TextField VIAIDField;
     @FXML private CheckBox isTeacherCheckbox;
-    @FXML private CheckBox assignedCoursesCheckbox;
     @FXML private TextField courseNameField;
     @FXML private TextField examDurationField;
     @FXML private ChoiceBox<model.Room> priorityRoomChoiceBox;
@@ -66,7 +72,6 @@ public class ViewControllerAdd {
                 personNameField.clear();
                 VIAIDField.clear();
                 isTeacherCheckbox.setSelected(false);
-                assignedCoursesCheckbox.setSelected(false);
                 break;
             case 1:
                 courseNameField.clear();
@@ -111,6 +116,14 @@ public class ViewControllerAdd {
 
     public void loadPersonTab()
     {
-        model.getExams();
+        ObservableList courseData = FXCollections.observableList(model.getExams());
+        assignedCoursesTable.setItems(courseData);
+        TableColumn courseCol = new TableColumn("Course Name");
+        courseCol.setPrefWidth(284);
+        assignedCoursesTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        courseCol.setCellValueFactory(new PropertyValueFactory<String, CheckBox>("courseName"));
+        assignedCoursesTable.getColumns().setAll(courseCol);
+
+
     }
 }

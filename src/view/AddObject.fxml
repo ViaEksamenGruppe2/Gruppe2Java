@@ -6,7 +6,6 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -70,16 +69,7 @@
                               </Text>
                               <HBox prefHeight="273.0" prefWidth="343.0">
                                  <children>
-                                    <TableView fx:id="assignedCoursesTable" prefHeight="152.0" prefWidth="287.0">
-                                       <columns>
-                                          <TableColumn fx:id="courseNameColumn" prefWidth="255.20001220703125" text="Course Name" />
-                                          <TableColumn fx:id="checkboxColumn" minWidth="0.0" prefWidth="28.79998779296875">
-                                             <graphic>
-                                                <CheckBox fx:id="assignedCoursesCheckbox" mnemonicParsing="false" />
-                                             </graphic>
-                                          </TableColumn>
-                                       </columns>
-                                    </TableView>
+                                    <TableView fx:id="assignedCoursesTable" prefHeight="152.0" prefWidth="287.0" />
                                     <VBox alignment="CENTER" prefHeight="273.0" prefWidth="314.0">
                                        <children>
                                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="If person is teacher, check this box" textAlignment="CENTER">

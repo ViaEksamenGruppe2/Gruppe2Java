@@ -13,6 +13,8 @@ public class Main extends Application {
         view.start(primaryStage);
     }
 
+
+
     public static void main(String[] args) {
         Application.launch(Main.class);
     }
