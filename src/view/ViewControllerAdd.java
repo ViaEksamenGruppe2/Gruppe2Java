@@ -2,6 +2,7 @@ package view;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.layout.Region;
 import model.ExamCalendarController;
 
@@ -9,6 +10,7 @@ public class ViewControllerAdd {
     @FXML private Tab addPerson;
     @FXML private Tab addExam;
     @FXML private Tab addRoom;
+    @FXML private TabPane tabPane;
     private Region root;
     private ExamCalendarController model;
     private ViewHandler viewHandler;
@@ -28,16 +30,19 @@ public class ViewControllerAdd {
                 addPerson.setDisable(false);
                 addExam.setDisable(true);
                 addRoom.setDisable(true);
+                tabPane.getSelectionModel().select(addPerson);
                 break;
             case 1:
                 addPerson.setDisable(true);
                 addExam.setDisable(false);
                 addRoom.setDisable(true);
+                tabPane.getSelectionModel().select(addExam);
                 break;
             case 2:
                 addPerson.setDisable(true);
                 addExam.setDisable(true);
                 addRoom.setDisable(false);
+                tabPane.getSelectionModel().select(addRoom);
                 break;
         }
     }
