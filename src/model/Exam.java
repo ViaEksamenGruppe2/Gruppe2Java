@@ -156,7 +156,6 @@ public String toString()
         + attendees;
   }
 
-  //Logic doesn't work if missing priority room, returns null Pointer exception
   public boolean equals(Object obj)
   {
     if (!(obj instanceof Exam)){
@@ -165,7 +164,7 @@ public String toString()
     Exam other = (Exam) obj;
     return other.courseName.equals(this.courseName) && other.accentColour.equals(this.accentColour) && other.duration == this.duration
         && other.privateCalendar.equals(this.privateCalendar) && other.isGroupExam == this.isGroupExam
-        && other.isWrittenExam == this.isWrittenExam && other.priorityRoom.equals(this.priorityRoom);
+        && other.isWrittenExam == this.isWrittenExam;
   }
 
   // End of logic
