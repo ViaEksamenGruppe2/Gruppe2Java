@@ -66,6 +66,10 @@ public class Room
   {
     hasVGA = state;
   }
+
+  public void setProjector(boolean state){
+    hasProjector = state;
+  }
   // End of setters for Room object
 
 
@@ -89,7 +93,9 @@ public class Room
       return false;
     }
     Room other = (Room) obj;
-    return other.studentCapacity == this.studentCapacity && other.hasHDMI == this.hasHDMI && other.hasVGA == this.hasVGA && other.hasProjector == this.hasProjector && other.roomName.equals(this.roomName) && other.privateCalendar.equals(this.privateCalendar);
+    return other.studentCapacity == this.studentCapacity && other.hasHDMI == this.hasHDMI
+       && other.hasVGA == this.hasVGA && other.hasProjector == this.hasProjector
+        && other.roomName.equals(this.roomName) && other.privateCalendar.equals(this.privateCalendar);
   }
 
   @Override public String toString()
