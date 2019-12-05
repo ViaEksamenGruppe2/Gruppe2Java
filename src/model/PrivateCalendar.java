@@ -14,27 +14,35 @@ public class PrivateCalendar
   {
     dates = new ArrayList<>();
   }
+
+
+  //Logic
   public void makeReservation(Date date){
     dates.add(date);
   }
+
   public void removeReservation(Date date){
     dates.remove(date);
   }
+
   public boolean isBooked(Date date){
     return dates.contains(date);
   }
+
   public ArrayList<Date> getBookedDates(){
     return dates;
   }
+
   public Date getDateFromIndex(int i){
     return dates.get(i);
   }
-  public Date getNextAvailableDate(Date date){
+
+  //Problem: Returns the next date after the argument
+  public Date getNextAvailableDate(Date date) {
     Date control = date.copy();
     Boolean look = true;
-    while (look)
-    {
-      if (isBooked(control)){
+    while (look) {
+      if (isBooked(control)) {
         control.stepForwardOneDay();
         control = control.copy();
       }
@@ -43,7 +51,8 @@ public class PrivateCalendar
     }
     return control;
   }
-  public void removeAllNonPersonalDates(){
+
+  public void removeAllNonPersonalDates() {
     Iterator<Date> i = dates.iterator();
     while (i.hasNext()) {
       Date s = i.next(); // must be called before you can call i.remove()
