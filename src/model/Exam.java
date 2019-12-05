@@ -163,7 +163,7 @@ public String toString()
       return false;
   }
     Exam other = (Exam) obj;
-    return other.courseName.equals(this.courseName) && other.accentColour.equals(this.accentColour) && other.duration == this.duration
+    return other.courseName.equals(this.courseName) && other.duration == this.duration
         && other.privateCalendar.equals(this.privateCalendar) && other.isGroupExam == this.isGroupExam
         && other.isWrittenExam == this.isWrittenExam;
   }
