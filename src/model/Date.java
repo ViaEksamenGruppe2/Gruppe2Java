@@ -99,13 +99,13 @@ public class Date
     {
       if(this.month > other.month)
         return false;
-      else if(other.month < this.month)
+      else if(other.month > this.month)
         return true;
       else
       {
         if(this.day > other.day)
           return false;
-        else if(other.day < this.day)
+        else if(other.day > this.day)
           return true;
         else
           return false; //if the dates are equal, isBefore returns false.
@@ -149,63 +149,59 @@ public class Date
       return false;
     return true;
   }
+  //Counts the start and end date of the interval
   public int weekdaysBetween(Date other){
-
     int days = 0;
-
     Date counterDate, endDate;
 
-    if (this.isBefore(other))
-    {
+    if (this.isBefore(other)) {
       counterDate = this.copy();
       endDate = other;
     }
-    else
-    {
+    else {
       counterDate = other.copy();
       endDate = this;
     }
 
-    while (!counterDate.equals(endDate))
-    {
+    while (!counterDate.equals(endDate)) {
       if (counterDate.isWeekDay())
         days++;
       counterDate.stepForwardOneDay();
     }
+    if (counterDate.isWeekDay())
+      days++;
     return days;
   }
-  public int daysBetween(Date other)
-  {
-    int days = 0;
 
+  //Counts the start and end of the interval
+  public int daysBetween(Date other) {
+    int days = 0;
     Date counterDate, endDate;
 
-    if (this.isBefore(other))
-    {
+    if (this.isBefore(other)) {
       counterDate = this.copy();
       endDate = other;
     }
-    else
-    {
+    else {
       counterDate = other.copy();
       endDate = this;
     }
 
-    while (!counterDate.equals(endDate))
-    {
+    while (!counterDate.equals(endDate)) {
       days++;
       counterDate.stepForwardOneDay();
     }
+    if (counterDate.isWeekDay() || !counterDate.isWeekDay())
+      days++;
     return days;
   }
+
   // Copy method
-  public Date copy()
-  {
+  public Date copy() {
     Date copy = new Date(day, month, year);
     return copy;
   }
-  public boolean equals(Object obj)
-  {
+  public boolean equals(Object obj) {
     if (!(obj instanceof Date))
       return false;
 
