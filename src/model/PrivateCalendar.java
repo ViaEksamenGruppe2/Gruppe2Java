@@ -37,7 +37,6 @@ public class PrivateCalendar
     return dates.get(i);
   }
 
-  //Problem: Returns the next date after the argument
   public Date getNextAvailableDate(Date date) {
     Date control = date.copy();
     Boolean look = true;
