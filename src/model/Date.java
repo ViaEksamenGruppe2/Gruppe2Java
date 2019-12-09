@@ -145,7 +145,8 @@ public class Date
       case 1900: case 2300: centuryCode = 0; break;
       case 2000: centuryCode = 6; break;
     }
-    int dayCode = (yearCode + monthCode + centuryCode + day) % 7;
+    int leapYear = (isLeapYear()) ? 1 : 0;
+    int dayCode = (yearCode + monthCode + centuryCode + day - leapYear) % 7;
     if (dayCode == 6 || dayCode == 0)
       return false;
     return true;
