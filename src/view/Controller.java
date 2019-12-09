@@ -68,7 +68,7 @@ public class Controller implements ExamCalendarController
   // End of all getters
 
   // Start of all setters
-  public void addPerson(String name, int VIAID, ArrayList<String> assignedCourses, boolean isTeacher)
+  public void addPerson(String name, String VIAID, ArrayList<String> assignedCourses, boolean isTeacher)
   {
     Person person = new Person(name, VIAID, assignedCourses, isTeacher);
     persons.add(person);

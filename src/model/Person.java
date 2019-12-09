@@ -6,7 +6,7 @@ public class Person
 {
   // Field variables
   private String name;
-  private int viaID;
+  private String viaID;
   private ArrayList<String> assignedCourses;
   private boolean isTeacher;
   private PrivateCalendar privateCalendar;
@@ -14,7 +14,7 @@ public class Person
   // Field variables
 
   // Constructor for Person object
-  public Person(String name, int viaID, ArrayList<String> assignedCourses, boolean isTeacher)
+  public Person(String name, String viaID, ArrayList<String> assignedCourses, boolean isTeacher)
   {
     this.name = name;
     this.viaID = viaID;
@@ -32,7 +32,7 @@ public class Person
     return name;
   }
 
-  public int getViaID()
+  public String getViaID()
   {
     return viaID;
   }
@@ -103,7 +103,7 @@ public class Person
       return false;
     }
     Person other = (Person) obj;
-    return other.name.equals(this.name) && other.viaID == this.viaID && other.assignedCourses.equals(this.assignedCourses) && other.isTeacher == this.isTeacher && other.privateCalendar.equals(this.privateCalendar) && other.exams.equals(this.exams);
+    return other.name.equals(this.name) && other.viaID.equals(this.viaID) && other.assignedCourses.equals(this.assignedCourses) && other.isTeacher == this.isTeacher && other.privateCalendar.equals(this.privateCalendar) && other.exams.equals(this.exams);
   }
 
   //May need change for UI
