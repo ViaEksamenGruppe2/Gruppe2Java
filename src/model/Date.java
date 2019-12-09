@@ -127,6 +127,21 @@ public class Date
     }
     while(new Date(day, month, year).isWeekDay() == false);
   }
+  public void stepBackOneDay()
+  {
+    do {
+      day--;
+      if (day < 1) {
+        month--;
+        day = numberOfDaysInMonth();
+        if (month < 1) {
+          month = 12;
+          year--;
+        }
+      }
+    }
+    while(new Date(day, month, year).isWeekDay() == false);
+  }
   public boolean isWeekDay(){
     int yy = year % 100, monthCode = 0, y = year - (year % 1000), centuryCode = 0;
     int yearCode = (int)(yy + Math.floor(yy / 4)) % 7;

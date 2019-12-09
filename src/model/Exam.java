@@ -95,6 +95,20 @@ public class Exam
           getAllStudents().get(i).getPrivateCalendar().makeReservation(date);
       }
   }
+  public boolean willThisCauseBack2BackExams(Date date){
+      for (int i = 0; i < getAllStudents().size(); i++) {
+          Date before = date;
+          before.stepBackOneDay();
+          Date after = date;
+          after.stepBackOneDay();
+
+          if (getAllStudents().get(i).getPrivateCalendar().isBooked(date)
+                  || getAllStudents().get(i).getPrivateCalendar().isBooked(before)
+                  || getAllStudents().get(i).getPrivateCalendar().isBooked(after))
+              return false;
+      }
+      return true;
+  }
   public int getTotalExamDurationInDays()
   {
     double minutes = duration * getAllStudents().size();
