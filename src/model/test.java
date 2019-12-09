@@ -14,9 +14,9 @@ public class test
     Room room2 = new Room(30,true,true,true,"SDJROOM");
     Room room3 = new Room(10,true,true,true,"BestRoom");
 
-    Exam exam1 = new Exam("SDJ", 10, true, false);
-    Exam exam2 = new Exam("RWD", 20, false, true);
-    Exam exam3 = new Exam("SEP", 20,room3, false, false);
+    Exam exam1 = new Exam("SDJ", 20, true, false);
+    Exam exam2 = new Exam("RWD", 800, false, false);
+    Exam exam3 = new Exam("SEP", 900,room3, false, false);
 
     exam1.getPrivateCalendar().makeReservation(date1);
     exam3.getPrivateCalendar().makeReservation(datebook);
@@ -33,8 +33,11 @@ public class test
 
 
     exam1.addPerson(teacher);
+    exam1.addPerson(person2);
     exam2.addPerson(teacher);
+    exam2.addPerson(person2);
     exam3.addPerson(teacher);
+    exam3.addPerson(person2);
 
     ArrayList<Exam> exams = new ArrayList<>();
     exams.add(exam1);
@@ -55,10 +58,12 @@ public class test
     ExamCalendar examCalendar = new ExamCalendar(date1,date2,persons,rooms,exams);
 
     ArrayList<ArrayList<Object>> calendarschedule = examCalendar.generateExamSchedule();
-    
-    System.out.println(calendarschedule.get(0).get(0) + " " + calendarschedule.get(0).get(2));
-    System.out.println(calendarschedule.get(1).get(0) + " " + calendarschedule.get(1).get(2));
-    System.out.println(calendarschedule.get(2).get(0) + " " + calendarschedule.get(2).get(2));
+    Exam examlist1 = (Exam) calendarschedule.get(0).get(2);
+    Exam examlist2 = (Exam) calendarschedule.get(1).get(2);
+    Exam examlist3 = (Exam) calendarschedule.get(2).get(2);
+    System.out.println(calendarschedule.get(0).get(0) + " : " + examlist1.getPrivateCalendar());
+    System.out.println(calendarschedule.get(1).get(0) + " : " + examlist2.getPrivateCalendar());
+    System.out.println(calendarschedule.get(2).get(0) + " : " + examlist3.getPrivateCalendar());
 
   }
 }

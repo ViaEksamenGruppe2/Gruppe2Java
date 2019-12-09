@@ -90,9 +90,18 @@ public class Exam
     return isGroupExam;
   }
 
-  public double getTotalExamDurationInDays()
+  public int getTotalExamDurationInDays()
   {
-    return duration * attendees.size();
+    double minutes = duration * getAllStudents().size();
+    double minutesInADay = 60 * 7;
+
+    if (isWrittenExam)
+    {
+      return 1;
+    }
+    else {
+      return (int) Math.ceil(minutes/minutesInADay);
+    }
   }
 
   public boolean hasTeacher()
