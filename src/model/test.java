@@ -7,7 +7,7 @@ public class test
   public static void main(String[] args)
   {
     Date date1 = new Date(2,1,2020);
-    Date date2 = new Date(15,1,2020);
+    Date date2 = new Date(10,1,2020);
     Date datebook = new Date(6,1,2020);
 
     Room room1 = new Room(10,true,true,true,"FavouriteRoom");
@@ -56,16 +56,9 @@ public class test
     ExamCalendar examCalendar = new ExamCalendar(date1,date2,persons,rooms,exams);
 
     ArrayList<ArrayList<Object>> calendarschedule = examCalendar.generateExamSchedule();
-    Exam examlist1 = (Exam) calendarschedule.get(0).get(2);
-    Exam examlist2 = (Exam) calendarschedule.get(1).get(2);
-    Exam examlist3 = (Exam) calendarschedule.get(2).get(2);
-    Room roomlist1 = (Room) calendarschedule.get(0).get(1);
-    Room roomlist2 = (Room) calendarschedule.get(1).get(1);
-    Room roomlist3 = (Room) calendarschedule.get(2).get(1);
-
-    System.out.println(calendarschedule.get(0).get(0) + " : " + examlist1.getPrivateCalendar() + " : " + examlist1.getCourseName() + " : " + roomlist1.getRoomName());
-    System.out.println(calendarschedule.get(1).get(0) + " : " + examlist2.getPrivateCalendar() + " : " + examlist2.getCourseName() + " : " + roomlist2.getRoomName());
-    System.out.println(calendarschedule.get(2).get(0) + " : " + examlist3.getPrivateCalendar() + " : " + examlist3.getCourseName() + " : " + roomlist3.getRoomName());
-
+    for (int i = 0; i < calendarschedule.size(); i++)
+    {
+        System.out.println(calendarschedule.get(i).get(0) + " : " + ((Room) calendarschedule.get(i).get(1)).getRoomName() + " : " + ((Exam) calendarschedule.get(i).get(2)).getCourseName() + " : " + ((Exam) calendarschedule.get(i).get(2)).getPrivateCalendar());
+    }
   }
 }

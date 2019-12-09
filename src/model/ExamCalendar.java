@@ -1,8 +1,9 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ExamCalendar
+public class ExamCalendar implements Serializable
 {
   private Date firstExamDate;
   private Date lastExamDate;
@@ -30,8 +31,12 @@ public class ExamCalendar
     Date plannerDate;
     for (int i = 0; i < exams.size(); i++)
     {
+      Date lastDate = lastExamDate.copy();
       plannerDate = firstExamDate.copy();
-      while (exams.get(i).getPrivateCalendar().isBooked(plannerDate) || exams.get(i).getTeacher().get(0).getPrivateCalendar().isBooked(plannerDate))
+      while (exams.get(i).getPrivateCalendar().isBooked(plannerDate)
+          || exams.get(i).getTeacher().get(0).getPrivateCalendar().isBooked(plannerDate)
+          || !exams.get(i).willThisCauseBack2BackExams(plannerDate)
+          && plannerDate.isBefore(lastDate))
       {
         plannerDate.stepForwardOneDay();
         plannerDate = plannerDate.copy();
@@ -41,6 +46,8 @@ public class ExamCalendar
             && !exams.get(i).getPriorityRoom().getPrivateCalendar().isBooked(plannerDate)
             && !exams.get(i).getTeacher().get(0).getPrivateCalendar().isBooked(plannerDate))
         {
+          if(!plannerDate.isBefore(lastDate))
+            break;
           ArrayList<Object> addList = new ArrayList<>();
           addList.add(plannerDate.copy());
           for (int j = 0; j < exams.get(i).getTotalExamDurationInDays(); j++)
@@ -48,9 +55,12 @@ public class ExamCalendar
             exams.get(i).getPrivateCalendar().makeReservation(plannerDate.copy());
             exams.get(i).getPriorityRoom().getPrivateCalendar().makeReservation(plannerDate.copy());
             exams.get(i).getTeacher().get(0).getPrivateCalendar().makeReservation(plannerDate.copy());
+            exams.get(i).makeReservationForAllStudents(plannerDate.copy());
             if (exams.get(i).getTotalExamDurationInDays() > 1)
             {
               plannerDate.stepForwardOneDay();
+              if(!plannerDate.isBefore(lastDate))
+                break;
             }
           }
 
@@ -63,6 +73,8 @@ public class ExamCalendar
         else if (!exams.get(i).getPrivateCalendar().isBooked(plannerDate)
             && !exams.get(i).getTeacher().get(0).getPrivateCalendar().isBooked(plannerDate))
         {
+          if(!plannerDate.isBefore(lastDate))
+            break;
           for (int j = 0; j < rooms.size(); j++)
           {
             if (rooms.get(j).isAvailable(plannerDate)
@@ -75,6 +87,7 @@ public class ExamCalendar
                 exams.get(i).getPrivateCalendar().makeReservation(plannerDate.copy());
                 rooms.get(j).getPrivateCalendar().makeReservation(plannerDate.copy());
                 exams.get(i).getTeacher().get(0).getPrivateCalendar().makeReservation(plannerDate.copy());
+                exams.get(i).makeReservationForAllStudents(plannerDate.copy());
                 if (exams.get(i).getTotalExamDurationInDays() > 1)
                 {
                   plannerDate.stepForwardOneDay();
