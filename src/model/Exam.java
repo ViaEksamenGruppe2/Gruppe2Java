@@ -155,6 +155,14 @@ public class Exam
         attendees.remove(person);
     }
 
+    public boolean isRoomOkayForExam(Room room){
+        if (!isWrittenExam)
+            return true;
+        else if (room == null)
+            return false;
+        else
+            return room.useableForWrittenEx();
+    }
 public String toString()
   {
     return "courseName= " + courseName + ", accentColour=" + accentColour + ", duration=" + duration + ", isGroupExam="
