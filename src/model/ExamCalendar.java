@@ -28,10 +28,12 @@ public class ExamCalendar implements Serializable
     // EXAM
     // TEACHERS
     ArrayList<ArrayList<Object>> examPlanList = new ArrayList<>();
-    Date plannerDate;
+    Date plannerDate, lastDate;
+    String success = "The planner was successful";
     for (int i = 0; i < exams.size(); i++)
     {
-      Date lastDate = lastExamDate.copy();
+      lastDate = lastExamDate.copy();
+      lastDate.stepForwardOneDay();
       plannerDate = firstExamDate.copy();
       while (exams.get(i).getPrivateCalendar().isBooked(plannerDate)
           || exams.get(i).getTeacher().get(0).getPrivateCalendar().isBooked(plannerDate)
@@ -46,8 +48,13 @@ public class ExamCalendar implements Serializable
             && !exams.get(i).getPriorityRoom().getPrivateCalendar().isBooked(plannerDate)
             && !exams.get(i).getTeacher().get(0).getPrivateCalendar().isBooked(plannerDate))
         {
-          if(!plannerDate.isBefore(lastDate))
+          Date checkdate = plannerDate.copy();
+          checkdate.stepForwardManyDays(exams.get(i).getTotalExamDurationInDays() - 1);
+          if(!checkdate.isBefore(lastDate))
+          {
+            success = "The planner failed to add: " + exams.get(i).getCourseName() + " exam, because of too little date range";
             break;
+          }
           ArrayList<Object> addList = new ArrayList<>();
           addList.add(plannerDate.copy());
           for (int j = 0; j < exams.get(i).getTotalExamDurationInDays(); j++)
@@ -59,12 +66,8 @@ public class ExamCalendar implements Serializable
             if (exams.get(i).getTotalExamDurationInDays() > 1)
             {
               plannerDate.stepForwardOneDay();
-              if(!plannerDate.isBefore(lastDate))
-                break;
             }
           }
-
-          // NEEDS AN AUTO UPDATE ON CALENDAR FOR TEACHER AND STUDENT. AN UPDATE ALL CALENDAR FUNCTION BASED ON DATE
           addList.add(exams.get(i).getPriorityRoom());
           addList.add(exams.get(i));
           addList.add(exams.get(i).getTeacher());
@@ -73,8 +76,13 @@ public class ExamCalendar implements Serializable
         else if (!exams.get(i).getPrivateCalendar().isBooked(plannerDate)
             && !exams.get(i).getTeacher().get(0).getPrivateCalendar().isBooked(plannerDate))
         {
-          if(!plannerDate.isBefore(lastDate))
+          Date checkdate = plannerDate.copy();
+          checkdate.stepForwardManyDays(exams.get(i).getTotalExamDurationInDays() - 1);
+          if(!checkdate.isBefore(lastDate))
+          {
+            success = "The planner failed to add: " + exams.get(i).getCourseName() + " exam, because of too little date range";
             break;
+          }
           for (int j = 0; j < rooms.size(); j++)
           {
             if (rooms.get(j).isAvailable(plannerDate)
@@ -102,8 +110,8 @@ public class ExamCalendar implements Serializable
           }
         }
     }
+    System.out.println(success);
     return examPlanList;
   }
-
 
 }
