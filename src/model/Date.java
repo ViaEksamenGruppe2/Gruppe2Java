@@ -129,7 +129,7 @@ public class Date
   }
   public void stepForwardManyDays(int x){
     for (int i = 0; i < x; i++) {
-      stepBackOneDay();
+      stepForwardOneDay();
     }
   }
   public void stepBackOneDay()
