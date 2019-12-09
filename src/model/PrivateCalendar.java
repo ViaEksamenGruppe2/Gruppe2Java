@@ -1,9 +1,10 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class PrivateCalendar
+public class PrivateCalendar implements Serializable
 {
   // Field variables
   private ArrayList<Date> dates;

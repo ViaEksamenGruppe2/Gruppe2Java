@@ -1,8 +1,9 @@
 package model;
 
+import java.io.*;
 import java.util.ArrayList;
 
-public class Person
+public class Person implements Serializable
 {
   // Field variables
   private String name;
@@ -113,5 +114,52 @@ public class Person
         + ", privateCalendar=" + privateCalendar + ", exams=" + exams + '}';
   }
 
+  //Start of save
+  private static final String filename = "personData.bin";
+
+  public static void savePersonsToBinary(ArrayList<Person> persons) {
+    String filename = "personData.bin";
+
+    ObjectOutputStream out = null;
+
+    try {
+      File file = new File(filename);
+      FileOutputStream fos = new FileOutputStream(file);
+      out = new ObjectOutputStream(fos);
+
+      for (Object person : persons) {
+        out.writeObject(person);
+      }
+    }
+    catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+  //End of save
+
+  //Start of load
+  public static void loadFromBinary(ArrayList<Person> persons) {
+    String filename = "personData.bin";
+
+    ObjectInputStream in = null;
+
+    try {
+      File file = new File(filename);
+      FileInputStream fis = new FileInputStream(file);
+      in = new ObjectInputStream(fis);
+
+      for (Object person : persons) {
+        Person personsLoad = (Person)in.readObject();
+        System.out.println(personsLoad);
+      }
+    }
+    catch (IOException | ClassNotFoundException e)
+    {
+      e.printStackTrace();
+    }
+
+  }
+
+  //End of load
   //End of logic
 }

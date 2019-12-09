@@ -1,6 +1,6 @@
 package model;
 
-import java.io.Serializable;
+import java.io.*;
 import java.util.ArrayList;
 
 public class ExamCalendar implements Serializable
@@ -104,6 +104,7 @@ public class ExamCalendar implements Serializable
     }
     return examPlanList;
   }
+
 
 
 }
