@@ -97,11 +97,10 @@ public class Exam
   }
   public boolean willThisCauseBack2BackExams(Date date){
       for (int i = 0; i < getAllStudents().size(); i++) {
-          Date before = date;
+          Date before = date.copy();
           before.stepBackOneDay();
-          Date after = date;
-          after.stepBackOneDay();
-
+          Date after = date.copy();
+          after.stepForwardOneDay();
           if (getAllStudents().get(i).getPrivateCalendar().isBooked(date)
                   || getAllStudents().get(i).getPrivateCalendar().isBooked(before)
                   || getAllStudents().get(i).getPrivateCalendar().isBooked(after))
