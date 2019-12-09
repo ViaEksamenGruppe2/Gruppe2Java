@@ -48,7 +48,6 @@ public class ExamCalendar
             exams.get(i).getPrivateCalendar().makeReservation(plannerDate.copy());
             exams.get(i).getPriorityRoom().getPrivateCalendar().makeReservation(plannerDate.copy());
             exams.get(i).getTeacher().get(0).getPrivateCalendar().makeReservation(plannerDate.copy());
-            exams.get(i)
             if (exams.get(i).getTotalExamDurationInDays() > 1)
             {
               plannerDate.stepForwardOneDay();
