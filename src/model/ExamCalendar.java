@@ -1,8 +1,9 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ExamCalendar
+public class ExamCalendar implements Serializable
 {
   private Date firstExamDate;
   private Date lastExamDate;
