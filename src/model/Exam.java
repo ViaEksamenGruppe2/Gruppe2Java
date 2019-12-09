@@ -90,6 +90,11 @@ public class Exam
     return isGroupExam;
   }
 
+  public void makeReservationForAllStudents(Date date){
+      for (int i = 0; i < getAllStudents().size(); i++) {
+          getAllStudents().get(i).getPrivateCalendar().makeReservation(date);
+      }
+  }
   public int getTotalExamDurationInDays()
   {
     double minutes = duration * getAllStudents().size();
@@ -160,14 +165,14 @@ public class Exam
         attendees.remove(person);
     }
 
-    public boolean isRoomOkayForExam(Room room){
-        if (!isWrittenExam)
-            return true;
-        else if (room == null)
-            return false;
-        else
-            return room.useableForWrittenEx();
-    }
+public boolean isRoomOkayForExam(Room room){
+    if (!isWrittenExam)
+        return true;
+    else if (room == null)
+        return false;
+    else
+        return room.useableForWrittenEx();
+}
 public String toString()
   {
     return "courseName= " + courseName + ", accentColour=" + accentColour + ", duration=" + duration + ", isGroupExam="
