@@ -18,8 +18,6 @@ public class test
     Exam exam2 = new Exam("RWD", 800, false, false);
     Exam exam3 = new Exam("SEP", 900,room3, false, false);
 
-    exam1.getPrivateCalendar().makeReservation(date1);
-    exam3.getPrivateCalendar().makeReservation(datebook);
 
     ArrayList<String> assignedCourses = new ArrayList<>();
     assignedCourses.add("SDJ");
@@ -61,9 +59,13 @@ public class test
     Exam examlist1 = (Exam) calendarschedule.get(0).get(2);
     Exam examlist2 = (Exam) calendarschedule.get(1).get(2);
     Exam examlist3 = (Exam) calendarschedule.get(2).get(2);
-    System.out.println(calendarschedule.get(0).get(0) + " : " + examlist1.getPrivateCalendar());
-    System.out.println(calendarschedule.get(1).get(0) + " : " + examlist2.getPrivateCalendar());
-    System.out.println(calendarschedule.get(2).get(0) + " : " + examlist3.getPrivateCalendar());
+    Room roomlist1 = (Room) calendarschedule.get(0).get(1);
+    Room roomlist2 = (Room) calendarschedule.get(1).get(1);
+    Room roomlist3 = (Room) calendarschedule.get(2).get(1);
+
+    System.out.println(calendarschedule.get(0).get(0) + " : " + examlist1.getPrivateCalendar() + " : " + examlist1.getCourseName() + " : " + roomlist1.getRoomName());
+    System.out.println(calendarschedule.get(1).get(0) + " : " + examlist2.getPrivateCalendar() + " : " + examlist2.getCourseName() + " : " + roomlist2.getRoomName());
+    System.out.println(calendarschedule.get(2).get(0) + " : " + examlist3.getPrivateCalendar() + " : " + examlist3.getCourseName() + " : " + roomlist3.getRoomName());
 
   }
 }

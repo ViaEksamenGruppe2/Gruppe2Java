@@ -43,12 +43,12 @@ public class ExamCalendar
         {
           ArrayList<Object> addList = new ArrayList<>();
           addList.add(plannerDate.copy());
-          System.out.println(exams.get(i).getCourseName() + ": " + exams.get(i).getTotalExamDurationInDays());
           for (int j = 0; j < exams.get(i).getTotalExamDurationInDays(); j++)
           {
             exams.get(i).getPrivateCalendar().makeReservation(plannerDate.copy());
             exams.get(i).getPriorityRoom().getPrivateCalendar().makeReservation(plannerDate.copy());
             exams.get(i).getTeacher().get(0).getPrivateCalendar().makeReservation(plannerDate.copy());
+            exams.get(i)
             if (exams.get(i).getTotalExamDurationInDays() > 1)
             {
               plannerDate.stepForwardOneDay();
@@ -71,7 +71,6 @@ public class ExamCalendar
             {
               ArrayList<Object> addList = new ArrayList<>();
               addList.add(plannerDate.copy());
-              System.out.println(exams.get(i).getCourseName() + ": " + exams.get(i).getTotalExamDurationInDays());
               for (int k = 0; k < exams.get(i).getTotalExamDurationInDays(); k++)
               {
                 exams.get(i).getPrivateCalendar().makeReservation(plannerDate.copy());

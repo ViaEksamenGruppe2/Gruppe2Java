@@ -160,6 +160,7 @@ public class Exam
     hex = String.format("#%02x%02x%02x", r, g, b);
     return hex;
   }
+
   // Start of Logic
   public void removePerson(Person person){
         attendees.remove(person);
