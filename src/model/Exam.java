@@ -90,12 +90,8 @@ public class Exam
     return isGroupExam;
   }
 
-  public double getTotalExamDuration()
+  public double getTotalExamDurationInDays()
   {
-    if(isGroupExam){
-//Needs to be attended to! after questions to Michael.
-    }
-
     return duration * attendees.size();
   }
 
