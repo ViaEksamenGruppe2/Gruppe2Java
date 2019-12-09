@@ -15,11 +15,11 @@ public class test
     assignedCourses.add("SDJ");
     assignedCourses.add("RWD");
     assignedCourses.add("SEP");
-    Person person1 = new Person("Benj", 20192, assignedCourses, false);
-    Person person3 = new Person("Mik", 20232, assignedCourses, false);
-    Person teacher = new Person("Michael", 20192, assignedCourses, true);
+    Person person1 = new Person("Benj", "20192", assignedCourses, false);
+    Person person3 = new Person("Mik", "20232", assignedCourses, false);
+    Person teacher = new Person("Michael", "MIVI", assignedCourses, true);
     Room room1 = new Room(10,true,true,true,"FavouriteRoom");
-    Person person2 = new Person("Benjamin", 20192, assignedCourses, false);
+    Person person2 = new Person("Benjamin", "20192", assignedCourses, false);
     Room room2 = new Room(10,true,true,true,"SDJROOM");
     Room room3 = new Room(30,true,true,true,"BestRoom");
     Exam exam3 = new Exam("SEP", 20,room3, false, true);

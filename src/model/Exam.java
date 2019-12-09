@@ -80,6 +80,16 @@ public class Exam
     return teacher;
   }
 
+  public boolean isWrittenExam()
+  {
+    return isWrittenExam;
+  }
+
+  public boolean isGroupExam()
+  {
+    return isGroupExam;
+  }
+
   public double getTotalExamDuration()
   {
     if(isGroupExam){

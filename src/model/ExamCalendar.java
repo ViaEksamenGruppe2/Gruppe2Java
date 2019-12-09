@@ -36,7 +36,8 @@ public class ExamCalendar
         plannerDate.stepForwardOneDay();
         plannerDate = plannerDate.copy();
       }
-        if (exams.get(i).getPriorityRoom() != null && !exams.get(i).getPriorityRoom().getPrivateCalendar().isBooked(plannerDate) && !exams.get(i).getTeacher().get(0).getPrivateCalendar().isBooked(plannerDate))
+        if (exams.get(i).getPriorityRoom() != null && !exams.get(i).getPriorityRoom().getPrivateCalendar().isBooked(plannerDate)
+            && !exams.get(i).getTeacher().get(0).getPrivateCalendar().isBooked(plannerDate) && controlthingy)
         {
           exams.get(i).getPrivateCalendar().makeReservation(plannerDate);
           exams.get(i).getPriorityRoom().getPrivateCalendar().makeReservation(plannerDate);
@@ -53,7 +54,7 @@ public class ExamCalendar
         {
           for (int j = 0; j < rooms.size(); j++)
           {
-            if (rooms.get(j).isAvailable(plannerDate))
+            if (rooms.get(j).isAvailable(plannerDate) && controlthingy)
             {
               exams.get(i).getPrivateCalendar().makeReservation(plannerDate);
               rooms.get(j).getPrivateCalendar().makeReservation(plannerDate);
@@ -71,4 +72,6 @@ public class ExamCalendar
     }
     return examPlanList;
   }
+
+
 }
