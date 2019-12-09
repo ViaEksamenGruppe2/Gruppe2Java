@@ -127,6 +127,11 @@ public class Date
     }
     while(new Date(day, month, year).isWeekDay() == false);
   }
+  public void stepForwardManyDays(int x){
+    for (int i = 0; i < x; i++) {
+      stepBackOneDay();
+    }
+  }
   public void stepBackOneDay()
   {
     do {
