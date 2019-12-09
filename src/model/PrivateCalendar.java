@@ -18,7 +18,8 @@ public class PrivateCalendar
 
   //Logic
   public void makeReservation(Date date){
-    dates.add(date);
+    if(!dates.contains(date))
+      dates.add(date);
   }
 
   public void removeReservation(Date date){
