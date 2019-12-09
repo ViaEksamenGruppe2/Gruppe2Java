@@ -1,6 +1,7 @@
 package model;
 
-import java.io.Serializable;
+import java.io.*;
+import java.util.ArrayList;
 
 public class Room implements Serializable
 {
@@ -107,6 +108,53 @@ public class Room implements Serializable
         + ", roomName='" + roomName + '\'' + ", privateCalendar="
         + privateCalendar + '}';
   }
+
+
+  //Start of save
+  private static final String filename = "roomData.bin";
+
+  public static void saveToBinary(ArrayList<Room> fileList) {
+    String filename = "roomData.bin";
+
+    ObjectOutputStream out = null;
+
+    try {
+      File file = new File(filename);
+      FileOutputStream fos = new FileOutputStream(file);
+      out = new ObjectOutputStream(fos);
+
+      for (Object room : fileList) {
+        out.writeObject(room);
+      }
+    }
+    catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+  //End of save
+
+  //Start of load
+  public static void loadFromBinary(ArrayList<Room> fileList) {
+    String filename = "roomData.bin";
+    ObjectInputStream in = null;
+
+    try {
+      File file = new File(filename);
+      FileInputStream fis = new FileInputStream(file);
+      in = new ObjectInputStream(fis);
+
+      for (int i = 0; i < fileList.size(); i++) {
+        Room fileLoad = (Room)in.readObject();
+        System.out.println(fileLoad);
+      }
+    }
+    catch (IOException | ClassNotFoundException e) {
+      e.printStackTrace();
+    }
+
+  }
+
+  //End of load
 
   //End of logic
 }

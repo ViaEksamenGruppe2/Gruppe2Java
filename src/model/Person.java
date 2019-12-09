@@ -117,7 +117,7 @@ public class Person implements Serializable
   //Start of save
   private static final String filename = "personData.bin";
 
-  public static void savePersonsToBinary(ArrayList<Person> persons) {
+  public static void saveToBinary(ArrayList<Person> fileList) {
     String filename = "personData.bin";
 
     ObjectOutputStream out = null;
@@ -127,7 +127,7 @@ public class Person implements Serializable
       FileOutputStream fos = new FileOutputStream(file);
       out = new ObjectOutputStream(fos);
 
-      for (Object person : persons) {
+      for (Object person : fileList) {
         out.writeObject(person);
       }
     }
@@ -138,9 +138,8 @@ public class Person implements Serializable
   //End of save
 
   //Start of load
-  public static void loadFromBinary(ArrayList<Person> persons) {
+  public static void loadFromBinary(ArrayList<Person> fileList) {
     String filename = "personData.bin";
-
     ObjectInputStream in = null;
 
     try {
@@ -148,13 +147,12 @@ public class Person implements Serializable
       FileInputStream fis = new FileInputStream(file);
       in = new ObjectInputStream(fis);
 
-      for (Object person : persons) {
-        Person personsLoad = (Person)in.readObject();
-        System.out.println(personsLoad);
+      for (int i = 0; i < fileList.size(); i++) {
+        Person fileLoad = (Person)in.readObject();
+        System.out.println(fileLoad);
       }
     }
-    catch (IOException | ClassNotFoundException e)
-    {
+    catch (IOException | ClassNotFoundException e) {
       e.printStackTrace();
     }
 

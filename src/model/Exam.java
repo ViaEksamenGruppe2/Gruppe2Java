@@ -1,6 +1,6 @@
 package model;
 
-import java.io.Serializable;
+import java.io.*;
 import java.util.ArrayList;
 
 public class Exam implements Serializable
@@ -206,6 +206,52 @@ public String toString()
         && other.privateCalendar.equals(this.privateCalendar) && other.isGroupExam == this.isGroupExam
         && other.isWrittenExam == this.isWrittenExam;
   }
+
+
+  //Start of save
+  private static final String filename = "examData.bin";
+
+  public static void saveToBinary(ArrayList<Exam> fileList) {
+    String filename = "examData.bin";
+    ObjectOutputStream out = null;
+
+    try {
+      File file = new File(filename);
+      FileOutputStream fos = new FileOutputStream(file);
+      out = new ObjectOutputStream(fos);
+
+      for (Object exam : fileList) {
+        out.writeObject(exam);
+      }
+    }
+    catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+  //End of save
+
+  //Start of load
+  public static void loadFromBinary(ArrayList<Exam> fileList) {
+    String filename = "examData.bin";
+    ObjectInputStream in = null;
+
+    try {
+      File file = new File(filename);
+      FileInputStream fis = new FileInputStream(file);
+      in = new ObjectInputStream(fis);
+
+      for (int i = 0; i < fileList.size(); i++) {
+        Exam fileLoad = (Exam)in.readObject();
+        System.out.println(fileLoad);
+      }
+    }
+    catch (IOException | ClassNotFoundException e) {
+      e.printStackTrace();
+    }
+
+  }
+
+  //End of load
 
   // End of logic
 }
