@@ -39,7 +39,8 @@ public class ExamCalendar
         if (exams.get(i).getPriorityRoom() != null
             && exams.get(i).isRoomOkayForExam(exams.get(i).getPriorityRoom())
             && !exams.get(i).getPriorityRoom().getPrivateCalendar().isBooked(plannerDate)
-            && !exams.get(i).getTeacher().get(0).getPrivateCalendar().isBooked(plannerDate))
+            && !exams.get(i).getTeacher().get(0).getPrivateCalendar().isBooked(plannerDate)
+            && exams.get(i).)
         {
           ArrayList<Object> addList = new ArrayList<>();
           addList.add(plannerDate.copy());
@@ -48,6 +49,7 @@ public class ExamCalendar
             exams.get(i).getPrivateCalendar().makeReservation(plannerDate.copy());
             exams.get(i).getPriorityRoom().getPrivateCalendar().makeReservation(plannerDate.copy());
             exams.get(i).getTeacher().get(0).getPrivateCalendar().makeReservation(plannerDate.copy());
+            exams.get(i).makeReservationForAllStudents(plannerDate.copy());
             if (exams.get(i).getTotalExamDurationInDays() > 1)
             {
               plannerDate.stepForwardOneDay();
@@ -75,6 +77,7 @@ public class ExamCalendar
                 exams.get(i).getPrivateCalendar().makeReservation(plannerDate.copy());
                 rooms.get(j).getPrivateCalendar().makeReservation(plannerDate.copy());
                 exams.get(i).getTeacher().get(0).getPrivateCalendar().makeReservation(plannerDate.copy());
+                exams.get(i).makeReservationForAllStudents(plannerDate.copy());
                 if (exams.get(i).getTotalExamDurationInDays() > 1)
                 {
                   plannerDate.stepForwardOneDay();
