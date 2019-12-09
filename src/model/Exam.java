@@ -140,10 +140,6 @@ public class Exam
     hex = String.format("#%02x%02x%02x", r, g, b);
     return hex;
   }
-  // End of setters for Exam object
-  public int getRandom(){
-    return (int)Math.floor(Math.random() * (255 - 110)) + 110;
-  }
   // Start of Logic
   public void removePerson(Person person){
         attendees.remove(person);

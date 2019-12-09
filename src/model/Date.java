@@ -114,17 +114,18 @@ public class Date
   }
   public void stepForwardOneDay()
   {
-    day++;
-    if (day > numberOfDaysInMonth())
-    {
-      day = 1;
-      month++;
-      if (month > 12)
-      {
-        month = 1;
-        year++;
+    do {
+      day++;
+      if (day > numberOfDaysInMonth()) {
+        day = 1;
+        month++;
+        if (month > 12) {
+          month = 1;
+          year++;
+        }
       }
     }
+    while(new Date(day, month, year).isWeekDay() == false);
   }
   public boolean isWeekDay(){
     int yy = year % 100, monthCode = 0, y = year - (year % 1000), centuryCode = 0;
