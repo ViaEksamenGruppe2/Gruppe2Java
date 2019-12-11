@@ -10,23 +10,23 @@ public class test
     Date date2 = new Date(14,1,2020);
     Date datebook = new Date(6,1,2020);
 
-    Room room1 = new Room(10,true,true,true,"FavouriteRoom");
-    Room room2 = new Room(30,true,true,true,"SDJROOM");
-    Room room3 = new Room(10,true,true,true,"BestRoom");
+    Room room1 = new Room(25,true,true,true,"S.203-RW");
+    Room room2 = new Room(15,true,true,true,"E.201a");
+    Room room3 = new Room(30,true,true,true,"E.203b");
 
-    Exam exam1 = new Exam("SDJ", 20, true, false);
-    Exam exam2 = new Exam("RWD", 800, false, false);
-    Exam exam3 = new Exam("SEP", 900,room3, false, false);
+    Exam exam1 = new Exam("SW-SDJ-A19", 30, true, false);
+    Exam exam2 = new Exam("SW-RWD-A19", 200, false, true);
+    Exam exam3 = new Exam("SW-SEP-A19", 25,room3, true, false);
 
 
     ArrayList<String> assignedCourses = new ArrayList<>();
-    assignedCourses.add("SDJ");
-    assignedCourses.add("RWD");
-    assignedCourses.add("SEP");
+    assignedCourses.add("SW-SDJ1-A19");
+    assignedCourses.add("SW-RWD-A19");
+    assignedCourses.add("SW-SEP-A19");
 
-    Person person1 = new Person("Benj", "20192", assignedCourses, false);
-    Person person2 = new Person("Benjamin", "20192", assignedCourses, false);
-    Person person3 = new Person("Mik", "20232", assignedCourses, false);
+    Person person1 = new Person("Benjamin", "201922", assignedCourses, false);
+    Person person2 = new Person("Markus", "203192", assignedCourses, false);
+    Person person3 = new Person("Oliver", "210232", assignedCourses, false);
     Person teacher = new Person("Michael", "MIVI", assignedCourses, true);
 
 

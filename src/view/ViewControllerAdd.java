@@ -12,8 +12,6 @@ import model.Person;
 import model.Room;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.stream.Collectors;
 
 public class ViewControllerAdd {
     @FXML private Tab addPerson;
@@ -115,62 +113,85 @@ public class ViewControllerAdd {
 
     @FXML public void submitPersonPressed(){
         String name, viaID;
-        name = personNameField.getText();
-        viaID = VIAIDField.getText();
-        boolean isTeacher = isTeacherCheckbox.selectedProperty().get();
         ArrayList<String> assignedCourses = new ArrayList<>();
-
         ObservableList<Exam> assignedCoursesObservableList = assignedCoursesTable.getSelectionModel().getSelectedItems();
-        for (int i = 0; i < assignedCoursesObservableList.size(); i++)
+        if (!personNameField.getText().isEmpty() && !VIAIDField.getText().isEmpty() && !assignedCoursesObservableList.isEmpty())
         {
-            String courseName = assignedCoursesObservableList.get(i).getCourseName();
-            assignedCourses.add(courseName);
+            name = personNameField.getText();
+            viaID = VIAIDField.getText();
+            boolean isTeacher = isTeacherCheckbox.selectedProperty().get();
+            for (int i = 0; i < assignedCoursesObservableList.size(); i++)
+            {
+                String courseName = assignedCoursesObservableList.get(i).getCourseName();
+                assignedCourses.add(courseName);
+            }
+            Person person = new Person(name,viaID,assignedCourses,isTeacher);
+            for (int i = 0; i < assignedCoursesObservableList.size(); i++)
+            {
+                assignedCoursesObservableList.get(i).addPerson(person);
+            }
+            model.getPersons().add(person);
         }
-        Person person = new Person(name,viaID,assignedCourses,isTeacher);
-        model.getPersons().add(person);
+        else {
+            System.out.println("PLEASE ENTER INPUT DUUDE");
+        }
         Person.saveToBinary(model.getPersons());
         reset(0);
     }
 
     @FXML public void submitExamPressed(){
-        String courseName = courseNameField.getText();
+        String courseName;
         boolean writtenExam, groupExam;
-        writtenExam = isWrittenCheckBox.selectedProperty().get();
-        groupExam = isGroupExamCheckBox.selectedProperty().get();
-        Room priorityRoom = priorityRoomChoiceBox.getValue();
         int duration = 0;
-        try
+        if (!courseNameField.getText().isEmpty() && !examDurationField.getText().isEmpty())
         {
-            duration = (int) Double.parseDouble(examDurationField.getText());
-            Exam exam = new Exam(courseName, duration, priorityRoom, groupExam, writtenExam);
-            model.getExams().add(exam);
+            courseName = courseNameField.getText();
+            try
+            {
+                duration = (int) Double.parseDouble(examDurationField.getText());
+                writtenExam = isWrittenCheckBox.selectedProperty().get();
+                groupExam = isGroupExamCheckBox.selectedProperty().get();
+                Room priorityRoom = priorityRoomChoiceBox.getValue();
+                Exam exam = new Exam(courseName, duration, priorityRoom, groupExam, writtenExam);
+                model.getExams().add(exam);
+            }
+            catch (NumberFormatException e)
+            {
+                System.out.println("WRONG INPUT DUUUDE");
+            }
         }
-        catch (NumberFormatException e)
+        else
         {
-            System.out.println("WRONG INPUT DUUUDE");
+            System.out.println("PLEASE ENTER INPUT DUUDE");
         }
         Exam.saveToBinary(model.getExams());
         reset(1);
     }
 
     @FXML public void submitRoomPressed(){
-        String name = roomNameField.getText();
-        boolean hasHDMI, hasVGA, hasProjector;
-        hasHDMI = hasHDMICheckBox.selectedProperty().get();
-        hasVGA = hasVGACheckBox.selectedProperty().get();
-        hasProjector = hasProjectorCheckBox.selectedProperty().get();
+        String name;
         int capacity = 0;
-        try
+        boolean hasHDMI, hasVGA, hasProjector;
+        if (!roomNameField.getText().isEmpty() && !capacityField.getText().isEmpty())
         {
-            capacity = Integer.parseInt(capacityField.getText());
-            Room room = new Room(capacity,hasHDMI,hasVGA,hasProjector,name);
-            model.getRooms().add(room);
+            name = roomNameField.getText();
+            try
+            {
+                capacity = Integer.parseInt(capacityField.getText());
+                hasHDMI = hasHDMICheckBox.selectedProperty().get();
+                hasVGA = hasVGACheckBox.selectedProperty().get();
+                hasProjector = hasProjectorCheckBox.selectedProperty().get();
+                Room room = new Room(capacity,hasHDMI,hasVGA,hasProjector,name);
+                model.getRooms().add(room);
+            }
+            catch (NumberFormatException e)
+            {
+                System.out.println("WRONG INPUT DUUUDE");
+            }
         }
-        catch (NumberFormatException e)
-        {
-            System.out.println("WRONG INPUT DUUUDE");
+        else {
+            System.out.println("PLEASE ENTER INPUT DUUDE");
         }
-
         Room.saveToBinary(model.getRooms());
         reset(2);
     }
