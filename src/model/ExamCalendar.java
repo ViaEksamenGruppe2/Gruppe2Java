@@ -205,6 +205,7 @@ public class ExamCalendar implements Serializable
         Exam examToCsv = (Exam) objects.get(2);
         String output = "";
 
+        //Creates a string with all the given data. Repeats three times
         output += "{classname:'" + examToCsv.getCourseName() + "',examType:'"
             + examToCsv.getType() + "',roomName:'" + roomToCsv.getRoomName()
             + "',hasHDMI:'" + roomToCsv.hasHDMI() + "',hasVGA:'" + roomToCsv
@@ -214,7 +215,8 @@ public class ExamCalendar implements Serializable
             .getPrivateCalendar().getLastDate() + "',color:'" + examToCsv
             .getAccentColour();
 
-        //Make for loop to get all teachers
+        //Multiple teachers can have the same exam
+        //Create for loop that iterates over all teachers
         for (int j = 0; j < examToCsv.getTeacher().size(); j++) {
           output += "',teacher:'" + (examToCsv.getTeacher().get(j).getViaID())
               + "'},";
