@@ -70,6 +70,25 @@ public class ViewControllerMain {
         }
     }
 
+    public void loadExamsTab()
+    {
+        ObservableList roomData = FXCollections.observableList(model.getExams());
+        roomsTable.setItems(roomData);
+        TableColumn courseCol1 = new TableColumn("Course Name");
+        TableColumn courseCol2 = new TableColumn("Priority Room");
+        TableColumn courseCol3 = new TableColumn("Duration");
+        TableColumn courseCol4 = new TableColumn("Exam Type");
+        roomsTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        courseCol1.setPrefWidth(192);
+        courseCol1.setCellValueFactory(new PropertyValueFactory<String, String>("courseName"));
+        courseCol2.setPrefWidth(227);
+        courseCol1.setCellValueFactory(new PropertyValueFactory<Room, Room>("priorityRoom"));
+        courseCol3.setPrefWidth(137);
+        courseCol1.setCellValueFactory(new PropertyValueFactory<Double, String>("duration"));
+        courseCol4.setPrefWidth(112);
+
+        roomsTable.getColumns().setAll(courseCol1, courseCol2, courseCol3, courseCol4);
+    }
     public void loadRoomsTab()
     {
         ObservableList roomData = FXCollections.observableList(model.getRooms());

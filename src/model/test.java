@@ -52,8 +52,9 @@ public class test
     rooms.add(room1);
     rooms.add(room2);
     rooms.add(room3);
-    System.out.println(rooms);
     Room.saveToBinary(rooms);
+    Exam.saveToBinary(exams);
+
     ExamCalendar examCalendar = new ExamCalendar(date1,date2,persons,rooms,exams);
 
     ArrayList<ArrayList<Object>> calendarschedule = examCalendar.generateExamSchedule();

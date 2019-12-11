@@ -12,6 +12,7 @@ public class Main extends Application {
         ExamCalendarController model = new Controller();
         ViewHandler view = new ViewHandler(model);
         model.setAllRooms(Room.loadFromBinary());
+        model.setAllExams(Exam.loadFromBinary());
         view.start(primaryStage);
     }
 
