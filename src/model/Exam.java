@@ -47,6 +47,8 @@ public class Exam implements Serializable
       type = "Oral";
   }
 
+
+
   // Start of getters for Exam object
   public String getCourseName()
   {
@@ -155,18 +157,6 @@ public class Exam implements Serializable
     }
     return counter; // return the counted amount of students
   }
-  // End of getters for Exam object
-
-  // Start of setters for Exam object
-  public void setPriorityRoom(Room priorityRoom)
-  {
-    this.priorityRoom = priorityRoom;
-  }
-
-  public void addPerson(Person person)
-  {
-    attendees.add(person);
-  }
 
   public static String getAColour()
   {
@@ -186,6 +176,24 @@ public class Exam implements Serializable
     hex = String.format("#%02x%02x%02x", r, g, b);
     return hex;
   }
+  // End of getters for Exam object
+
+
+
+  // Start of setters for Exam object
+  public void setPriorityRoom(Room priorityRoom)
+  {
+    this.priorityRoom = priorityRoom;
+  }
+
+  public void addPerson(Person person)
+  {
+    attendees.add(person);
+  }
+
+  //End of setters
+
+
 
   // Start of Logic
   public void removePerson(Person person){
