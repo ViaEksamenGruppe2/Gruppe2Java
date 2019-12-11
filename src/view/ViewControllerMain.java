@@ -20,6 +20,7 @@ public class ViewControllerMain {
     @FXML private Button roomAdd;
     @FXML private Button examAdd;
     @FXML private TableView roomsTable;
+    @FXML private TableView examsTable;
     private Region root;
     private ExamCalendarController model;
     private ViewHandler viewHandler;
@@ -29,6 +30,7 @@ public class ViewControllerMain {
         this.viewHandler = viewHandler;
         this.root = root;
         loadRoomsTab();
+        loadExamsTab();
     }
 
     public void reset(){
@@ -70,24 +72,29 @@ public class ViewControllerMain {
         }
     }
 
+    public void loadPersonTab()
+    {
+        
+    }
+
     public void loadExamsTab()
     {
-        ObservableList roomData = FXCollections.observableList(model.getExams());
-        roomsTable.setItems(roomData);
+        ObservableList examData = FXCollections.observableList(model.getExams());
+        examsTable.setItems(examData);
         TableColumn courseCol1 = new TableColumn("Course Name");
         TableColumn courseCol2 = new TableColumn("Priority Room");
         TableColumn courseCol3 = new TableColumn("Duration");
         TableColumn courseCol4 = new TableColumn("Exam Type");
-        roomsTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        examsTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         courseCol1.setPrefWidth(192);
         courseCol1.setCellValueFactory(new PropertyValueFactory<String, String>("courseName"));
         courseCol2.setPrefWidth(227);
-        courseCol1.setCellValueFactory(new PropertyValueFactory<Room, Room>("priorityRoom"));
+        courseCol2.setCellValueFactory(new PropertyValueFactory<Room, Room>("priorityRoom"));
         courseCol3.setPrefWidth(137);
-        courseCol1.setCellValueFactory(new PropertyValueFactory<Double, String>("duration"));
+       // courseCol1.setCellValueFactory(new PropertyValueFactory<Double, String>("duration"));
         courseCol4.setPrefWidth(112);
 
-        roomsTable.getColumns().setAll(courseCol1, courseCol2, courseCol3, courseCol4);
+        examsTable.getColumns().setAll(courseCol1, courseCol2, courseCol3, courseCol4);
     }
     public void loadRoomsTab()
     {

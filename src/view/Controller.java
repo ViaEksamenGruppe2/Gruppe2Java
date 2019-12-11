@@ -18,12 +18,6 @@ public class Controller implements ExamCalendarController
     persons = new ArrayList<>();
     exams = new ArrayList<>();
     rooms = new ArrayList<>();
-    Exam exam1 = new Exam("Sej", 20, true, true);
-    Exam exam2 = new Exam("uiawd", 30, false, true);
-    Exam exam3 = new Exam("rgegf", 24, true, false);
-    exams.add(exam1);
-    exams.add(exam2);
-    exams.add(exam3);
   }
 
   // Start of all getters
