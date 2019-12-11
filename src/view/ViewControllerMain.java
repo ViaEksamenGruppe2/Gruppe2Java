@@ -13,9 +13,16 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class ViewControllerMain {
+    // ADD BUTTONS
     @FXML private Button personAdd;
     @FXML private Button roomAdd;
     @FXML private Button examAdd;
+
+    // EDIT BUTTONS
+    @FXML private Button personEdit;
+    @FXML private Button roomEdit;
+    @FXML private Button examEdit;
+
     @FXML private DatePicker startDate;
     @FXML private DatePicker endDate;
     @FXML private TableView examScheduleTable;
@@ -96,7 +103,6 @@ public class ViewControllerMain {
         ExamCalendar.saveToJS(plannedExamSchedule);
     }
     public void addButtonPressed(ActionEvent event){
-        //Add swich to call depenging on the tab
         Button buttonPressed = (Button) event.getSource();
         String type = buttonPressed.getId();
         try{
@@ -180,7 +186,22 @@ public class ViewControllerMain {
         roomsTable.getColumns().setAll(courseCol1, courseCol2, courseCol3);
         roomsTable.refresh();
     }
+    public void editPersonPressed() {
+        Person selectedPerson = (Person) personsTable.getSelectionModel().getSelectedItem();
+        viewHandler.openView("AddObject", 0);
+        viewHandler.carryObject(selectedPerson,0);
+    }
+    public void editExamPressed() {
+        Exam selectedExam = (Exam) examsTable.getSelectionModel().getSelectedItem();
+        viewHandler.openView("AddObject", 1);
+        viewHandler.carryObject(selectedExam,1);
 
+    }
+    public void editRoomPressed() {
+        Room selectedRoom = (Room) roomsTable.getSelectionModel().getSelectedItem();
+        viewHandler.openView("AddObject", 2);
+        viewHandler.carryObject(selectedRoom,2);
+    }
     public void removePersonPressed()
     {
         Person selectedPerson = (Person) personsTable.getSelectionModel().getSelectedItem();

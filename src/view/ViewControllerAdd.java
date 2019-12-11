@@ -207,6 +207,50 @@ public class ViewControllerAdd {
         reset(2);
     }
 
+    public void editObject(Object obj, int tabInt)
+    {
+        switch (tabInt)
+        {
+            case 0:
+                Person person = (Person) obj;
+                editPerson(person);
+                break;
+            case 1:
+                Exam exam = (Exam) obj;
+                editExam(exam);
+                break;
+            case 2:
+                Room room = (Room) obj;
+                editRoom(room);
+                break;
+        }
+    }
+
+    public void editPerson(Person person)
+    {
+
+    }
+    public void editExam(Exam exam)
+    {
+        String duration = Double.toString(exam.getDuration());
+        courseNameField.setText(exam.getCourseName());
+        examDurationField.setText(duration);
+        // NEEDS TO SELECT WHAT WAS CHOSEN IN CHOICE BOX
+        isWrittenCheckBox.setSelected(exam.isWrittenExam());
+        isGroupExamCheckBox.setSelected(exam.isGroupExam());
+        model.getExams().remove(exam);
+    }
+    public void editRoom(Room room)
+    {
+        String capacity = Integer.toString(room.getCapacity());
+        roomNameField.setText(room.getRoomName());
+        capacityField.setText(capacity);
+        hasHDMICheckBox.setSelected(room.hasHDMI());
+        hasVGACheckBox.setSelected(room.hasVGA());
+        hasProjectorCheckBox.setSelected(room.hasProjector());
+        model.getRooms().remove(room);
+    }
+
     public void loadPersonTab()
     {
         ObservableList courseData = FXCollections.observableList(model.getExams());

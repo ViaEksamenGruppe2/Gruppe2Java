@@ -99,5 +99,8 @@ public class ViewHandler {
         primaryStage.close();
     }
 
-
+    public void carryObject(Object obj, int tabInt)
+    {
+        viewControllerAdd.editObject(obj, tabInt);
+    }
 }

@@ -55,6 +55,11 @@ public class Exam implements Serializable
     return courseName;
   }
 
+  public double getDuration()
+  {
+    return duration;
+  }
+
   public PrivateCalendar getPrivateCalendar()
   {
     return privateCalendar;

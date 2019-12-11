@@ -44,7 +44,7 @@
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
                               </Button>
-                              <Button minHeight="25.0" minWidth="60.0" mnemonicParsing="false" text="Edit">
+                              <Button fx:id="personEdit" minHeight="25.0" minWidth="60.0" mnemonicParsing="false" onAction="#editPersonPressed" text="Edit">
                                  <VBox.margin>
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
@@ -90,7 +90,7 @@
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
                               </Button>
-                              <Button minHeight="25.0" minWidth="60.0" mnemonicParsing="false" text="Edit">
+                              <Button fx:id="examEdit" minHeight="25.0" minWidth="60.0" mnemonicParsing="false" onAction="#editExamPressed" text="Edit">
                                  <VBox.margin>
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
@@ -136,7 +136,7 @@
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
                               </Button>
-                              <Button minHeight="25.0" minWidth="60.0" mnemonicParsing="false" text="Edit">
+                              <Button fx:id="roomEdit" minHeight="25.0" minWidth="60.0" mnemonicParsing="false" onAction="#editRoomPressed" text="Edit">
                                  <VBox.margin>
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
