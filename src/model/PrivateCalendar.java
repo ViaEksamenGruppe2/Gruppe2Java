@@ -67,6 +67,13 @@ public class PrivateCalendar implements Serializable
     }
   }
 
+  public boolean equals(Object obj){
+    if (!(obj instanceof PrivateCalendar))
+      return false;
+    PrivateCalendar other = (PrivateCalendar) obj;
+    return dates.equals(other.getBookedDates());
+  }
+
   @Override
   public String toString() {
     return "PrivateCalendar{" +
@@ -74,10 +81,5 @@ public class PrivateCalendar implements Serializable
             '}';
   }
 
-  public boolean equals(Object obj){
-    if (!(obj instanceof PrivateCalendar))
-      return false;
-    PrivateCalendar other = (PrivateCalendar) obj;
-    return dates.equals(other.getBookedDates());
-  }
+
 }
