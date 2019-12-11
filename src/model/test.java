@@ -64,5 +64,6 @@ public class test
     Room.saveToBinary(rooms);
     Person.saveToBinary(persons);
     Exam.saveToBinary(exams);
+    ExamCalendar.saveToJS(calendarschedule);
   }
 }

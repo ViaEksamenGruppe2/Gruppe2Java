@@ -188,10 +188,10 @@ public class ExamCalendar implements Serializable
 
   }
 
-  //Start of write CSV-file
+  //Start of write jsCSV-file
   private static final String filename = "src/savefiles/examText.js";
 
-  public static void saveToCSV(ArrayList<ArrayList<Object>> fileList) {
+  public static void saveToJS(ArrayList<ArrayList<Object>> fileList) {
     File file = new File(filename);
 
     try {
@@ -200,24 +200,27 @@ public class ExamCalendar implements Serializable
       out.println("const classes = [");
       out.flush();
 
-      for (int i = 0; i < fileList.size(); i++) {
-        Room roomToCsv = (Room) fileList.get(i).get(1);
-        Exam examToCsv = (Exam) fileList.get(i).get(2);
+      for (ArrayList<Object> objects : fileList) {
+        Room roomToCsv = (Room) objects.get(1);
+        Exam examToCsv = (Exam) objects.get(2);
         String output = "";
 
-        output += "{classname:'" + examToCsv.getCourseName() + "',examType:'" + examToCsv.getType() + "',roomName:'"
-            + roomToCsv.getRoomName() + "',hasHDMI:'" + roomToCsv.hasHDMI() + "',hasVGA:'" + roomToCsv.hasVGA()
-            + "',hasProjector:'" + roomToCsv.hasProjector() + "',dateStart:'" + examToCsv.getPrivateCalendar().getDateFromIndex(0) + "',dateEnd:'"
-            + examToCsv.getPrivateCalendar().getLastDate() + "',color:'" + examToCsv.getAccentColour();
+        output += "{classname:'" + examToCsv.getCourseName() + "',examType:'"
+            + examToCsv.getType() + "',roomName:'" + roomToCsv.getRoomName()
+            + "',hasHDMI:'" + roomToCsv.hasHDMI() + "',hasVGA:'" + roomToCsv
+            .hasVGA() + "',hasProjector:'" + roomToCsv.hasProjector()
+            + "',dateStart:'" + examToCsv.getPrivateCalendar()
+            .getDateFromIndex(0) + "',dateEnd:'" + examToCsv
+            .getPrivateCalendar().getLastDate() + "',color:'" + examToCsv
+            .getAccentColour();
 
         //Make for loop to get all teachers
-        for(int j = 0; j < examToCsv.getTeacher().size(); j++) {
-          output += "',teacher:'" + (examToCsv.getTeacher().get(j).getViaID()) + "'},";
+        for (int j = 0; j < examToCsv.getTeacher().size(); j++) {
+          output += "',teacher:'" + (examToCsv.getTeacher().get(j).getViaID())
+              + "'},";
         }
 
-
         out.println(output);
-
         out.flush(); //Forces it to write text
       }
       out.println("];");
@@ -229,5 +232,5 @@ public class ExamCalendar implements Serializable
     }
   }
 
-  //End of Write CSV-file
+  //End of Write jsCSV-file
 }
