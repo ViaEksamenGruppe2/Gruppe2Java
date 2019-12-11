@@ -12,6 +12,8 @@ import model.Person;
 import model.Room;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 public class ViewControllerAdd {
     @FXML private Tab addPerson;
@@ -112,8 +114,20 @@ public class ViewControllerAdd {
     }
 
     @FXML public void submitPersonPressed(){
-        //Add swich to call depenging on the tab
+        String name, viaID;
+        name = personNameField.getText();
+        viaID = VIAIDField.getText();
+        boolean isTeacher = isTeacherCheckbox.selectedProperty().get();
+        ArrayList<String> assignedCourses = new ArrayList<>();
 
+        ObservableList<Exam> assignedCoursesObservableList = assignedCoursesTable.getSelectionModel().getSelectedItems();
+        for (int i = 0; i < assignedCoursesObservableList.size(); i++)
+        {
+            String courseName = assignedCoursesObservableList.get(i).getCourseName();
+            assignedCourses.add(courseName);
+        }
+        Person person = new Person(name,viaID,assignedCourses,isTeacher);
+        model.getPersons().add(person);
         Person.saveToBinary(model.getPersons());
         reset(0);
     }
@@ -169,6 +183,7 @@ public class ViewControllerAdd {
         courseCol.setPrefWidth(284);
         assignedCoursesTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         courseCol.setCellValueFactory(new PropertyValueFactory<String, CheckBox>("courseName"));
+        assignedCoursesTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         assignedCoursesTable.getColumns().setAll(courseCol);
 
 
