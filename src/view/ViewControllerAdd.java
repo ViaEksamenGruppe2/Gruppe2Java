@@ -47,6 +47,7 @@ public class ViewControllerAdd {
         this.model = model;
         this.viewHandler = viewHandler;
         this.root = root;
+
     }
 
     public void setSpecificTab(int tabInt)
@@ -65,6 +66,8 @@ public class ViewControllerAdd {
                 addExam.setDisable(false);
                 addRoom.setDisable(true);
                 tabPane.getSelectionModel().select(addExam);
+                ObservableList priorityRoomData = FXCollections.observableList(model.getRooms());
+                priorityRoomChoiceBox.setItems(priorityRoomData);
                 break;
             case 2:
                 addPerson.setDisable(true);
@@ -116,8 +119,22 @@ public class ViewControllerAdd {
     }
 
     @FXML public void submitExamPressed(){
-        //Add swich to call depenging on the tab
-
+        String courseName = courseNameField.getText();
+        boolean writtenExam, groupExam;
+        writtenExam = isWrittenCheckBox.selectedProperty().get();
+        groupExam = isGroupExamCheckBox.selectedProperty().get();
+        Room priorityRoom = priorityRoomChoiceBox.getValue();
+        int duration = 0;
+        try
+        {
+            duration = (int) Double.parseDouble(examDurationField.getText());
+            Exam exam = new Exam(courseName, duration, priorityRoom, groupExam, writtenExam);
+            model.getExams().add(exam);
+        }
+        catch (NumberFormatException e)
+        {
+            System.out.println("WRONG INPUT DUUUDE");
+        }
         Exam.saveToBinary(model.getExams());
         reset(1);
     }
@@ -132,14 +149,14 @@ public class ViewControllerAdd {
         try
         {
             capacity = Integer.parseInt(capacityField.getText());
+            Room room = new Room(capacity,hasHDMI,hasVGA,hasProjector,name);
+            model.getRooms().add(room);
         }
         catch (NumberFormatException e)
         {
             System.out.println("WRONG INPUT DUUUDE");
         }
 
-        Room room = new Room(capacity,hasHDMI,hasVGA,hasProjector,name);
-        model.getRooms().add(room);
         Room.saveToBinary(model.getRooms());
         reset(2);
     }
