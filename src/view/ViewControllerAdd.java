@@ -8,6 +8,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
 import model.Exam;
 import model.ExamCalendarController;
+import model.Room;
 
 import java.util.ArrayList;
 
@@ -15,21 +16,28 @@ public class ViewControllerAdd {
     @FXML private Tab addPerson;
     @FXML private Tab addExam;
     @FXML private Tab addRoom;
-    @FXML private TableView assignedCoursesTable;
     @FXML private TabPane tabPane;
+
+    // INPUTS FOR ADD PERSON
+    @FXML private TableView assignedCoursesTable;
     @FXML private TextField personNameField;
     @FXML private TextField VIAIDField;
     @FXML private CheckBox isTeacherCheckbox;
+
+    // INPUTS FOR ADD EXAM
     @FXML private TextField courseNameField;
     @FXML private TextField examDurationField;
     @FXML private ChoiceBox<model.Room> priorityRoomChoiceBox;
     @FXML private CheckBox isWrittenCheckBox;
     @FXML private CheckBox isGroupExamCheckBox;
+
+    // INPUTS FOR ADD ROOM
     @FXML private TextField roomNameField;
     @FXML private TextField capacityField;
     @FXML private CheckBox hasHDMICheckBox;
     @FXML private CheckBox hasVGACheckBox;
     @FXML private CheckBox hasProjectorCheckBox;
+
     private Region root;
     private ExamCalendarController model;
     private ViewHandler viewHandler;
@@ -110,7 +118,24 @@ public class ViewControllerAdd {
     }
 
     @FXML public void submitRoomPressed(){
-        //Add swich to call depenging on the tab
+        String name = roomNameField.getText();
+        boolean hasHDMI, hasVGA, hasProjector;
+        hasHDMI = hasHDMICheckBox.selectedProperty().get();
+        hasVGA = hasVGACheckBox.selectedProperty().get();
+        hasProjector = hasProjectorCheckBox.selectedProperty().get();
+        int capacity = 0;
+        try
+        {
+            capacity = Integer.parseInt(capacityField.getText());
+        }
+        catch (NumberFormatException e)
+        {
+            System.out.println("WRONG INPUT DUUUDE");
+        }
+
+        Room room = new Room(capacity,hasHDMI,hasVGA,hasProjector,name);
+        model.getRooms().add(room);
+        System.out.println(model.getRooms());
         reset(2);
     }
 

@@ -111,15 +111,14 @@ public class Room implements Serializable
 
 
   //Start of save
-  private static final String filename = "roomData.bin";
+  private static final String FILENAME = "roomData.bin";
 
   public static void saveToBinary(ArrayList<Room> fileList) {
-    String filename = "roomData.bin";
 
     ObjectOutputStream out = null;
 
     try {
-      File file = new File(filename);
+      File file = new File(FILENAME);
       FileOutputStream fos = new FileOutputStream(file);
       out = new ObjectOutputStream(fos);
 
@@ -134,24 +133,44 @@ public class Room implements Serializable
   //End of save
 
   //Start of load
-  public static void loadFromBinary(ArrayList<Room> fileList) {
-    String filename = "roomData.bin";
+  public static ArrayList<Room> loadFromBinary()
+  {
+    File file = new File(FILENAME);
+    ArrayList<Room> rooms = new ArrayList<>();
+    boolean check = false;
     ObjectInputStream in = null;
 
-    try {
-      File file = new File(filename);
+    try
+    {
       FileInputStream fis = new FileInputStream(file);
       in = new ObjectInputStream(fis);
-
-      for (int i = 0; i < fileList.size(); i++) {
-        Room fileLoad = (Room)in.readObject();
-        System.out.println(fileLoad);
+      do {
+        try
+        {
+          rooms.add((Room) in.readObject());
+        }
+        catch (Exception e)
+        {
+          check = true;
+        }
       }
+      while (!check);
     }
-    catch (IOException | ClassNotFoundException e) {
+    catch (IOException e)
+    {
       e.printStackTrace();
     }
-
+    finally
+    {
+      try {
+        in.close();
+      }
+      catch (IOException e)
+      {
+        e.printStackTrace();
+      }
+    }
+    return rooms;
   }
 
   //End of load

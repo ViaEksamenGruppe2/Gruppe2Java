@@ -151,7 +151,7 @@
                               <Insets top="15.0" />
                            </padding>
                         </VBox>
-                        <TableView layoutX="139.0" prefHeight="472.0" prefWidth="671.0">
+                        <TableView fx:id="roomsTable" layoutX="139.0" prefHeight="472.0" prefWidth="671.0">
                            <columns>
                               <TableColumn minWidth="0.0" prefWidth="213.0" text="ROOM NAME" />
                               <TableColumn prefWidth="359.0" text="EQUIPMENT" />
