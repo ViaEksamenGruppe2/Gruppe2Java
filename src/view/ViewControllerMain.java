@@ -138,6 +138,7 @@ public class ViewControllerMain {
         courseCol4.setStyle("-fx-alignment: CENTER;");
 
         personsTable.getColumns().setAll(courseCol1, courseCol2, courseCol3, courseCol4);
+        personsTable.refresh();
     }
 
     public void loadExamsTab()
@@ -159,6 +160,7 @@ public class ViewControllerMain {
         courseCol4.setPrefWidth(112);
 
         examsTable.getColumns().setAll(courseCol1, courseCol2, courseCol3, courseCol4);
+        examsTable.refresh();
     }
     public void loadRoomsTab()
     {
@@ -170,12 +172,35 @@ public class ViewControllerMain {
         roomsTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         courseCol1.setPrefWidth(213);
         courseCol1.setCellValueFactory(new PropertyValueFactory<String, String>("roomName"));
-       // courseCol2.setPrefWidth(359);
-       // courseCol2.setCellValueFactory(new PropertyValueFactory<String, String>("hasHDMI"));
-       // courseCol3.setPrefWidth(98);
-       // courseCol3.setCellValueFactory(new PropertyValueFactory<Integer, String>("studentCapacity"));
+        // courseCol2.setPrefWidth(359);
+        // courseCol2.setCellValueFactory(new PropertyValueFactory<String, String>("hasHDMI"));
+        // courseCol3.setPrefWidth(98);
+        // courseCol3.setCellValueFactory(new PropertyValueFactory<Integer, String>("studentCapacity"));
 
         roomsTable.getColumns().setAll(courseCol1, courseCol2, courseCol3);
-
+        roomsTable.refresh();
     }
+
+    public void removePersonPressed()
+    {
+        Person selectedPerson = (Person) personsTable.getSelectionModel().getSelectedItem();
+        model.getPersons().remove(selectedPerson);
+        Person.saveToBinary(model.getPersons());
+        loadPersonTab();
+    }
+    public void removeExamPressed()
+    {
+        Exam selectedExam = (Exam) examsTable.getSelectionModel().getSelectedItem();
+        model.getExams().remove(selectedExam);
+        Exam.saveToBinary(model.getExams());
+        loadExamsTab();
+    }
+    public void removeRoomPressed()
+    {
+        Room selectedRoom = (Room) roomsTable.getSelectionModel().getSelectedItem();
+        model.getRooms().remove(selectedRoom);
+        Room.saveToBinary(model.getRooms());
+        loadRoomsTab();
+    }
+
 }

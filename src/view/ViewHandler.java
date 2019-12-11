@@ -81,6 +81,9 @@ public class ViewHandler {
                 Region root = loader.load();
                 viewControllerMain = loader.getController();
                 viewControllerMain.init(this, model, root);
+                viewControllerMain.loadRoomsTab();
+                viewControllerMain.loadPersonTab();
+                viewControllerMain.loadExamsTab();
             }
             catch (Exception e){
                 e.printStackTrace();
