@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableView?>
@@ -82,6 +83,11 @@
                                                 <Insets />
                                              </VBox.margin>
                                           </CheckBox>
+                                          <Label fx:id="confirmationPerson" alignment="CENTER" prefHeight="17.0" prefWidth="289.0" >
+                                             <VBox.margin>
+                                                <Insets top="75.0" />
+                                             </VBox.margin>
+                                          </Label>
                                           <Button fx:id="submitPerson" mnemonicParsing="false" onAction="#submitPersonPressed" text="Submit">
                                              <padding>
                                                 <Insets bottom="20.0" left="50.0" right="50.0" top="20.0" />
@@ -90,7 +96,7 @@
                                                 <Font name="System Bold" size="27.0" />
                                              </font>
                                              <VBox.margin>
-                                                <Insets top="100.0" />
+                                                <Insets top="15.0" />
                                              </VBox.margin>
                                           </Button>
                                           <Button fx:id="closePerson" mnemonicParsing="false" onAction="#closeButtonPressed" text="Close">
@@ -192,6 +198,11 @@
                                     </CheckBox>
                                  </children>
                               </HBox>
+                              <Label fx:id="confirmationExam" alignment="CENTER" prefHeight="17.0" prefWidth="289.0">
+                                 <VBox.margin>
+                                    <Insets top="25.0" />
+                                 </VBox.margin>
+                              </Label>
                               <Button fx:id="submitExam" mnemonicParsing="false" onAction="#submitExamPressed" text="Submit">
                                  <padding>
                                     <Insets bottom="20.0" left="50.0" right="50.0" top="20.0" />
@@ -200,7 +211,7 @@
                                     <Font name="System Bold" size="27.0" />
                                  </font>
                                  <VBox.margin>
-                                    <Insets top="50.0" />
+                                    <Insets top="15.0" />
                                  </VBox.margin>
                               </Button>
                               <Button fx:id="closeExam" mnemonicParsing="false" onAction="#closeButtonPressed" text="Close" />
@@ -284,6 +295,11 @@
                                     </CheckBox>
                                  </children>
                               </HBox>
+                              <Label fx:id="confirmationRoom" alignment="CENTER" prefHeight="17.0" prefWidth="289.0">
+                                 <VBox.margin>
+                                    <Insets top="55.0" />
+                                 </VBox.margin>
+                              </Label>
                               <Button fx:id="submitRoom" mnemonicParsing="false" onAction="#submitRoomPressed" text="Submit">
                                  <padding>
                                     <Insets bottom="20.0" left="50.0" right="50.0" top="20.0" />
@@ -292,7 +308,7 @@
                                     <Font name="System Bold" size="27.0" />
                                  </font>
                                  <VBox.margin>
-                                    <Insets top="75.0" />
+                                    <Insets top="15.0" />
                                  </VBox.margin>
                               </Button>
                               <Button fx:id="closeRoom" mnemonicParsing="false" onAction="#closeButtonPressed" text="Close" />

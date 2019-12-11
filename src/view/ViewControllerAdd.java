@@ -12,6 +12,8 @@ import model.Person;
 import model.Room;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 public class ViewControllerAdd {
     @FXML private Tab addPerson;
@@ -19,11 +21,13 @@ public class ViewControllerAdd {
     @FXML private Tab addRoom;
     @FXML private TabPane tabPane;
 
+
     // INPUTS FOR ADD PERSON
     @FXML private TableView assignedCoursesTable;
     @FXML private TextField personNameField;
     @FXML private TextField VIAIDField;
     @FXML private CheckBox isTeacherCheckbox;
+    @FXML private Label confirmationPerson;
 
     // INPUTS FOR ADD EXAM
     @FXML private TextField courseNameField;
@@ -31,6 +35,7 @@ public class ViewControllerAdd {
     @FXML private ChoiceBox<model.Room> priorityRoomChoiceBox;
     @FXML private CheckBox isWrittenCheckBox;
     @FXML private CheckBox isGroupExamCheckBox;
+    @FXML private Label confirmationExam;
 
     // INPUTS FOR ADD ROOM
     @FXML private TextField roomNameField;
@@ -38,6 +43,7 @@ public class ViewControllerAdd {
     @FXML private CheckBox hasHDMICheckBox;
     @FXML private CheckBox hasVGACheckBox;
     @FXML private CheckBox hasProjectorCheckBox;
+    @FXML private Label confirmationRoom;
 
     private Region root;
     private ExamCalendarController model;
@@ -207,6 +213,20 @@ public class ViewControllerAdd {
         assignedCoursesTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         assignedCoursesTable.getColumns().setAll(courseCol);
 
+    }
 
+        public void submitLabel( int label){
+        switch (label)
+        {
+            case 0:
+                confirmationPerson.setText("You have successfully added a new person");
+                break;
+            case 1:
+                confirmationExam.setText("You have successfully added a new exam");
+                break;
+            case 2:
+                confirmationRoom.setText("You have successfully added a new room");
+                break;
+        }
     }
 }
