@@ -209,14 +209,14 @@ public String toString()
 
 
   //Start of save
-  private static final String filename = "examData.bin";
+  private static final String FILENAME = "examData.bin";
 
   public static void saveToBinary(ArrayList<Exam> fileList) {
-    String filename = "examData.bin";
+
     ObjectOutputStream out = null;
 
     try {
-      File file = new File(filename);
+      File file = new File(FILENAME);
       FileOutputStream fos = new FileOutputStream(file);
       out = new ObjectOutputStream(fos);
 
@@ -231,27 +231,50 @@ public String toString()
   //End of save
 
   //Start of load
-  public static void loadFromBinary(ArrayList<Exam> fileList) {
-    String filename = "examData.bin";
+  public static ArrayList<Exam> loadFromBinary()
+  {
+    File file = new File(FILENAME);
+    ArrayList<Exam> exams = new ArrayList<>();
+    boolean check = false;
     ObjectInputStream in = null;
 
-    try {
-      File file = new File(filename);
+    try
+    {
       FileInputStream fis = new FileInputStream(file);
       in = new ObjectInputStream(fis);
-
-      for (int i = 0; i < fileList.size(); i++) {
-        Exam fileLoad = (Exam)in.readObject();
-        System.out.println(fileLoad);
+      do {
+        try
+        {
+          exams.add((Exam) in.readObject());
+        }
+        catch (Exception e)
+        {
+          check = true;
+        }
       }
+      while (!check);
     }
-    catch (IOException | ClassNotFoundException e) {
+    catch (IOException e)
+    {
       e.printStackTrace();
     }
-
+    finally
+    {
+      try {
+        in.close();
+      }
+      catch (IOException e)
+      {
+        e.printStackTrace();
+      }
+    }
+    return exams;
   }
 
   //End of load
 
   // End of logic
+
 }
+
+
