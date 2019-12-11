@@ -21,6 +21,7 @@ public class ViewControllerMain {
     @FXML private Button examAdd;
     @FXML private TableView roomsTable;
     @FXML private TableView examsTable;
+    @FXML private TableView personsTable;
     private Region root;
     private ExamCalendarController model;
     private ViewHandler viewHandler;
@@ -31,6 +32,7 @@ public class ViewControllerMain {
         this.root = root;
         loadRoomsTab();
         loadExamsTab();
+        loadPersonTab();
     }
 
     public void reset(){
@@ -74,7 +76,22 @@ public class ViewControllerMain {
 
     public void loadPersonTab()
     {
+        ObservableList personData = FXCollections.observableList(model.getPersons());
+        personsTable.setItems(personData);
+        TableColumn courseCol1 = new TableColumn("VIA ID");
+        TableColumn courseCol2 = new TableColumn("Name");
+        TableColumn courseCol3 = new TableColumn("Courses");
+        TableColumn courseCol4 = new TableColumn("Role");
+        personsTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        courseCol1.setPrefWidth(78);
+        courseCol1.setCellValueFactory(new PropertyValueFactory<String, String>("viaID"));
+        courseCol2.setPrefWidth(221);
+        courseCol2.setCellValueFactory(new PropertyValueFactory<String, String>("name"));
+        courseCol3.setPrefWidth(296);
+        courseCol3.setCellValueFactory(new PropertyValueFactory<ArrayList<String>, ArrayList<String>>("assignedCourses"));
+        courseCol4.setPrefWidth(74);
 
+        personsTable.getColumns().setAll(courseCol1, courseCol2, courseCol3, courseCol4);
     }
 
     public void loadExamsTab()
@@ -91,7 +108,7 @@ public class ViewControllerMain {
         courseCol2.setPrefWidth(227);
         courseCol2.setCellValueFactory(new PropertyValueFactory<Room, Room>("priorityRoom"));
         courseCol3.setPrefWidth(137);
-       // courseCol1.setCellValueFactory(new PropertyValueFactory<Double, String>("duration"));
+       // courseCol3.setCellValueFactory(new PropertyValueFactory<Double, String>("duration"));
         courseCol4.setPrefWidth(112);
 
         examsTable.getColumns().setAll(courseCol1, courseCol2, courseCol3, courseCol4);

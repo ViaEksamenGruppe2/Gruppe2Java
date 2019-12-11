@@ -52,9 +52,6 @@ public class test
     rooms.add(room1);
     rooms.add(room2);
     rooms.add(room3);
-    Room.saveToBinary(rooms);
-    Exam.saveToBinary(exams);
-    Person.saveToBinary(persons);
 
     ExamCalendar examCalendar = new ExamCalendar(date1,date2,persons,rooms,exams);
 

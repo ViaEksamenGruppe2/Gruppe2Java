@@ -8,6 +8,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
 import model.Exam;
 import model.ExamCalendarController;
+import model.Person;
 import model.Room;
 
 import java.util.ArrayList;
@@ -109,11 +110,15 @@ public class ViewControllerAdd {
 
     @FXML public void submitPersonPressed(){
         //Add swich to call depenging on the tab
+
+        Person.saveToBinary(model.getPersons());
         reset(0);
     }
 
     @FXML public void submitExamPressed(){
         //Add swich to call depenging on the tab
+
+        Exam.saveToBinary(model.getExams());
         reset(1);
     }
 
@@ -135,7 +140,7 @@ public class ViewControllerAdd {
 
         Room room = new Room(capacity,hasHDMI,hasVGA,hasProjector,name);
         model.getRooms().add(room);
-        System.out.println(model.getRooms());
+        Room.saveToBinary(model.getRooms());
         reset(2);
     }
 

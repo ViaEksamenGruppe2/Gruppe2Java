@@ -59,7 +59,7 @@
                               <Insets top="15.0" />
                            </padding>
                         </VBox>
-                        <TableView fx:id="personData" layoutX="139.0" prefHeight="474.0" prefWidth="671.0">
+                        <TableView fx:id="personsTable" layoutX="139.0" prefHeight="474.0" prefWidth="671.0">
                           <columns>
                             <TableColumn minWidth="0.0" prefWidth="78.0" text="VIA ID" />
                             <TableColumn prefWidth="221.0" text="NAME" />
