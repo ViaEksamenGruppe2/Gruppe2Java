@@ -209,7 +209,7 @@ public String toString()
 
 
   //Start of save
-  private static final String FILENAME = "examData.bin";
+  private static final String FILENAME = "src/savefiles/examData.bin";
 
   public static void saveToBinary(ArrayList<Exam> fileList) {
 

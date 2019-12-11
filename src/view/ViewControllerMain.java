@@ -74,7 +74,7 @@ public class ViewControllerMain {
 
     public void loadPersonTab()
     {
-        
+
     }
 
     public void loadExamsTab()

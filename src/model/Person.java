@@ -115,7 +115,7 @@ public class Person implements Serializable
   }
 
   //Start of save
-  private static final String FILENAME = "personData.bin";
+  private static final String FILENAME = "src/savefiles/personData.bin";
 
   public static void saveToBinary(ArrayList<Person> fileList) {
 

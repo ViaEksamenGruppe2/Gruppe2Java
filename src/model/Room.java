@@ -111,7 +111,7 @@ public class Room implements Serializable
 
 
   //Start of save
-  private static final String FILENAME = "roomData.bin";
+  private static final String FILENAME = "src/savefiles/roomData.bin";
 
   public static void saveToBinary(ArrayList<Room> fileList) {
 

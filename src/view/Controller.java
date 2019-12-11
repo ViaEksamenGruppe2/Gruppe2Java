@@ -81,6 +81,15 @@ public class Controller implements ExamCalendarController
     return exams;
   }
 
+  @Override public ArrayList<Person> setAllPersons(ArrayList<Person> personsToSet)
+  {
+    for (int i = 0; i < personsToSet.size(); i++)
+    {
+      persons.add(personsToSet.get(i));
+    }
+    return persons;
+  }
+
   public void addPerson(String name, String VIAID, ArrayList<String> assignedCourses, boolean isTeacher)
   {
     Person person = new Person(name, VIAID, assignedCourses, isTeacher);

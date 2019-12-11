@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import model.Exam;
 import model.ExamCalendarController;
+import model.Person;
 import model.Room;
 
 public class Main extends Application {
@@ -13,6 +14,7 @@ public class Main extends Application {
         ViewHandler view = new ViewHandler(model);
         model.setAllRooms(Room.loadFromBinary());
         model.setAllExams(Exam.loadFromBinary());
+        model.setAllPersons(Person.loadFromBinary());
         view.start(primaryStage);
     }
 
