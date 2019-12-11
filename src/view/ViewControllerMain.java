@@ -92,6 +92,8 @@ public class ViewControllerMain {
        // col4.setCellValueFactory(new PropertyValueFactory<String, String>("role"));
         col5.setPrefWidth(96);
         examScheduleTable.getColumns().setAll(col1, col2, col3, col4, col5);
+
+        ExamCalendar.saveToJS(plannedExamSchedule);
     }
     public void addButtonPressed(ActionEvent event){
         //Add swich to call depenging on the tab
