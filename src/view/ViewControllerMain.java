@@ -4,21 +4,21 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
-import model.ExamCalendarController;
-import model.Room;
+import model.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class ViewControllerMain {
     @FXML private Button personAdd;
     @FXML private Button roomAdd;
     @FXML private Button examAdd;
+    @FXML private DatePicker startDate;
+    @FXML private DatePicker endDate;
+    @FXML private TableView examScheduleTable;
     @FXML private TableView roomsTable;
     @FXML private TableView examsTable;
     @FXML private TableView personsTable;
@@ -48,9 +48,50 @@ public class ViewControllerMain {
         viewHandler.closeView();
     }
 
-    public void submitButtonPressed(){
-        //Add swich to call depenging on the tab
-        reset();
+    public void generateExamScheduleButtonPressed()
+    {
+        LocalDate startLocalDate = startDate.getValue();
+        LocalDate endLocalDate = endDate.getValue();
+        Date startDate, endDate;
+
+        startDate = new Date(startLocalDate.getDayOfMonth(), startLocalDate.getMonthValue(), startLocalDate.getYear());
+        endDate = new Date(endLocalDate.getDayOfMonth(), endLocalDate.getMonthValue(), endLocalDate.getYear());
+        ExamCalendar examSchedule = new ExamCalendar(startDate, endDate, model.getPersons(), model.getRooms(), model.getExams());
+
+        ArrayList<ArrayList<Object>> plannedExamSchedule;
+        plannedExamSchedule = examSchedule.generateExamSchedule();
+        ArrayList<Date> examDates = new ArrayList<>();
+        ArrayList<Room> examRooms = new ArrayList<>();
+        ArrayList<Exam> examExams = new ArrayList<>();
+        ArrayList<Person> examTeachers = new ArrayList<>();
+        for (int i = 0; i < plannedExamSchedule.size(); i++)
+        {
+            Date examDate = (Date) plannedExamSchedule.get(i).get(0);
+            Room examRoom = (Room) plannedExamSchedule.get(i).get(1);
+            Exam examExam = (Exam) plannedExamSchedule.get(i).get(2);
+            examDates.add(examDate);
+            examRooms.add(examRoom);
+            examExams.add(examExam);
+        }
+        ObservableList examScheduleData = FXCollections.observableList(examDates);
+
+        examScheduleTable.setItems(examScheduleData);
+        TableColumn col1 = new TableColumn("Date");
+        TableColumn col2 = new TableColumn("Course Name");
+        TableColumn col3 = new TableColumn("Room");
+        TableColumn col4 = new TableColumn("Assigned Teacher");
+        TableColumn col5 = new TableColumn("Exam Type");
+        examScheduleTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        col1.setPrefWidth(83);
+        col1.setCellValueFactory(new PropertyValueFactory<Date, Date>("Date"));
+        col2.setPrefWidth(122);
+        // col2.setCellValueFactory(new PropertyValueFactory<String, String>("courseName"));
+        col3.setPrefWidth(124);
+        //col3.setCellValueFactory(new PropertyValueFactory<ArrayList<String>, ArrayList<String>>("assignedCourses"));
+        col4.setPrefWidth(180);
+       // col4.setCellValueFactory(new PropertyValueFactory<String, String>("role"));
+        col5.setPrefWidth(96);
+        examScheduleTable.getColumns().setAll(col1, col2, col3, col4, col5);
     }
     public void addButtonPressed(ActionEvent event){
         //Add swich to call depenging on the tab

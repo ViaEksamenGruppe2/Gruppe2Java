@@ -176,7 +176,7 @@
                                     <Font name="System Bold" size="16.0" />
                                  </font>
                               </Text>
-                              <DatePicker />
+                              <DatePicker fx:id="startDate" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="End date of exams" wrappingWidth="154.13671875">
                                  <font>
                                     <Font name="System Bold" size="16.0" />
@@ -185,8 +185,8 @@
                                     <Insets bottom="5.0" top="25.0" />
                                  </VBox.margin>
                               </Text>
-                              <DatePicker />
-                              <Button minHeight="50.0" minWidth="170.0" mnemonicParsing="false" text="Generate exam schedule">
+                              <DatePicker fx:id="endDate" />
+                              <Button fx:id="generateExamSchedule" minHeight="50.0" minWidth="170.0" mnemonicParsing="false" onAction="#generateExamScheduleButtonPressed" text="Generate exam schedule">
                                  <VBox.margin>
                                     <Insets top="30.0" />
                                  </VBox.margin>
@@ -196,7 +196,7 @@
                               <Insets bottom="20.0" left="15.0" right="20.0" top="20.0" />
                            </padding>
                         </VBox>
-                        <TableView layoutX="203.0" prefHeight="473.0" prefWidth="607.0">
+                        <TableView fx:id="examScheduleTable" layoutX="203.0" prefHeight="473.0" prefWidth="607.0">
                            <columns>
                               <TableColumn minWidth="0.0" prefWidth="83.0" text="DATE" />
                               <TableColumn prefWidth="122.0" text="COURSE NAME" />
