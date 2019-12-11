@@ -8,6 +8,7 @@ public class Person implements Serializable
   // Field variables
   private String name;
   private String viaID;
+  private String role;
   private ArrayList<String> assignedCourses;
   private boolean isTeacher;
   private PrivateCalendar privateCalendar;
@@ -23,16 +24,20 @@ public class Person implements Serializable
     this.isTeacher = isTeacher;
     privateCalendar = new PrivateCalendar();
     exams = new ArrayList<>();
+      if (isTeacher)
+          role = "Teacher";
+      else
+          role = "Student";
   }
-
-
 
   // Start of getters for Person object
   public String getName()
   {
     return name;
   }
-
+  public String getRole(){
+      return role;
+  }
   public String getViaID()
   {
     return viaID;

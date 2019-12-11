@@ -103,10 +103,11 @@ public class Room implements Serializable
 
   @Override public String toString()
   {
-    return "Room{" + "studentCapacity=" + studentCapacity + ", hasHDMI="
-        + hasHDMI + ", hasVGA=" + hasVGA + ", hasProjector=" + hasProjector
-        + ", roomName='" + roomName + '\'' + ", privateCalendar="
-        + privateCalendar + '}';
+    return roomName;
+    // return "Room{" + "studentCapacity=" + studentCapacity + ", hasHDMI="
+    //    + hasHDMI + ", hasVGA=" + hasVGA + ", hasProjector=" + hasProjector
+    //    + ", roomName='" + roomName + '\'' + ", privateCalendar="
+    //    + privateCalendar + '}';
   }
 
 
