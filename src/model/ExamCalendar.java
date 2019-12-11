@@ -1,5 +1,8 @@
 package model;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -182,6 +185,29 @@ public class ExamCalendar implements Serializable
     // 2D ArrayList with the exam plan
     System.out.println(success);
     return examPlanList;
+
   }
 
+  //Start of write CSV-file
+  private static final String filename = "src/savefiles/examText.csv";
+
+  public static void saveToCSV(ArrayList<ArrayList<Object>> fileList) {
+    File file = new File(filename);
+
+    try {
+      PrintWriter out = new PrintWriter(file); //Opens the file
+
+      for (int i = 0; i < fileList.size(); i++) {
+        out.println(fileList.get(i));
+        out.flush(); //Forces it to write text
+      }
+
+      out.close();
+    }
+    catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  //End of Write CSV-file
 }
