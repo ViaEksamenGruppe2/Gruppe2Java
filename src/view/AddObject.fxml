@@ -83,7 +83,7 @@
                                                 <Insets />
                                              </VBox.margin>
                                           </CheckBox>
-                                          <Label fx:id="confirmationPerson" alignment="CENTER" prefHeight="17.0" prefWidth="289.0" >
+                                          <Label fx:id="confirmationPerson" alignment="CENTER" prefHeight="17.0" prefWidth="289.0" text="You have successfully added a new person" textFill="#0d8600" visible="false">
                                              <VBox.margin>
                                                 <Insets top="75.0" />
                                              </VBox.margin>
@@ -198,7 +198,7 @@
                                     </CheckBox>
                                  </children>
                               </HBox>
-                              <Label fx:id="confirmationExam" alignment="CENTER" prefHeight="17.0" prefWidth="289.0">
+                              <Label fx:id="confirmationExam" alignment="CENTER" prefHeight="17.0" prefWidth="289.0" text="You have successfully added a new exam" textFill="#0d8600" visible="false">
                                  <VBox.margin>
                                     <Insets top="25.0" />
                                  </VBox.margin>
@@ -214,7 +214,10 @@
                                     <Insets top="15.0" />
                                  </VBox.margin>
                               </Button>
-                              <Button fx:id="closeExam" mnemonicParsing="false" onAction="#closeButtonPressed" text="Close" />
+                              <Button fx:id="closeExam" mnemonicParsing="false" onAction="#closeButtonPressed" text="Close">
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin></Button>
                            </children>
                            <padding>
                               <Insets top="10.0" />
@@ -295,7 +298,7 @@
                                     </CheckBox>
                                  </children>
                               </HBox>
-                              <Label fx:id="confirmationRoom" alignment="CENTER" prefHeight="17.0" prefWidth="289.0">
+                              <Label fx:id="confirmationRoom" alignment="CENTER" prefHeight="17.0" prefWidth="289.0" text="You have successfully added a new room" textFill="#0d8600" visible="false">
                                  <VBox.margin>
                                     <Insets top="55.0" />
                                  </VBox.margin>
@@ -311,7 +314,10 @@
                                     <Insets top="15.0" />
                                  </VBox.margin>
                               </Button>
-                              <Button fx:id="closeRoom" mnemonicParsing="false" onAction="#closeButtonPressed" text="Close" />
+                              <Button fx:id="closeRoom" mnemonicParsing="false" onAction="#closeButtonPressed" text="Close">
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin></Button>
                            </children>
                            <padding>
                               <Insets top="10.0" />

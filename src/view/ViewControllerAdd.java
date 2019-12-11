@@ -1,11 +1,13 @@
 package view;
 
+import javafx.animation.PauseTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
+import javafx.util.Duration;
 import model.Exam;
 import model.ExamCalendarController;
 import model.Person;
@@ -141,6 +143,7 @@ public class ViewControllerAdd {
         else {
             System.out.println("PLEASE ENTER INPUT DUUDE");
         }
+        submitLabel(0);
         Person.saveToBinary(model.getPersons());
         reset(0);
     }
@@ -170,6 +173,7 @@ public class ViewControllerAdd {
         {
             System.out.println("PLEASE ENTER INPUT DUUDE");
         }
+        submitLabel(1);
         Exam.saveToBinary(model.getExams());
         reset(1);
     }
@@ -198,6 +202,7 @@ public class ViewControllerAdd {
         else {
             System.out.println("PLEASE ENTER INPUT DUUDE");
         }
+        submitLabel(2);
         Room.saveToBinary(model.getRooms());
         reset(2);
     }
@@ -215,17 +220,38 @@ public class ViewControllerAdd {
 
     }
 
-        public void submitLabel( int label){
+        public void submitLabel(int label){
         switch (label)
         {
             case 0:
-                confirmationPerson.setText("You have successfully added a new person");
+                confirmationPerson.setVisible(true);
+                PauseTransition personPause = new PauseTransition(
+                    Duration.seconds(2)
+                );
+                personPause.setOnFinished(
+                    event -> confirmationPerson.setVisible(false)
+                );
+                personPause.play();
                 break;
             case 1:
-                confirmationExam.setText("You have successfully added a new exam");
+
+                PauseTransition examPause = new PauseTransition(
+                    Duration.seconds(2)
+                );
+                examPause.setOnFinished(
+                    event -> confirmationExam.setVisible(false)
+                );
+                examPause.play();
                 break;
             case 2:
-                confirmationRoom.setText("You have successfully added a new room");
+                confirmationRoom.setVisible(true);
+                PauseTransition roomPause = new PauseTransition(
+                    Duration.seconds(2)
+                );
+                roomPause.setOnFinished(
+                    event -> confirmationRoom.setVisible(false)
+                );
+                roomPause.play();
                 break;
         }
     }

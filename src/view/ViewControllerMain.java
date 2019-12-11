@@ -130,10 +130,13 @@ public class ViewControllerMain {
         courseCol1.setCellValueFactory(new PropertyValueFactory<String, String>("viaID"));
         courseCol2.setPrefWidth(221);
         courseCol2.setCellValueFactory(new PropertyValueFactory<String, String>("name"));
+        courseCol2.setStyle("-fx-alignment: CENTER;");
         courseCol3.setPrefWidth(296);
         courseCol3.setCellValueFactory(new PropertyValueFactory<ArrayList<String>, ArrayList<String>>("assignedCourses"));
         courseCol4.setPrefWidth(74);
         courseCol4.setCellValueFactory(new PropertyValueFactory<String, String>("role"));
+        courseCol4.setStyle("-fx-alignment: CENTER;");
+
         personsTable.getColumns().setAll(courseCol1, courseCol2, courseCol3, courseCol4);
     }
 
@@ -151,6 +154,7 @@ public class ViewControllerMain {
         courseCol2.setPrefWidth(227);
         courseCol2.setCellValueFactory(new PropertyValueFactory<Room, Room>("priorityRoom"));
         courseCol3.setPrefWidth(137);
+        courseCol3.setStyle("-fx-alignment: CENTER;");
        // courseCol3.setCellValueFactory(new PropertyValueFactory<Double, String>("duration"));
         courseCol4.setPrefWidth(112);
 
