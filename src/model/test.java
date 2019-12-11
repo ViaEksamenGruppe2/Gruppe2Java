@@ -53,6 +53,7 @@ public class test
     rooms.add(room2);
     rooms.add(room3);
 
+
     ExamCalendar examCalendar = new ExamCalendar(date1,date2,persons,rooms,exams);
 
     ArrayList<ArrayList<Object>> calendarschedule = examCalendar.generateExamSchedule();
