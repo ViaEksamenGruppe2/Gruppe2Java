@@ -16,6 +16,11 @@ public class PrivateCalendar implements Serializable
     dates = new ArrayList<>();
   }
 
+  //Start of getters
+  public Date getLastDate() {
+    return dates.get(dates.size()-1);
+  }
+  //End of getters
 
   //Logic
   public void makeReservation(Date date){

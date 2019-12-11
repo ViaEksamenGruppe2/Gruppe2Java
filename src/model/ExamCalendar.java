@@ -189,7 +189,7 @@ public class ExamCalendar implements Serializable
   }
 
   //Start of write CSV-file
-  private static final String filename = "src/savefiles/examText.csv";
+  private static final String filename = "src/savefiles/examText.js";
 
   public static void saveToCSV(ArrayList<ArrayList<Object>> fileList) {
     File file = new File(filename);
@@ -197,11 +197,31 @@ public class ExamCalendar implements Serializable
     try {
       PrintWriter out = new PrintWriter(file); //Opens the file
 
+      out.println("const classes = [");
+      out.flush();
+
       for (int i = 0; i < fileList.size(); i++) {
-        out.println(fileList.get(i));
+        Room roomToCsv = (Room) fileList.get(i).get(1);
+        Exam examToCsv = (Exam) fileList.get(i).get(2);
+        String output = "";
+
+        output += "{classname:'" + examToCsv.getCourseName() + "',examType:'" + examToCsv.getType() + "',roomName:'"
+            + roomToCsv.getRoomName() + "',hasHDMI:'" + roomToCsv.hasHDMI() + "',hasVGA:'" + roomToCsv.hasVGA()
+            + "',hasProjector:'" + roomToCsv.hasProjector() + "',dateStart:'" + examToCsv.getPrivateCalendar().getDateFromIndex(0) + "',dateEnd:'"
+            + examToCsv.getPrivateCalendar().getLastDate() + "',color:'" + examToCsv.getAccentColour();
+
+        //Make for loop to get all teachers
+        for(int j = 0; j < examToCsv.getTeacher().size(); j++) {
+          output += "',teacher:'" + (examToCsv.getTeacher().get(j).getViaID()) + "'},";
+        }
+
+
+        out.println(output);
+
         out.flush(); //Forces it to write text
       }
-
+      out.println("];");
+      out.flush();
       out.close();
     }
     catch (IOException e) {
