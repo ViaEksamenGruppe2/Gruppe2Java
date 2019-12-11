@@ -90,7 +90,7 @@ public class ViewControllerMain {
         courseCol3.setPrefWidth(296);
         courseCol3.setCellValueFactory(new PropertyValueFactory<ArrayList<String>, ArrayList<String>>("assignedCourses"));
         courseCol4.setPrefWidth(74);
-
+        courseCol4.setCellValueFactory(new PropertyValueFactory<String, String>("role"));
         personsTable.getColumns().setAll(courseCol1, courseCol2, courseCol3, courseCol4);
     }
 

@@ -60,5 +60,9 @@ public class test
     {
         System.out.println(calendarschedule.get(i).get(0) + " : " + ((Room) calendarschedule.get(i).get(1)).getRoomName() + " : " + ((Exam) calendarschedule.get(i).get(2)).getCourseName() + " : " + ((Exam) calendarschedule.get(i).get(2)).getPrivateCalendar());
     }
+
+    Room.saveToBinary(rooms);
+    Person.saveToBinary(persons);
+    Exam.saveToBinary(exams);
   }
 }
