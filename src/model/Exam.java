@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Exam implements Serializable
 {
   // Field variables
-  private String courseName, accentColour;
+  private String courseName, accentColour, type;
   private double duration;
   private boolean isGroupExam, isWrittenExam;
   private Room priorityRoom;
@@ -25,6 +25,10 @@ public class Exam implements Serializable
     privateCalendar = new PrivateCalendar();
     attendees = new ArrayList<>();
     this.accentColour = getAColour();
+    if (isWrittenExam)
+      type = "Written";
+    else
+      type = "Oral";
   }
   // Second constructor for Exam object
   public Exam(String courseName, double duration, boolean isGroupExam, boolean isWrittenExam)
@@ -37,6 +41,10 @@ public class Exam implements Serializable
     privateCalendar = new PrivateCalendar();
     attendees = new ArrayList<>();
     this.accentColour = getAColour();
+    if (isWrittenExam)
+      type = "Written";
+    else
+      type = "Oral";
   }
 
   // Start of getters for Exam object
@@ -58,6 +66,10 @@ public class Exam implements Serializable
   public String getAccentColour()
   {
     return accentColour;
+  }
+
+  public String getType() {
+    return type;
   }
 
   public ArrayList<Person> getAllStudents()
