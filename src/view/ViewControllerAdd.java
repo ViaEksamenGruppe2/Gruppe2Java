@@ -231,6 +231,8 @@ public class ViewControllerAdd {
         personNameField.setText(person.getName());
         VIAIDField.setText(person.getViaID());
         isTeacherCheckbox.setSelected(person.isTeacher());
+        // NEEDS TO SELECT WHAT WAS CHOSEN IN TABLE
+        model.getPersons().remove(person);
     }
     public void editExam(Exam exam)
     {
