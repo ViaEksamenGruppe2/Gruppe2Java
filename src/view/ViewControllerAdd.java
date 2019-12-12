@@ -228,7 +228,9 @@ public class ViewControllerAdd {
 
     public void editPerson(Person person)
     {
-
+        personNameField.setText(person.getName());
+        VIAIDField.setText(person.getViaID());
+        isTeacherCheckbox.setSelected(person.isTeacher());
     }
     public void editExam(Exam exam)
     {
