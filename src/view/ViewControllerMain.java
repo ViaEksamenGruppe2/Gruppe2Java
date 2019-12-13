@@ -42,6 +42,9 @@ public class ViewControllerMain {
         loadPersonTab();
     }
 
+    public void reset(){
+    }
+
     public Region getRoot()
     {
         return root;
