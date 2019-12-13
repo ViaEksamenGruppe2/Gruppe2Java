@@ -144,6 +144,10 @@ public class ViewControllerAdd {
             Person person = new Person(name,viaID,assignedCourses,isTeacher);
             for (int i = 0; i < assignedCoursesObservableList.size(); i++)
             {
+                person.addExam(assignedCoursesObservableList.get(i));
+            }
+            for (int i = 0; i < assignedCoursesObservableList.size(); i++)
+            {
                 assignedCoursesObservableList.get(i).addPerson(person);
             }
             model.getPersons().add(person);

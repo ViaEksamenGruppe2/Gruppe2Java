@@ -27,5 +27,6 @@ public interface ExamCalendarController
   public void removePerson(Person person);
   public void removeExam(Exam exam);
   public void removeRoom(Room room);
+  public void removePersonExams(Person person, ArrayList<Exam> exams);
   // End of logic
 }

@@ -31,11 +31,32 @@ public class test
 
 
     exam1.addPerson(teacher);
+    exam1.addPerson(person1);
     exam1.addPerson(person2);
+    exam1.addPerson(person3);
     exam2.addPerson(teacher);
+    exam2.addPerson(person1);
     exam2.addPerson(person2);
+    exam2.addPerson(person3);
     exam3.addPerson(teacher);
+    exam3.addPerson(person1);
     exam3.addPerson(person2);
+    exam3.addPerson(person3);
+
+    person1.addExam(exam1);
+    person1.addExam(exam2);
+    person1.addExam(exam3);
+    person2.addExam(exam1);
+    person2.addExam(exam2);
+    person2.addExam(exam3);
+    person3.addExam(exam1);
+    person3.addExam(exam2);
+    person3.addExam(exam3);
+    teacher.addExam(exam1);
+    teacher.addExam(exam2);
+    teacher.addExam(exam3);
+
+    System.out.println(teacher.getExams());
 
     ArrayList<Exam> exams = new ArrayList<>();
     exams.add(exam1);

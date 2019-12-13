@@ -138,40 +138,47 @@ public class Room implements Serializable
   {
     File file = new File(FILENAME);
     ArrayList<Room> rooms = new ArrayList<>();
-    boolean check = false;
-    ObjectInputStream in = null;
+    // empty boolean to find out if the file is empty. If it is, then
+    // there will be returned an empty ArrayList
+    boolean check = false, empty = !file.exists() || file.length() == 0;
+    if (!empty)
+    {
+      ObjectInputStream in = null;
 
-    try
-    {
-      FileInputStream fis = new FileInputStream(file);
-      in = new ObjectInputStream(fis);
-      do {
-        try
+      try
+      {
+        FileInputStream fis = new FileInputStream(file);
+        in = new ObjectInputStream(fis);
+        do
         {
-          rooms.add((Room) in.readObject());
+          try
+          {
+            rooms.add((Room) in.readObject());
+          }
+          catch (Exception e)
+          {
+            check = true;
+          }
         }
-        catch (Exception e)
-        {
-          check = true;
-        }
-      }
-      while (!check);
-    }
-    catch (IOException e)
-    {
-      e.printStackTrace();
-    }
-    finally
-    {
-      try {
-        in.close();
+        while (!check);
       }
       catch (IOException e)
       {
         e.printStackTrace();
       }
+      finally
+      {
+        try
+        {
+          in.close();
+        }
+        catch (IOException e)
+        {
+          e.printStackTrace();
+        }
+      }
     }
-    return rooms;
+      return rooms;
   }
 
   //End of load

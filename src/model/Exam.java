@@ -85,6 +85,11 @@ public class Exam implements Serializable
     return seventhSemester;
   }
 
+  public ArrayList<Person> getAttendees()
+  {
+    return attendees;
+  }
+
   public ArrayList<Person> getAllStudents()
   {
     ArrayList<Person> studentAmount = new ArrayList<Person>();
@@ -219,12 +224,16 @@ public boolean isRoomOkayForExam(Room room){
     else
         return room.useableForWrittenEx();
 }
-public String toString()
+
+  @Override public String toString()
   {
-    return "courseName= " + courseName + ", accentColour=" + accentColour + ", duration=" + duration + ", isGroupExam="
-        + isGroupExam + ", isWrittenExam=" + isWrittenExam + ", priorityRoom="
-        + priorityRoom + ", privateCalendar=" + privateCalendar + ", attendees="
-        + attendees;
+    String attendants = "";
+    for (int i = 0; i < attendees.size(); i++)
+    {
+      attendants += attendees.get(i).getName() + ", ";
+    }
+    return "Exam{" + "courseName='" + courseName + '\'' + ", priorityRoom="
+        + priorityRoom + ", privateCalendar=" + privateCalendar + "attendees=" + attendants;
   }
 
   public boolean equals(Object obj)
@@ -266,37 +275,44 @@ public String toString()
   {
     File file = new File(FILENAME);
     ArrayList<Exam> exams = new ArrayList<>();
-    boolean check = false;
-    ObjectInputStream in = null;
+    // empty boolean to find out if the file is empty. If it is, then
+    // there will be returned an empty ArrayList
+    boolean check = false, empty = !file.exists() || file.length() == 0;
+    if (!empty)
+    {
+      ObjectInputStream in = null;
 
-    try
-    {
-      FileInputStream fis = new FileInputStream(file);
-      in = new ObjectInputStream(fis);
-      do {
-        try
+      try
+      {
+        FileInputStream fis = new FileInputStream(file);
+        in = new ObjectInputStream(fis);
+        do
         {
-          exams.add((Exam) in.readObject());
+          try
+          {
+            exams.add((Exam) in.readObject());
+          }
+          catch (Exception e)
+          {
+            check = true;
+          }
         }
-        catch (Exception e)
-        {
-          check = true;
-        }
-      }
-      while (!check);
-    }
-    catch (IOException e)
-    {
-      e.printStackTrace();
-    }
-    finally
-    {
-      try {
-        in.close();
+        while (!check);
       }
       catch (IOException e)
       {
         e.printStackTrace();
+      }
+      finally
+      {
+        try
+        {
+          in.close();
+        }
+        catch (IOException e)
+        {
+          e.printStackTrace();
+        }
       }
     }
     return exams;

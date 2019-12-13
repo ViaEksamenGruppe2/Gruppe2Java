@@ -49,17 +49,9 @@ public class ExamCalendar implements Serializable
     // lastDate is the last date that an exam can be held at
 
     success = "The schedule is processing...";
-    //Clears non-personal date reservations
+
     int examSize = exams.size(), roomSize = rooms.size(), personSize = persons.size();
-    for (int i = 0; i < examSize; i++) {
-      exams.get(i).getPrivateCalendar().removeAllNonPersonalDates();
-    }
-    for (int i = 0; i < roomSize; i++) {
-      rooms.get(i).getPrivateCalendar().removeAllNonPersonalDates();
-    }
-    for (int i = 0; i < personSize; i++) {
-      persons.get(i).getPrivateCalendar().removeAllNonPersonalDates();
-    }
+
 
     //Shuffle exams
     Collections.shuffle(exams);

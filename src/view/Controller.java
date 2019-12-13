@@ -126,5 +126,18 @@ public class Controller implements ExamCalendarController
   {
     rooms.remove(room);
   };
+  public void removePersonExams(Person person, ArrayList<Exam> exams)
+  {
+    for (int i = 0; i < exams.size() ; i++)
+    {
+      for (int j = 0; j < this.exams.size(); j++)
+      {
+        if (exams.equals(this.exams))
+        {
+          this.exams.get(j).removePerson(person);
+        }
+      }
+    }
+  }
   // End of logic
 }

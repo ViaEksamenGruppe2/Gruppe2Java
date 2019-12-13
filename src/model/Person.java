@@ -113,10 +113,12 @@ public class Person implements Serializable
   }
 
   //May need change for UI
-  @Override public String toString() {
-    return "Person{" + "name='" + name + '\'' + ", viaID=" + viaID
-        + ", assignedCourses=" + assignedCourses + ", isTeacher=" + isTeacher
-        + ", privateCalendar=" + privateCalendar + ", exams=" + exams + '}';
+
+  @Override public String toString()
+  {
+    return "Person{" + "name='" + name + '\'' + ", viaID='" + viaID + '\''
+        + ", role='" + role + '\'' + ", assignedCourses=" + assignedCourses
+        + ", privateCalendar=" + privateCalendar;
   }
 
   //Start of save
@@ -146,37 +148,44 @@ public class Person implements Serializable
   {
     File file = new File(FILENAME);
     ArrayList<Person> persons = new ArrayList<>();
-    boolean check = false;
-    ObjectInputStream in = null;
+    // empty boolean to find out if the file is empty. If it is, then
+    // there will be returned an empty ArrayList
+    boolean check = false, empty = !file.exists() || file.length() == 0;
+    if (!empty)
+    {
+      ObjectInputStream in = null;
 
-    try
-    {
-      FileInputStream fis = new FileInputStream(file);
-      in = new ObjectInputStream(fis);
-      do {
-        try
+      try
+      {
+        FileInputStream fis = new FileInputStream(file);
+        in = new ObjectInputStream(fis);
+        do
         {
-          persons.add((Person) in.readObject());
+          try
+          {
+            persons.add((Person) in.readObject());
+          }
+          catch (Exception e)
+          {
+            check = true;
+          }
         }
-        catch (Exception e)
-        {
-          check = true;
-        }
-      }
-      while (!check);
-    }
-    catch (IOException e)
-    {
-      e.printStackTrace();
-    }
-    finally
-    {
-      try {
-        in.close();
+        while (!check);
       }
       catch (IOException e)
       {
         e.printStackTrace();
+      }
+      finally
+      {
+        try
+        {
+          in.close();
+        }
+        catch (IOException e)
+        {
+          e.printStackTrace();
+        }
       }
     }
     return persons;

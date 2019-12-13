@@ -7,15 +7,19 @@ import model.ExamCalendarController;
 import model.Person;
 import model.Room;
 
+import java.util.ArrayList;
+
 public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         ExamCalendarController model = new Controller();
         ViewHandler view = new ViewHandler(model);
-        model.setAllRooms(Room.loadFromBinary());
-        model.setAllExams(Exam.loadFromBinary());
-        model.setAllPersons(Person.loadFromBinary());
-        view.start(primaryStage);
+
+            model.setAllRooms(Room.loadFromBinary());
+            model.setAllExams(Exam.loadFromBinary());
+            model.setAllPersons(Person.loadFromBinary());
+            view.start(primaryStage);
+
     }
 
 
