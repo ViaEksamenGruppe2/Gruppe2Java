@@ -48,6 +48,8 @@ public class ViewControllerAdd {
     @FXML private CheckBox hasProjectorCheckBox;
     @FXML private Label confirmationRoom;
 
+    private boolean enteredFromEdit;
+    private Object objectToRemove;
     private Region root;
     private ExamCalendarController model;
     private ViewHandler viewHandler;
@@ -56,7 +58,7 @@ public class ViewControllerAdd {
         this.model = model;
         this.viewHandler = viewHandler;
         this.root = root;
-
+        enteredFromEdit = false;
     }
 
     public void setSpecificTab(int tabInt)
@@ -109,6 +111,7 @@ public class ViewControllerAdd {
                 hasProjectorCheckBox.setSelected(false);
                 break;
         }
+        enteredFromEdit = false;
     }
 
     public Region getRoot()
@@ -118,6 +121,7 @@ public class ViewControllerAdd {
 
     @FXML public void closeButtonPressed(){
         viewHandler.openView("ExamPlanner",0);
+        enteredFromEdit = false;
     }
 
     @FXML public void submitPersonPressed(){
@@ -140,6 +144,11 @@ public class ViewControllerAdd {
                 assignedCoursesObservableList.get(i).addPerson(person);
             }
             model.getPersons().add(person);
+            if (enteredFromEdit)
+            {
+                Person personToRemove = (Person) objectToRemove;
+                model.getPersons().remove(personToRemove);
+            }
         }
         else {
             System.out.println("PLEASE ENTER INPUT DUUDE");
@@ -165,6 +174,11 @@ public class ViewControllerAdd {
                 Room priorityRoom = priorityRoomChoiceBox.getValue();
                 Exam exam = new Exam(courseName, duration, priorityRoom, groupExam, writtenExam,seventhSemester);
                 model.getExams().add(exam);
+                if (enteredFromEdit)
+                {
+                    Exam examToRemove = (Exam) objectToRemove;
+                    model.getExams().remove(examToRemove);
+                }
             }
             catch (NumberFormatException e)
             {
@@ -195,6 +209,11 @@ public class ViewControllerAdd {
                 hasProjector = hasProjectorCheckBox.selectedProperty().get();
                 Room room = new Room(capacity,hasHDMI,hasVGA,hasProjector,name);
                 model.getRooms().add(room);
+                if (enteredFromEdit)
+                {
+                    Room roomToRemove = (Room) objectToRemove;
+                    model.getRooms().remove(roomToRemove);
+                }
             }
             catch (NumberFormatException e)
             {
@@ -211,6 +230,8 @@ public class ViewControllerAdd {
 
     public void editObject(Object obj, int tabInt)
     {
+        enteredFromEdit = true;
+        objectToRemove = obj;
         switch (tabInt)
         {
             case 0:
@@ -234,7 +255,6 @@ public class ViewControllerAdd {
         VIAIDField.setText(person.getViaID());
         isTeacherCheckbox.setSelected(person.isTeacher());
         // NEEDS TO SELECT WHAT WAS CHOSEN IN TABLE
-        model.getPersons().remove(person);
     }
     public void editExam(Exam exam)
     {
@@ -244,7 +264,6 @@ public class ViewControllerAdd {
         // NEEDS TO SELECT WHAT WAS CHOSEN IN CHOICE BOX
         isWrittenCheckBox.setSelected(exam.isWrittenExam());
         isGroupExamCheckBox.setSelected(exam.isGroupExam());
-        model.getExams().remove(exam);
     }
     public void editRoom(Room room)
     {
@@ -254,7 +273,6 @@ public class ViewControllerAdd {
         hasHDMICheckBox.setSelected(room.hasHDMI());
         hasVGACheckBox.setSelected(room.hasVGA());
         hasProjectorCheckBox.setSelected(room.hasProjector());
-        model.getRooms().remove(room);
     }
 
     public void loadPersonTab()
