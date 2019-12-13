@@ -33,7 +33,7 @@ public class ViewHandler {
                 prefMinWidth = 820;
                 break;
             case "AddObject":
-                root = loadViewAdd("AddObject.fxml",tabInt);
+                root = loadViewAdd("dataInputWindow.fxml",tabInt);
                 prefMinHeight = 450;
                 prefMinWidth = 600;
                 break;

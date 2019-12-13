@@ -198,9 +198,17 @@
                                     </CheckBox>
                                  </children>
                               </HBox>
+                              <CheckBox fx:id="isSeventhSemesterCheckBox" mnemonicParsing="false" text="7th Semester Exam">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </CheckBox>
                               <Label fx:id="confirmationExam" alignment="CENTER" prefHeight="17.0" prefWidth="289.0" text="You have successfully added a new exam" textFill="#0d8600" visible="false">
                                  <VBox.margin>
-                                    <Insets top="25.0" />
+                                    <Insets bottom="15.0" top="10.0" />
                                  </VBox.margin>
                               </Label>
                               <Button fx:id="submitExam" mnemonicParsing="false" onAction="#submitExamPressed" text="Submit">
@@ -211,7 +219,7 @@
                                     <Font name="System Bold" size="27.0" />
                                  </font>
                                  <VBox.margin>
-                                    <Insets top="15.0" />
+                                    <Insets />
                                  </VBox.margin>
                               </Button>
                               <Button fx:id="closeExam" mnemonicParsing="false" onAction="#closeButtonPressed" text="Close">

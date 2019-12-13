@@ -30,6 +30,7 @@ public class ViewControllerAdd {
     @FXML private TextField VIAIDField;
     @FXML private CheckBox isTeacherCheckbox;
     @FXML private Label confirmationPerson;
+    @FXML private CheckBox isSeventhSemesterCheckBox;
 
     // INPUTS FOR ADD EXAM
     @FXML private TextField courseNameField;
@@ -150,7 +151,7 @@ public class ViewControllerAdd {
 
     @FXML public void submitExamPressed(){
         String courseName;
-        boolean writtenExam, groupExam;
+        boolean writtenExam, groupExam, seventhSemester;
         int duration = 0;
         if (!courseNameField.getText().isEmpty() && !examDurationField.getText().isEmpty())
         {
@@ -160,8 +161,9 @@ public class ViewControllerAdd {
                 duration = (int) Double.parseDouble(examDurationField.getText());
                 writtenExam = isWrittenCheckBox.selectedProperty().get();
                 groupExam = isGroupExamCheckBox.selectedProperty().get();
+                seventhSemester = isSeventhSemesterCheckBox.selectedProperty().get();
                 Room priorityRoom = priorityRoomChoiceBox.getValue();
-                Exam exam = new Exam(courseName, duration, priorityRoom, groupExam, writtenExam);
+                Exam exam = new Exam(courseName, duration, priorityRoom, groupExam, writtenExam,seventhSemester);
                 model.getExams().add(exam);
             }
             catch (NumberFormatException e)
