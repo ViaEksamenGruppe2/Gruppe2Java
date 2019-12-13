@@ -234,7 +234,7 @@ public class ExamCalendar implements Serializable
             + "',dateStart:'" + examToCsv.getPrivateCalendar()
             .getDateFromIndex(0) + "',dateEnd:'" + examToCsv
             .getPrivateCalendar().getLastDate() + "',color:'" + examToCsv
-            .getAccentColour();
+            .getAccentColour() + "',is7thSemester:'" + examToCsv.isSeventhSemester();
 
         //Multiple teachers can have the same exam
         //Create for loop that iterates over all teachers
