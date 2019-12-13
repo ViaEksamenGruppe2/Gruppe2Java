@@ -56,12 +56,14 @@ public class ViewControllerMain {
 
     public void generateExamScheduleButtonPressed()
     {
+
         LocalDate startLocalDate = startDate.getValue();
         LocalDate endLocalDate = endDate.getValue();
         Date startDate, endDate;
 
         startDate = new Date(startLocalDate.getDayOfMonth(), startLocalDate.getMonthValue(), startLocalDate.getYear());
         endDate = new Date(endLocalDate.getDayOfMonth(), endLocalDate.getMonthValue(), endLocalDate.getYear());
+
         ExamCalendar examSchedule = new ExamCalendar(startDate, endDate, model.getPersons(), model.getRooms(), model.getExams());
 
         ArrayList<ArrayList<Object>> plannedExamSchedule;
@@ -98,13 +100,12 @@ public class ViewControllerMain {
        // col4.setCellValueFactory(new PropertyValueFactory<String, String>("role"));
         col5.setPrefWidth(96);
         examScheduleTable.getColumns().setAll(col1, col2, col3, col4, col5);
-
-            String alertMessage = examSchedule.getSuccess();
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Information");
-            alert.setHeaderText(null);
-            alert.setContentText(alertMessage);
-            alert.showAndWait();
+        String alertMessage = examSchedule.getSuccess();
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information");
+        alert.setHeaderText(null);
+        alert.setContentText(alertMessage);
+        alert.showAndWait();
 
         ExamCalendar.saveToJS(plannedExamSchedule);
     }
