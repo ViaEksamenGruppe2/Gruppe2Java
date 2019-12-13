@@ -95,14 +95,14 @@ public class Controller implements ExamCalendarController
     Person person = new Person(name, VIAID, assignedCourses, isTeacher);
     persons.add(person);
   };
-  public void addExam(String courseName, double duration, Room priorityRoom, boolean isGroupExam, boolean isWrittenExam)
+  public void addExam(String courseName, double duration, Room priorityRoom, boolean isGroupExam, boolean isWrittenExam, boolean seventhSemester)
   {
-    Exam exam = new Exam(courseName, duration, priorityRoom, isGroupExam, isWrittenExam);
+    Exam exam = new Exam(courseName, duration, priorityRoom, isGroupExam, isWrittenExam, seventhSemester);
     exams.add(exam);
   };
-  public void addExam(String courseName, double duration, boolean isGroupExam, boolean isWrittenExam)
+  public void addExam(String courseName, double duration, boolean isGroupExam, boolean isWrittenExam, boolean seventhSemester)
   {
-    Exam exam = new Exam(courseName, duration, isGroupExam,isWrittenExam);
+    Exam exam = new Exam(courseName, duration, isGroupExam,isWrittenExam, seventhSemester);
     exams.add(exam);
   };
   public void addRoom(int studentCapacity, boolean hasHDMI, boolean hasVGA, boolean hasProjector, String roomName)

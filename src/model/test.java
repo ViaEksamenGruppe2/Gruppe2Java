@@ -14,9 +14,9 @@ public class test
     Room room2 = new Room(15,true,true,true,"E.201a");
     Room room3 = new Room(30,true,true,true,"E.203b");
 
-    Exam exam1 = new Exam("SW-SDJ-A19", 30, true, false);
-    Exam exam2 = new Exam("SW-RWD-A19", 200, false, true);
-    Exam exam3 = new Exam("SW-SEP-A19", 25,room3, true, false);
+    Exam exam1 = new Exam("SW-SDJ-A19", 30, true, false, false);
+    Exam exam2 = new Exam("SW-RWD-A19", 200, false, true, false);
+    Exam exam3 = new Exam("SW-SEP-A19", 25,room3, true, false, false);
 
 
     ArrayList<String> assignedCourses = new ArrayList<>();
