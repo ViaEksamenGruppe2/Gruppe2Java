@@ -48,6 +48,8 @@ public class ViewControllerAdd {
     @FXML private CheckBox hasProjectorCheckBox;
     @FXML private Label confirmationRoom;
 
+    private boolean enteredFromEdit;
+    private Object objectToRemove;
     private Region root;
     private ExamCalendarController model;
     private ViewHandler viewHandler;
@@ -56,7 +58,7 @@ public class ViewControllerAdd {
         this.model = model;
         this.viewHandler = viewHandler;
         this.root = root;
-
+        enteredFromEdit = false;
     }
 
     public void setSpecificTab(int tabInt)
@@ -77,6 +79,8 @@ public class ViewControllerAdd {
                 tabPane.getSelectionModel().select(addExam);
                 ObservableList priorityRoomData = FXCollections.observableList(model.getRooms());
                 priorityRoomChoiceBox.setItems(priorityRoomData);
+                isWrittenCheckBox.setVisible(true);
+                isGroupExamCheckBox.setVisible(true);
                 break;
             case 2:
                 addPerson.setDisable(true);
@@ -109,6 +113,7 @@ public class ViewControllerAdd {
                 hasProjectorCheckBox.setSelected(false);
                 break;
         }
+        enteredFromEdit = false;
     }
 
     public Region getRoot()
@@ -118,13 +123,15 @@ public class ViewControllerAdd {
 
     @FXML public void closeButtonPressed(){
         viewHandler.openView("ExamPlanner",0);
+        enteredFromEdit = false;
     }
 
     @FXML public void submitPersonPressed(){
         String name, viaID;
         ArrayList<String> assignedCourses = new ArrayList<>();
         ObservableList<Exam> assignedCoursesObservableList = assignedCoursesTable.getSelectionModel().getSelectedItems();
-        if (!personNameField.getText().isEmpty() && !VIAIDField.getText().isEmpty() && !assignedCoursesObservableList.isEmpty())
+        if (!personNameField.getText().isEmpty() && !VIAIDField.getText().isEmpty() && !assignedCoursesObservableList.isEmpty()
+            && personNameField.getText().length() <= 256 && VIAIDField.getText().length() <= 16)
         {
             name = personNameField.getText();
             viaID = VIAIDField.getText();
@@ -140,11 +147,23 @@ public class ViewControllerAdd {
                 assignedCoursesObservableList.get(i).addPerson(person);
             }
             model.getPersons().add(person);
+            submitLabel(0);
+            if (enteredFromEdit)
+            {
+                Person personToRemove = (Person) objectToRemove;
+                model.getPersons().remove(personToRemove);
+            }
         }
         else {
-            System.out.println("PLEASE ENTER INPUT DUUDE");
+            String alertMessage = "You haven't entered all the required input to add a person. \nPlease try again.";
+            if (personNameField.getText().length() <= 256 && VIAIDField.getText().length() <= 16)
+                alertMessage = "You have entered too long a name or VIA ID. \nPlease try again.";
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Wrong input");
+            alert.setHeaderText(null);
+            alert.setContentText(alertMessage);
+            alert.showAndWait();
         }
-        submitLabel(0);
         Person.saveToBinary(model.getPersons());
         reset(0);
     }
@@ -152,7 +171,7 @@ public class ViewControllerAdd {
     @FXML public void submitExamPressed(){
         String courseName;
         boolean writtenExam, groupExam, seventhSemester;
-        int duration = 0;
+        int duration;
         if (!courseNameField.getText().isEmpty() && !examDurationField.getText().isEmpty())
         {
             courseName = courseNameField.getText();
@@ -165,24 +184,60 @@ public class ViewControllerAdd {
                 Room priorityRoom = priorityRoomChoiceBox.getValue();
                 Exam exam = new Exam(courseName, duration, priorityRoom, groupExam, writtenExam,seventhSemester);
                 model.getExams().add(exam);
+                submitLabel(1);
+                if (enteredFromEdit)
+                {
+                    Exam examToRemove = (Exam) objectToRemove;
+                    model.getExams().remove(examToRemove);
+                }
             }
             catch (NumberFormatException e)
             {
-                System.out.println("WRONG INPUT DUUUDE");
+                String alertMessage = "You have entered text instead of an integer for the exam length. \nPlease try again.";
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Wrong input");
+                alert.setHeaderText(null);
+                alert.setContentText(alertMessage);
+                alert.showAndWait();
             }
         }
         else
         {
-            System.out.println("PLEASE ENTER INPUT DUUDE");
+            String alertMessage = "You haven't entered all the required input to add an exam. \nPlease try again.";
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Wrong input");
+            alert.setHeaderText(null);
+            alert.setContentText(alertMessage);
+            alert.showAndWait();
         }
-        submitLabel(1);
         Exam.saveToBinary(model.getExams());
         reset(1);
     }
 
+    @FXML public void writtenExamPressed()
+    {
+        if (isWrittenCheckBox.selectedProperty().get())
+        {
+            isGroupExamCheckBox.setVisible(false);
+        }
+        else {
+            isGroupExamCheckBox.setVisible(true);
+        }
+    }
+    @FXML public void groupExamPressed()
+    {
+        if (isGroupExamCheckBox.selectedProperty().get())
+        {
+            isWrittenCheckBox.setVisible(false);
+        }
+        else {
+            isWrittenCheckBox.setVisible(true);
+        }
+    }
+
     @FXML public void submitRoomPressed(){
         String name;
-        int capacity = 0;
+        int capacity;
         boolean hasHDMI, hasVGA, hasProjector;
         if (!roomNameField.getText().isEmpty() && !capacityField.getText().isEmpty())
         {
@@ -195,22 +250,39 @@ public class ViewControllerAdd {
                 hasProjector = hasProjectorCheckBox.selectedProperty().get();
                 Room room = new Room(capacity,hasHDMI,hasVGA,hasProjector,name);
                 model.getRooms().add(room);
+                submitLabel(2);
+                if (enteredFromEdit)
+                {
+                    Room roomToRemove = (Room) objectToRemove;
+                    model.getRooms().remove(roomToRemove);
+                }
             }
             catch (NumberFormatException e)
             {
-                System.out.println("WRONG INPUT DUUUDE");
+                String alertMessage = "You have entered text instead of an integer for the room capacity. \nPlease try again.";
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Wrong input");
+                alert.setHeaderText(null);
+                alert.setContentText(alertMessage);
+                alert.showAndWait();
             }
         }
         else {
-            System.out.println("PLEASE ENTER INPUT DUUDE");
+            String alertMessage = "You haven't entered all the required input to add an exam. \nPlease try again.";
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Wrong input");
+            alert.setHeaderText(null);
+            alert.setContentText(alertMessage);
+            alert.showAndWait();
         }
-        submitLabel(2);
         Room.saveToBinary(model.getRooms());
         reset(2);
     }
 
     public void editObject(Object obj, int tabInt)
     {
+        enteredFromEdit = true;
+        objectToRemove = obj;
         switch (tabInt)
         {
             case 0:
@@ -234,7 +306,6 @@ public class ViewControllerAdd {
         VIAIDField.setText(person.getViaID());
         isTeacherCheckbox.setSelected(person.isTeacher());
         // NEEDS TO SELECT WHAT WAS CHOSEN IN TABLE
-        model.getPersons().remove(person);
     }
     public void editExam(Exam exam)
     {
@@ -244,7 +315,6 @@ public class ViewControllerAdd {
         // NEEDS TO SELECT WHAT WAS CHOSEN IN CHOICE BOX
         isWrittenCheckBox.setSelected(exam.isWrittenExam());
         isGroupExamCheckBox.setSelected(exam.isGroupExam());
-        model.getExams().remove(exam);
     }
     public void editRoom(Room room)
     {
@@ -254,7 +324,6 @@ public class ViewControllerAdd {
         hasHDMICheckBox.setSelected(room.hasHDMI());
         hasVGACheckBox.setSelected(room.hasVGA());
         hasProjectorCheckBox.setSelected(room.hasProjector());
-        model.getRooms().remove(room);
     }
 
     public void loadPersonTab()
