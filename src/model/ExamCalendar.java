@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class ExamCalendar implements Serializable
 {
@@ -13,6 +14,7 @@ public class ExamCalendar implements Serializable
   private ArrayList<Person> persons;
   private ArrayList<Room> rooms;
   private ArrayList<Exam> exams;
+  private String success;
 
   public ExamCalendar(Date firstExamDate, Date lastExamDate, ArrayList<Person> persons, ArrayList<Room> rooms, ArrayList<Exam> exams)
   {
@@ -21,6 +23,11 @@ public class ExamCalendar implements Serializable
     this.persons = persons;
     this.rooms = rooms;
     this.exams = exams;
+    this.success = "The process has not yet been initialised";
+  }
+
+  public String getSuccess() {
+    return success;
   }
 
   //
@@ -41,10 +48,21 @@ public class ExamCalendar implements Serializable
     // plannerDate is the date the exam is planned at
     // lastDate is the last date that an exam can be held at
 
-    String success = "The planner was successful";
-
+    success = "The schedule is processing...";
+    //Shuffle exams
+    Collections.shuffle(exams);
+    int examSize = exams.size();
+    //Moves exams that are held for seventh semester to the front
+    //So they will have priority
+    for (int i = 0; i < examSize; i++) {
+      if (exams.get(i).isSeventhSemester()){
+        Exam exam = exams.get(i);
+        exams.remove(i);
+        exams.add(0, exam );
+      }
+    }
     // for loop running for every exam.
-    for (int i = 0; i < exams.size(); i++)
+    for (int i = 0; i < examSize; i++)
     {
       lastDate = lastExamDate.copy(); //
       lastDate.stepForwardOneDay();   // Here lastDate and plannerDate is assigned
@@ -89,7 +107,7 @@ public class ExamCalendar implements Serializable
           checkdate.stepForwardManyDays(exams.get(i).getTotalExamDurationInDays() - 1);
           if(!checkdate.isBefore(lastDate))
           {
-            success = "The planner failed to add: " + exams.get(i).getCourseName() + " exam, because of too little date range";
+            success = "Failed! (" + (i + 1) + "/" + examSize + ") The planner failed during planning of: " + exams.get(i).getCourseName() + ", caused by to short date range!";
             break;
           }
 
@@ -135,7 +153,7 @@ public class ExamCalendar implements Serializable
           checkdate.stepForwardManyDays(exams.get(i).getTotalExamDurationInDays() - 1);
           if(!checkdate.isBefore(lastDate))
           {
-            success = "The planner failed to add: " + exams.get(i).getCourseName() + " exam, because of too little date range";
+            success = "Failed! (" + (i + 1) + "/" + examSize + ") The planner failed during planning of: " + exams.get(i).getCourseName() + ", caused by to short date range!";
             break;
           }
 
@@ -183,10 +201,13 @@ public class ExamCalendar implements Serializable
 
     // Here we print out if the planner was successful or not & return the
     // 2D ArrayList with the exam plan
+    if (success.equals("The schedule is processing..."))
+      success = "The scheduling was successful";
     System.out.println(success);
     return examPlanList;
 
   }
+
 
   //Start of write jsCSV-file
   private static final String filename = "src/savefiles/examText.js";

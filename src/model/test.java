@@ -7,14 +7,14 @@ public class test
   public static void main(String[] args)
   {
     Date date1 = new Date(2,1,2020);
-    Date date2 = new Date(14,1,2020);
+    Date date2 = new Date(5,1,2020);
     Date datebook = new Date(6,1,2020);
 
     Room room1 = new Room(25,true,true,true,"S.203-RW");
     Room room2 = new Room(15,true,true,true,"E.201a");
     Room room3 = new Room(30,true,true,true,"E.203b");
 
-    Exam exam1 = new Exam("SW-SDJ-A19", 30, true, false, false);
+    Exam exam1 = new Exam("SW-SDJ-A19", 30, true, false, true);
     Exam exam2 = new Exam("SW-RWD-A19", 200, false, true, false);
     Exam exam3 = new Exam("SW-SEP-A19", 25,room3, true, false, false);
 
