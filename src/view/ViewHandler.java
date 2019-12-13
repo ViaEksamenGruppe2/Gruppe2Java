@@ -1,8 +1,6 @@
 package view;
 
-import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
@@ -14,8 +12,8 @@ public class ViewHandler {
     private ExamCalendarController model;
     private ViewControllerMain viewControllerMain;
     private ViewControllerAdd viewControllerAdd;
-    private int PREF_MIN_WIDTH = 820;
-    private int PREF_MIN_HEIGHT = 550;
+    private int prefMinWidth = 820;
+    private int prefMinHeight = 550;
 
     public ViewHandler(ExamCalendarController model){
         this.model = model;
@@ -31,13 +29,13 @@ public class ViewHandler {
         switch (id){
             case "ExamPlanner":
                 root = loadViewMain("ExamPlanner.fxml");
-                PREF_MIN_HEIGHT = 550;
-                PREF_MIN_WIDTH = 820;
+                prefMinHeight = 550;
+                prefMinWidth = 820;
                 break;
             case "AddObject":
                 root = loadViewAdd("AddObject.fxml",tabInt);
-                PREF_MIN_HEIGHT = 450;
-                PREF_MIN_WIDTH = 600;
+                prefMinHeight = 450;
+                prefMinWidth = 600;
                 break;
         }
         currentScene.setRoot(root);
@@ -47,8 +45,8 @@ public class ViewHandler {
         }
         primaryStage.setTitle(title);
         primaryStage.setScene(currentScene);
-        primaryStage.setWidth(PREF_MIN_WIDTH);
-        primaryStage.setHeight(PREF_MIN_HEIGHT);
+        primaryStage.setWidth(prefMinWidth);
+        primaryStage.setHeight(prefMinHeight);
         primaryStage.setResizable(false);
         primaryStage.show();
     }

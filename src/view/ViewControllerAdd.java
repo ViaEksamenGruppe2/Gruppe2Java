@@ -282,7 +282,7 @@ public class ViewControllerAdd {
                 personPause.play();
                 break;
             case 1:
-
+                confirmationExam.setVisible(true);
                 PauseTransition examPause = new PauseTransition(
                     Duration.seconds(2)
                 );
