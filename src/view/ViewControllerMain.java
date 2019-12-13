@@ -9,6 +9,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
 import model.*;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -94,6 +95,16 @@ public class ViewControllerMain {
             startDate = new Date(startLocalDate.getDayOfMonth(), startLocalDate.getMonthValue(), startLocalDate.getYear());
             endDate = new Date(endLocalDate.getDayOfMonth(), endLocalDate.getMonthValue(), endLocalDate.getYear());
 
+            if (endDate.isBefore(startDate))
+            {
+                String alertMessage = "End date can't be before start date.\nPlease try again.";
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Date error");
+                alert.setHeaderText(null);
+                alert.setContentText(alertMessage);
+                alert.showAndWait();
+            }
+            else {
             // Check to see if there's persons, exams and rooms
             if (model.getExams().isEmpty() || model.getRooms().isEmpty() || model.getPersons().isEmpty())
             {
@@ -189,6 +200,7 @@ public class ViewControllerMain {
                     System.out.println(model.getPersons());
                     ExamCalendar.saveToJS(plannedExamSchedule);
                 }
+                }
             }
         }
     }
@@ -237,6 +249,30 @@ public class ViewControllerMain {
         personsTable.refresh();
     }
 
+    public void loadExamCalendarTab()
+    {
+        startDate.setDayCellFactory(picker -> new DateCell() {
+            @Override
+            public void updateItem(LocalDate date, boolean empty)
+            {
+                super.updateItem(date, empty);
+                LocalDate today = LocalDate.now();
+                setDisable(empty || date.compareTo(today) < 0);
+            }
+        });
+        startDate.setEditable(false);
+
+        endDate.setDayCellFactory(picker -> new DateCell() {
+            @Override
+            public void updateItem(LocalDate date, boolean empty)
+            {
+                super.updateItem(date, empty);
+                LocalDate today = LocalDate.now();
+                setDisable(empty || date.compareTo(today) < 0);
+            }
+        });
+        endDate.setEditable(false);
+    }
     public void loadExamsTab()
     {
         ObservableList examData = FXCollections.observableList(model.getExams());

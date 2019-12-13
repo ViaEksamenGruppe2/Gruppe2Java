@@ -82,6 +82,7 @@ public class ViewHandler {
                 viewControllerMain.loadRoomsTab();
                 viewControllerMain.loadPersonTab();
                 viewControllerMain.loadExamsTab();
+                viewControllerMain.loadExamCalendarTab();
             }
             catch (Exception e){
                 e.printStackTrace();
