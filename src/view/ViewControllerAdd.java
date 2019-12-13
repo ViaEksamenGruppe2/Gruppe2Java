@@ -79,6 +79,8 @@ public class ViewControllerAdd {
                 tabPane.getSelectionModel().select(addExam);
                 ObservableList priorityRoomData = FXCollections.observableList(model.getRooms());
                 priorityRoomChoiceBox.setItems(priorityRoomData);
+                isWrittenCheckBox.setVisible(true);
+                isGroupExamCheckBox.setVisible(true);
                 break;
             case 2:
                 addPerson.setDisable(true);
@@ -191,7 +193,7 @@ public class ViewControllerAdd {
             }
             catch (NumberFormatException e)
             {
-                String alertMessage = "You haven't entered text instead of an integer for the exam length. \nPlease try again.";
+                String alertMessage = "You have entered text instead of an integer for the exam length. \nPlease try again.";
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Wrong input");
                 alert.setHeaderText(null);
@@ -210,6 +212,27 @@ public class ViewControllerAdd {
         }
         Exam.saveToBinary(model.getExams());
         reset(1);
+    }
+
+    @FXML public void writtenExamPressed()
+    {
+        if (isWrittenCheckBox.selectedProperty().get())
+        {
+            isGroupExamCheckBox.setVisible(false);
+        }
+        else {
+            isGroupExamCheckBox.setVisible(true);
+        }
+    }
+    @FXML public void groupExamPressed()
+    {
+        if (isGroupExamCheckBox.selectedProperty().get())
+        {
+            isWrittenCheckBox.setVisible(false);
+        }
+        else {
+            isWrittenCheckBox.setVisible(true);
+        }
     }
 
     @FXML public void submitRoomPressed(){
@@ -236,7 +259,7 @@ public class ViewControllerAdd {
             }
             catch (NumberFormatException e)
             {
-                String alertMessage = "You haven't entered text instead of an integer for the room capacity. \nPlease try again.";
+                String alertMessage = "You have entered text instead of an integer for the room capacity. \nPlease try again.";
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Wrong input");
                 alert.setHeaderText(null);

@@ -180,7 +180,7 @@
                               </HBox>
                               <HBox alignment="CENTER" prefHeight="53.0" prefWidth="600.0">
                                  <children>
-                                    <CheckBox fx:id="isWrittenCheckBox" mnemonicParsing="false" text="Written Exam">
+                                    <CheckBox fx:id="isWrittenCheckBox" mnemonicParsing="false" onAction="#writtenExamPressed" text="Written Exam">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -188,7 +188,7 @@
                                           <Insets right="25.0" />
                                        </HBox.margin>
                                     </CheckBox>
-                                    <CheckBox fx:id="isGroupExamCheckBox" mnemonicParsing="false" text="Group Exam">
+                                    <CheckBox fx:id="isGroupExamCheckBox" mnemonicParsing="false" onAction="#groupExamPressed" text="Group Exam">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
