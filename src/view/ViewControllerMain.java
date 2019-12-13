@@ -197,7 +197,6 @@ public class ViewControllerMain {
                     alert.setHeaderText(null);
                     alert.setContentText(alertMessage);
                     alert.showAndWait();
-                    System.out.println(model.getPersons());
                     ExamCalendar.saveToJS(plannedExamSchedule);
                 }
                 }

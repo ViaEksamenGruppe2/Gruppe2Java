@@ -110,7 +110,7 @@ public class ExamCalendar implements Serializable
           checkdate.stepForwardManyDays(exams.get(i).getTotalExamDurationInDays() - 1);
           if(!checkdate.isBefore(lastDate))
           {
-            success = "Failed! (" + (i + 1) + "/" + examSize + ") The planner failed during planning of: " + exams.get(i).getCourseName() + ", caused by to short date range!";
+            success = "Failed! (" + (i + 1) + "/" + examSize + ") The planner failed during planning of: " + exams.get(i).getCourseName() + "\n caused by the date range being too short!";
             break;
           }
 
@@ -156,7 +156,7 @@ public class ExamCalendar implements Serializable
           checkdate.stepForwardManyDays(exams.get(i).getTotalExamDurationInDays() - 1);
           if(!checkdate.isBefore(lastDate))
           {
-            success = "Failed! (" + (i + 1) + "/" + examSize + ") The planner failed during planning of: " + exams.get(i).getCourseName() + ", caused by to short date range!";
+            success = "Failed! (" + (i + 1) + "/" + examSize + ") The planner failed during planning of: " + exams.get(i).getCourseName() + "\n caused by the date range being too short!";
             break;
           }
 
