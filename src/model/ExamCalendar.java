@@ -231,7 +231,7 @@ public class ExamCalendar implements Serializable
         output += "{classname:'" + examToCsv.getCourseName() + "',examType:'"
             + examToCsv.getType() + "',roomName:'" + roomToCsv.getRoomName()
             + "',hasHDMI:'" + roomToCsv.hasHDMI() + "',hasVGA:'" + roomToCsv
-            .hasVGA() + "',hasProjector:'" + roomToCsv.hasProjector()
+            .hasVGA() + "',groupExam:'" + examToCsv.isGroupExam()
             + "',dateStart:'" + examToCsv.getPrivateCalendar()
             .getDateFromIndex(0) + "',dateEnd:'" + examToCsv
             .getPrivateCalendar().getLastDate() + "',color:'" + examToCsv
