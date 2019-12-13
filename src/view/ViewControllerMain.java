@@ -100,7 +100,7 @@ public class ViewControllerMain {
         col5.setPrefWidth(96);
         examScheduleTable.getColumns().setAll(col1, col2, col3, col4, col5);
 
-            String alertMessage = "The scheduling was successful";
+            String alertMessage = examSchedule.getSuccess();
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Information");
             alert.setHeaderText(null);

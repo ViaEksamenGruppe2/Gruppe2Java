@@ -20,7 +20,7 @@ public class test
 
 
     ArrayList<String> assignedCourses = new ArrayList<>();
-    assignedCourses.add("SW-SDJ1-A19");
+    assignedCourses.add("SW-SDJ-A19");
     assignedCourses.add("SW-RWD-A19");
     assignedCourses.add("SW-SEP-A19");
 
