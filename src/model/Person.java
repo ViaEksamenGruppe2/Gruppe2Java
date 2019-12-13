@@ -16,7 +16,7 @@ public class Person implements Serializable
   // Field variables
 
   // Constructor for Person object
-  public Person(String name, String viaID, ArrayList<String> assignedCourses, boolean isTeacher)
+  public Person(String name, String viaID, ArrayList<String> assignedCourses, boolean isTeacher, boolean seventhSemester)
   {
     this.name = name;
     this.viaID = viaID;

@@ -8,14 +8,14 @@ public class Exam implements Serializable
   // Field variables
   private String courseName, accentColour, type;
   private double duration;
-  private boolean isGroupExam, isWrittenExam;
+  private boolean isGroupExam, isWrittenExam, seventhSemester;
   private Room priorityRoom;
   private PrivateCalendar privateCalendar;
   private ArrayList<Person> attendees;
   // Field variables
 
   // Constructor for Exam object
-  public Exam(String courseName, double duration, Room priorityRoom, boolean isGroupExam, boolean isWrittenExam)
+  public Exam(String courseName, double duration, Room priorityRoom, boolean isGroupExam, boolean isWrittenExam, boolean seventhSemester)
   {
     this.courseName = courseName;
     this.duration = duration;
@@ -25,13 +25,14 @@ public class Exam implements Serializable
     privateCalendar = new PrivateCalendar();
     attendees = new ArrayList<>();
     this.accentColour = getAColour();
+    this.seventhSemester = seventhSemester;
     if (isWrittenExam)
       type = "Written";
     else
       type = "Oral";
   }
   // Second constructor for Exam object
-  public Exam(String courseName, double duration, boolean isGroupExam, boolean isWrittenExam)
+  public Exam(String courseName, double duration, boolean isGroupExam, boolean isWrittenExam, boolean seventhSemester)
   {
     this.courseName = courseName;
     this.duration = duration;
@@ -41,6 +42,7 @@ public class Exam implements Serializable
     privateCalendar = new PrivateCalendar();
     attendees = new ArrayList<>();
     this.accentColour = getAColour();
+    this.seventhSemester = seventhSemester;
     if (isWrittenExam)
       type = "Written";
     else
@@ -77,6 +79,10 @@ public class Exam implements Serializable
 
   public String getType() {
     return type;
+  }
+
+  public boolean isSeventhSemester() {
+    return seventhSemester;
   }
 
   public ArrayList<Person> getAllStudents()
