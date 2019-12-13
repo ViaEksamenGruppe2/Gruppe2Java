@@ -42,10 +42,6 @@ public class ViewControllerMain {
         loadPersonTab();
     }
 
-    public void reset(){
-        // Reset all text fiels and button states
-    }
-
     public Region getRoot()
     {
         return root;
