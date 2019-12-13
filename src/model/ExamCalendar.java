@@ -49,9 +49,20 @@ public class ExamCalendar implements Serializable
     // lastDate is the last date that an exam can be held at
 
     success = "The schedule is processing...";
+    //Clears non-personal date reservations
+    int examSize = exams.size(), roomSize = rooms.size(), personSize = persons.size();
+    for (int i = 0; i < examSize; i++) {
+      exams.get(i).getPrivateCalendar().removeAllNonPersonalDates();
+    }
+    for (int i = 0; i < roomSize; i++) {
+      rooms.get(i).getPrivateCalendar().removeAllNonPersonalDates();
+    }
+    for (int i = 0; i < personSize; i++) {
+      persons.get(i).getPrivateCalendar().removeAllNonPersonalDates();
+    }
+
     //Shuffle exams
     Collections.shuffle(exams);
-    int examSize = exams.size();
     //Moves exams that are held for seventh semester to the front
     //So they will have priority
     for (int i = 0; i < examSize; i++) {
@@ -158,7 +169,7 @@ public class ExamCalendar implements Serializable
           }
 
           // This for loop runs through all the rooms
-          for (int j = 0; j < rooms.size(); j++)
+          for (int j = 0; j < roomSize; j++)
           {
 
             // This if statement checks if the rooms calendar isn't booked
@@ -203,9 +214,7 @@ public class ExamCalendar implements Serializable
     // 2D ArrayList with the exam plan
     if (success.equals("The schedule is processing..."))
       success = "The scheduling was successful";
-    System.out.println(success);
     return examPlanList;
-
   }
 
 
