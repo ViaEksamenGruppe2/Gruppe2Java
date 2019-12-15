@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Exam implements Serializable
 {
   // Field variables
-  private String courseName, accentColour, type;
+  private String courseName, accentColour, type, durationString;
   private double duration;
   private boolean isGroupExam, isWrittenExam, seventhSemester;
   private Room priorityRoom;
@@ -30,6 +30,7 @@ public class Exam implements Serializable
       type = "Written";
     else
       type = "Oral";
+    durationString = Double.toString(duration);
   }
   // Second constructor for Exam object
   public Exam(String courseName, double duration, boolean isGroupExam, boolean isWrittenExam, boolean seventhSemester)
@@ -79,6 +80,11 @@ public class Exam implements Serializable
 
   public String getType() {
     return type;
+  }
+
+  public String getDurationString()
+  {
+    return durationString;
   }
 
   public boolean isSeventhSemester() {

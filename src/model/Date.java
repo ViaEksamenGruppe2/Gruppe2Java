@@ -93,9 +93,9 @@ public class Date implements Serializable
   //If other day is before current date
   public boolean isBefore(Date other)
   {
-    if(other.year > this.year)
+    if(this.year > other.year)
       return false;
-    else if(other.year < this.year)
+    else if(other.year > this.year)
       return true;
     else
     {

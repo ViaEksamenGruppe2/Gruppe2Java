@@ -8,7 +8,7 @@ public class Room implements Serializable
   // Field variables
   private int studentCapacity;
   private boolean hasHDMI, hasVGA, hasProjector;
-  private String roomName;
+  private String roomName, capacityString, equipment;
   private PrivateCalendar privateCalendar;
   // Field variables
 
@@ -21,6 +21,23 @@ public class Room implements Serializable
     this.hasVGA = hasVGA;
     this.roomName = roomName;
     privateCalendar = new PrivateCalendar();
+    capacityString = Integer.toString(studentCapacity);
+    if (hasHDMI && hasVGA && hasProjector)
+    {
+      equipment = "HDMI, VGA & Projector";
+    }
+    else if (hasHDMI && hasProjector)
+    {
+      equipment = "HDMI & Projector";
+    }
+    else if (hasVGA && hasProjector)
+    {
+      equipment = "VGA & Projector";
+    }
+    else
+    {
+      equipment = "None";
+    }
   }
 
 
@@ -29,6 +46,16 @@ public class Room implements Serializable
   public int getCapacity()
   {
     return studentCapacity;
+  }
+
+  public String getCapacityString()
+  {
+    return capacityString;
+  }
+
+  public String getEquipment()
+  {
+    return equipment;
   }
 
   public boolean hasHDMI()

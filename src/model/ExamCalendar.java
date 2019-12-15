@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 
+// SOMETHING WRONG WITH WRITTEN EXAMS :-c
 public class ExamCalendar implements Serializable
 {
   private Date firstExamDate;
@@ -200,6 +201,10 @@ public class ExamCalendar implements Serializable
             }
           }
         }
+      for (int j = 0; j < examPlanList.size(); j++)
+      {
+        System.out.println(examPlanList.get(j).get(2));
+      }
     }
 
     // Here we print out if the planner was successful or not & return the
@@ -232,10 +237,9 @@ public class ExamCalendar implements Serializable
             + examToCsv.getType() + "',roomName:'" + roomToCsv.getRoomName()
             + "',hasHDMI:'" + roomToCsv.hasHDMI() + "',hasVGA:'" + roomToCsv
             .hasVGA() + "',groupExam:'" + examToCsv.isGroupExam()
-            + "',dateStart:'" + examToCsv.getPrivateCalendar()
-            .getDateFromIndex(0) + "',dateEnd:'" + examToCsv
-            .getPrivateCalendar().getLastDate() + "',color:'" + examToCsv
-            .getAccentColour() + "',is7thSemester:'" + examToCsv.isSeventhSemester();
+            + "',dateStart:'" + examToCsv.getPrivateCalendar().getDateFromIndex(0) + "',dateEnd:'"
+            + examToCsv.getPrivateCalendar().getLastDate() + "',color:'" + examToCsv.getAccentColour()
+            + "',is7thSemester:'" + examToCsv.isSeventhSemester();
 
         //Multiple teachers can have the same exam
         //Create for loop that iterates over all teachers

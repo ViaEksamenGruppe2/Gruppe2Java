@@ -1,5 +1,6 @@
 package view;
 
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -172,9 +173,10 @@ public class ViewControllerMain {
                         examRooms.add(examRoom);
                         examExams.add(examExam);
                     }
-                    ObservableList examScheduleData = FXCollections.observableList(examDates);
+                    ObservableList examScheduleDates = FXCollections.observableList(examDates);
+                    ObservableList examScheduleData = FXCollections.observableList(plannedExamSchedule);
 
-                    examScheduleTable.setItems(examScheduleData);
+                    examScheduleTable.setItems(examScheduleDates);
                     TableColumn col1 = new TableColumn("Date");
                     TableColumn col2 = new TableColumn("Course Name");
                     TableColumn col3 = new TableColumn("Room");
@@ -184,7 +186,7 @@ public class ViewControllerMain {
                     col1.setPrefWidth(83);
                     col1.setCellValueFactory(new PropertyValueFactory<Date, Date>("Date"));
                     col2.setPrefWidth(122);
-                    // col2.setCellValueFactory(new PropertyValueFactory<String, String>("courseName"));
+                    //col2.setCellValueFactory(new PropertyValueFactory<String, String>("courseName"));
                     col3.setPrefWidth(124);
                     //col3.setCellValueFactory(new PropertyValueFactory<ArrayList<String>, ArrayList<String>>("assignedCourses"));
                     col4.setPrefWidth(180);
@@ -197,6 +199,12 @@ public class ViewControllerMain {
                     alert.setHeaderText(null);
                     alert.setContentText(alertMessage);
                     alert.showAndWait();
+                    for (int i = 0; i < plannedExamSchedule.size() ; i++)
+                    {
+                        System.out.println(plannedExamSchedule.get(i).get(1));
+                        System.out.println(plannedExamSchedule.get(i).get(0));
+                        System.out.println(plannedExamSchedule.get(i).get(2));
+                    }
                     ExamCalendar.saveToJS(plannedExamSchedule);
                 }
                 }
@@ -287,8 +295,9 @@ public class ViewControllerMain {
         courseCol2.setCellValueFactory(new PropertyValueFactory<Room, Room>("priorityRoom"));
         courseCol3.setPrefWidth(137);
         courseCol3.setStyle("-fx-alignment: CENTER;");
-       // courseCol3.setCellValueFactory(new PropertyValueFactory<Double, String>("duration"));
+        courseCol3.setCellValueFactory(new PropertyValueFactory<Double, String>("durationString"));
         courseCol4.setPrefWidth(112);
+        courseCol4.setCellValueFactory(new PropertyValueFactory<Double, String>("type"));
 
         examsTable.getColumns().setAll(courseCol1, courseCol2, courseCol3, courseCol4);
         examsTable.refresh();
@@ -303,10 +312,10 @@ public class ViewControllerMain {
         roomsTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         courseCol1.setPrefWidth(213);
         courseCol1.setCellValueFactory(new PropertyValueFactory<String, String>("roomName"));
-        // courseCol2.setPrefWidth(359);
-        // courseCol2.setCellValueFactory(new PropertyValueFactory<String, String>("hasHDMI"));
-        // courseCol3.setPrefWidth(98);
-        // courseCol3.setCellValueFactory(new PropertyValueFactory<Integer, String>("studentCapacity"));
+        courseCol2.setPrefWidth(359);
+        courseCol2.setCellValueFactory(new PropertyValueFactory<String, String>("equipment"));
+        courseCol3.setPrefWidth(98);
+        courseCol3.setCellValueFactory(new PropertyValueFactory<Integer, String>("capacityString"));
 
         roomsTable.getColumns().setAll(courseCol1, courseCol2, courseCol3);
         roomsTable.refresh();
