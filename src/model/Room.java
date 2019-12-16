@@ -113,9 +113,8 @@ public class Room implements Serializable
     privateCalendar.makeReservation(day);
   }
 
-  public boolean useableForWrittenEx() {
-    int writtenSize = 30; //NOT FINAL SIZE EDIT
-    return studentCapacity >= writtenSize;
+  public boolean useableForWrittenEx(int number) {
+    return studentCapacity >= number;
   }
 
   public boolean equals(Object obj){

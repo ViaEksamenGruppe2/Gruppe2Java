@@ -131,7 +131,7 @@ public class Date implements Serializable
   }
   public void stepForwardManyDays(int x){
     for (int i = 0; i < x; i++) {
-      stepForwardOneDay();;
+      stepForwardOneDay();
     }
   }
   public void stepBackOneDay()

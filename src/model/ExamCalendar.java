@@ -42,20 +42,15 @@ public class ExamCalendar implements Serializable
     // Room - The room associated with the exam
     // Exam - The specific exam/course
     // Teachers - Which teacher(s) associated with the exam
-
     ArrayList<ArrayList<Object>> examPlanList = new ArrayList<>();
-
     Date plannerDate, lastDate; // making two Date objects, these are used for the logic in the method.
     // plannerDate is the date the exam is planned at
     // lastDate is the last date that an exam can be held at
-
     success = "The schedule is processing...";
-
     int examSize = exams.size(), roomSize = rooms.size(), personSize = persons.size();
-
-
     //Shuffle exams
     Collections.shuffle(exams);
+    Collections.shuffle(rooms);
     //Moves exams that are held for seventh semester to the front
     //So they will have priority
     for (int i = 0; i < examSize; i++) {

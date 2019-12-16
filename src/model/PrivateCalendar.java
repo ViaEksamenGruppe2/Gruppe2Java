@@ -18,7 +18,7 @@ public class PrivateCalendar implements Serializable
 
   //Start of getters
   public Date getLastDate() {
-    return dates.get(dates.size()-1);
+    return dates.get(dates.size()-1).copy();
   }
   //End of getters
 

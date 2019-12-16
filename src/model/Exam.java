@@ -228,7 +228,7 @@ public boolean isRoomOkayForExam(Room room){
     else if (room == null)
         return false;
     else
-        return room.useableForWrittenEx();
+        return room.useableForWrittenEx(numberOfStudents());
 }
 
   @Override public String toString()

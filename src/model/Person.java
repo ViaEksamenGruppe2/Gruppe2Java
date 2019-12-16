@@ -151,39 +151,30 @@ public class Person implements Serializable
     // empty boolean to find out if the file is empty. If it is, then
     // there will be returned an empty ArrayList
     boolean check = false, empty = !file.exists() || file.length() == 0;
-    if (!empty)
-    {
+    if (!empty) {
       ObjectInputStream in = null;
 
-      try
-      {
+      try{
         FileInputStream fis = new FileInputStream(file);
         in = new ObjectInputStream(fis);
-        do
-        {
-          try
-          {
+        do {
+          try{
             persons.add((Person) in.readObject());
           }
-          catch (Exception e)
-          {
+          catch (Exception e){
             check = true;
           }
         }
         while (!check);
       }
-      catch (IOException e)
-      {
+      catch (IOException e){
         e.printStackTrace();
       }
-      finally
-      {
-        try
-        {
+      finally {
+        try{
           in.close();
         }
-        catch (IOException e)
-        {
+        catch (IOException e){
           e.printStackTrace();
         }
       }
