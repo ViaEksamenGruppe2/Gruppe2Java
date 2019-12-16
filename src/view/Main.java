@@ -12,7 +12,6 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         ModelControllerInterface model = new ModelController();
         ViewHandler view = new ViewHandler(model);
-
             model.setAllRooms(Room.loadFromBinary());
             model.setAllExams(Exam.loadFromBinary());
             model.setAllPersons(Person.loadFromBinary());

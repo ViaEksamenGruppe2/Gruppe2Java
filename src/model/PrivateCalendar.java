@@ -39,7 +39,14 @@ public class PrivateCalendar implements Serializable
   public ArrayList<Date> getBookedDates(){
     return dates;
   }
-
+  public ArrayList<Date> getPersonalDates(){
+    ArrayList<Date> personal = new ArrayList<>();
+    for (int i = 0; i < dates.size(); i++) {
+      if (dates.get(i).isPersonalDate())
+        personal.add(dates.get(i));
+    }
+    return personal;
+  }
   public Date getDateFromIndex(int i){
       return dates.get(i);
   }

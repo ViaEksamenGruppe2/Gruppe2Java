@@ -246,7 +246,8 @@ public class Date implements Serializable
       s += "0";
     }
     s += month + "/" + year;
-
+    if (isPersonalDate())
+      s+=":Personal";
     return s;
   }
 }

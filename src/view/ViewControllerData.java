@@ -8,11 +8,9 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
 import javafx.util.Duration;
-import model.Exam;
-import model.ModelControllerInterface;
-import model.Person;
-import model.Room;
+import model.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class ViewControllerData
@@ -20,6 +18,7 @@ public class ViewControllerData
     @FXML private Tab addPerson;
     @FXML private Tab addExam;
     @FXML private Tab addRoom;
+    @FXML private Tab teacherVacation;
     @FXML private TabPane tabPane;
 
 
@@ -47,6 +46,10 @@ public class ViewControllerData
     @FXML private CheckBox hasProjectorCheckBox;
     @FXML private Label confirmationRoom;
 
+    //INPUTS FOR VACATION
+    @FXML private TableView vacationTable;
+    @FXML private DatePicker vacationPicker;
+
     private boolean enteredFromEdit;
     private Object objectToRemove;
     private Region root;
@@ -68,6 +71,7 @@ public class ViewControllerData
                 addPerson.setDisable(false);
                 addExam.setDisable(true);
                 addRoom.setDisable(true);
+                teacherVacation.setDisable(true);
                 loadPersonTab();
                 tabPane.getSelectionModel().select(addPerson);
                 break;
@@ -75,6 +79,7 @@ public class ViewControllerData
                 addPerson.setDisable(true);
                 addExam.setDisable(false);
                 addRoom.setDisable(true);
+                teacherVacation.setDisable(true);
                 tabPane.getSelectionModel().select(addExam);
                 ObservableList priorityRoomData = FXCollections.observableList(model.getRooms());
                 priorityRoomChoiceBox.setItems(priorityRoomData);
@@ -85,7 +90,15 @@ public class ViewControllerData
                 addPerson.setDisable(true);
                 addExam.setDisable(true);
                 addRoom.setDisable(false);
+                teacherVacation.setDisable(true);
                 tabPane.getSelectionModel().select(addRoom);
+                break;
+            case 3:
+                addPerson.setDisable(true);
+                addExam.setDisable(true);
+                addRoom.setDisable(true);
+                teacherVacation.setDisable(false);
+                tabPane.getSelectionModel().select(teacherVacation);
                 break;
         }
     }
@@ -130,23 +143,17 @@ public class ViewControllerData
         ArrayList<String> assignedCourses = new ArrayList<>();
         ObservableList<Exam> assignedCoursesObservableList = assignedCoursesTable.getSelectionModel().getSelectedItems();
         if (!personNameField.getText().isEmpty() && !VIAIDField.getText().isEmpty() && !assignedCoursesObservableList.isEmpty()
-            && personNameField.getText().length() <= 256 && VIAIDField.getText().length() <= 16)
-        {
+            && personNameField.getText().length() <= 256 && VIAIDField.getText().length() <= 16){
             name = personNameField.getText();
             viaID = VIAIDField.getText();
             boolean isTeacher = isTeacherCheckbox.selectedProperty().get();
-            for (int i = 0; i < assignedCoursesObservableList.size(); i++)
-            {
-                String courseName = assignedCoursesObservableList.get(i).getCourseName();
-                assignedCourses.add(courseName);
+            for (int i = 0; i < assignedCoursesObservableList.size(); i++){
+                assignedCourses.add(assignedCoursesObservableList.get(i).getCourseName());
             }
             Person person = new Person(name,viaID,assignedCourses,isTeacher);
             for (int i = 0; i < assignedCoursesObservableList.size(); i++)
             {
                 person.addExam(assignedCoursesObservableList.get(i));
-            }
-            for (int i = 0; i < assignedCoursesObservableList.size(); i++)
-            {
                 assignedCoursesObservableList.get(i).addPerson(person);
             }
             submitLabel(0);
@@ -323,6 +330,10 @@ public class ViewControllerData
                 Room room = (Room) obj;
                 editRoom(room);
                 break;
+            case 3:
+                Person teacher = (Person) obj;
+                vacation(teacher);
+                break;
         }
     }
 
@@ -341,6 +352,48 @@ public class ViewControllerData
         // NEEDS TO SELECT WHAT WAS CHOSEN IN CHOICE BOX
         isWrittenCheckBox.setSelected(exam.isWrittenExam());
         isGroupExamCheckBox.setSelected(exam.isGroupExam());
+    }
+    public void vacation(Person teacher){
+        ObservableList courseData = FXCollections.observableList(teacher.getPrivateCalendar().getPersonalDates());
+        vacationTable.setItems(courseData);
+        TableColumn courseCol = new TableColumn("Reserved Dates");
+        vacationTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        courseCol.setCellValueFactory(new PropertyValueFactory<String, CheckBox>("date"));
+        vacationTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        vacationTable.getColumns().setAll(courseCol);
+        objectToRemove = teacher;
+    }
+    public void addVacation(){
+        LocalDate startLocalDate = vacationPicker.getValue();
+        Date vacation;
+        if (startLocalDate != null){
+            vacation = new Date(startLocalDate.getDayOfMonth(), startLocalDate.getMonthValue(), startLocalDate.getYear());
+            vacation.changePersonalDate(true);
+            Person teacher = (Person) objectToRemove;
+            teacher.getPrivateCalendar().makeReservation(vacation);
+            ObservableList courseData = FXCollections.observableList(teacher.getPrivateCalendar().getPersonalDates());
+            vacationTable.setItems(courseData);
+            TableColumn courseCol = new TableColumn("Reserved Dates");
+            vacationTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+            courseCol.setCellValueFactory(new PropertyValueFactory<String, CheckBox>("date"));
+            vacationTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+            vacationTable.getColumns().setAll(courseCol);
+            Person.saveToBinary(model.getPersons());
+        }
+    }
+    public void removeVacation(){
+        Date date = (Date) vacationTable.getSelectionModel().getSelectedItem();
+        Person teacher = (Person) objectToRemove;
+        teacher.getPrivateCalendar().removeReservation(date);
+        ObservableList courseData = FXCollections.observableList(teacher.getPrivateCalendar().getPersonalDates());
+        vacationTable.setItems(courseData);
+        TableColumn courseCol = new TableColumn("Reserved Dates");
+        vacationTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        courseCol.setCellValueFactory(new PropertyValueFactory<String, CheckBox>("date"));
+        vacationTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        vacationTable.getColumns().setAll(courseCol);
+        Person.saveToBinary(model.getPersons());
+
     }
     public void editRoom(Room room)
     {

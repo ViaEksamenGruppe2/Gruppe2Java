@@ -320,8 +320,17 @@ public class ViewControllerMain {
     }
     public void editPersonPressed() {
         Person selectedPerson = (Person) personsTable.getSelectionModel().getSelectedItem();
-        viewHandler.openView("AddObject", 0);
-        viewHandler.carryObject(selectedPerson,0);
+        if (selectedPerson != null){
+            viewHandler.openView("AddObject", 0);
+            viewHandler.carryObject(selectedPerson,0);
+        }
+    }
+    public void vacationPressed(){
+        Person selectedPerson = (Person) personsTable.getSelectionModel().getSelectedItem();
+        if (selectedPerson.isTeacher()){
+            viewHandler.openView("AddObject", 3);
+            viewHandler.carryObject(selectedPerson,3);
+        }
     }
     public void editExamPressed() {
         Exam selectedExam = (Exam) examsTable.getSelectionModel().getSelectedItem();
