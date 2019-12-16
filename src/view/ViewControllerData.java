@@ -149,12 +149,21 @@ public class ViewControllerData
             {
                 assignedCoursesObservableList.get(i).addPerson(person);
             }
-            model.getPersons().add(person);
             submitLabel(0);
             if (enteredFromEdit)
             {
-                Person personToRemove = (Person) objectToRemove;
-                model.getPersons().remove(personToRemove);
+                Person personToEdit = (Person) objectToRemove;
+                for (int i = 0; i < model.getPersons().size(); i++)
+                {
+                    if (model.getPersons().get(i).equals(personToEdit))
+                    {
+                        //  model.getRooms().get(i).setAll(capacity, hasHDMI, hasVGA,hasProjector, name);
+                        model.getPersons().get(i).setAll(name, viaID, assignedCourses,isTeacher);
+                    }
+                }
+            }
+            else {
+                model.getPersons().add(person);
             }
         }
         else {
@@ -168,6 +177,7 @@ public class ViewControllerData
             alert.showAndWait();
         }
         Person.saveToBinary(model.getPersons());
+        Exam.saveToBinary(model.getExams());
         reset(0);
     }
 

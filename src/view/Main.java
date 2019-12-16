@@ -17,7 +17,6 @@ public class Main extends Application {
             model.setAllExams(Exam.loadFromBinary());
             model.setAllPersons(Person.loadFromBinary());
             view.start(primaryStage);
-
     }
 
 

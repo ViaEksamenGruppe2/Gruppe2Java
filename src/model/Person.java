@@ -69,7 +69,12 @@ public class Person implements Serializable
   // Start of setters for Person object
   public void addExam(Exam exam)
   {
-    exams.add(exam);
+    if (!exams.contains(exam))
+      exams.add(exam);
+  }
+  public void setAll(String name, String viaID, ArrayList<String> assignedCourses, boolean isTeacher)
+  {
+
   }
   // End of setters for Person object
 
@@ -117,7 +122,7 @@ public class Person implements Serializable
   @Override public String toString()
   {
     return "Person{" + "name='" + name + '\'' + ", viaID='" + viaID + '\''
-        + ", role='" + role + '\'' + ", assignedCourses=" + assignedCourses
+        + ", role='" + role + '\'' + ", assignedCourses=" + exams
         + ", privateCalendar=" + privateCalendar;
   }
 
