@@ -9,15 +9,14 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
 import javafx.util.Duration;
 import model.Exam;
-import model.ExamCalendarController;
+import model.ModelControllerInterface;
 import model.Person;
 import model.Room;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.stream.Collectors;
 
-public class ViewControllerAdd {
+public class ViewControllerData
+{
     @FXML private Tab addPerson;
     @FXML private Tab addExam;
     @FXML private Tab addRoom;
@@ -51,10 +50,10 @@ public class ViewControllerAdd {
     private boolean enteredFromEdit;
     private Object objectToRemove;
     private Region root;
-    private ExamCalendarController model;
+    private ModelControllerInterface model;
     private ViewHandler viewHandler;
 
-    public void init(ViewHandler viewHandler, ExamCalendarController model, Region root){
+    public void init(ViewHandler viewHandler, ModelControllerInterface model, Region root){
         this.model = model;
         this.viewHandler = viewHandler;
         this.root = root;
@@ -150,12 +149,21 @@ public class ViewControllerAdd {
             {
                 assignedCoursesObservableList.get(i).addPerson(person);
             }
-            model.getPersons().add(person);
             submitLabel(0);
             if (enteredFromEdit)
             {
-                Person personToRemove = (Person) objectToRemove;
-                model.getPersons().remove(personToRemove);
+                Person personToEdit = (Person) objectToRemove;
+                for (int i = 0; i < model.getPersons().size(); i++)
+                {
+                    if (model.getPersons().get(i).equals(personToEdit))
+                    {
+                        //  model.getRooms().get(i).setAll(capacity, hasHDMI, hasVGA,hasProjector, name);
+                        model.getPersons().get(i).setAll(name, viaID, assignedCourses,isTeacher);
+                    }
+                }
+            }
+            else {
+                model.getPersons().add(person);
             }
         }
         else {
@@ -169,6 +177,7 @@ public class ViewControllerAdd {
             alert.showAndWait();
         }
         Person.saveToBinary(model.getPersons());
+        Exam.saveToBinary(model.getExams());
         reset(0);
     }
 
@@ -193,6 +202,9 @@ public class ViewControllerAdd {
                 {
                     Exam examToRemove = (Exam) objectToRemove;
                     model.getExams().remove(examToRemove);
+                    // set all for object instead of removing it.
+                    // add else model.getExams().add(exam)
+                    // Then it will be edited instead of added anew
                 }
             }
             catch (NumberFormatException e)
@@ -214,6 +226,8 @@ public class ViewControllerAdd {
             alert.setContentText(alertMessage);
             alert.showAndWait();
         }
+        isGroupExamCheckBox.setVisible(true);
+        isWrittenCheckBox.setVisible(true);
         Exam.saveToBinary(model.getExams());
         reset(1);
     }
@@ -253,12 +267,20 @@ public class ViewControllerAdd {
                 hasVGA = hasVGACheckBox.selectedProperty().get();
                 hasProjector = hasProjectorCheckBox.selectedProperty().get();
                 Room room = new Room(capacity,hasHDMI,hasVGA,hasProjector,name);
-                model.getRooms().add(room);
                 submitLabel(2);
                 if (enteredFromEdit)
                 {
-                    Room roomToRemove = (Room) objectToRemove;
-                    model.getRooms().remove(roomToRemove);
+                    Room roomToEdit = (Room) objectToRemove;
+                    for (int i = 0; i < model.getRooms().size(); i++)
+                    {
+                        if (model.getRooms().get(i).equals(roomToEdit))
+                        {
+                            model.getRooms().get(i).setAll(capacity, hasHDMI, hasVGA,hasProjector, name);
+                        }
+                    }
+                }
+                else {
+                    model.getRooms().add(room);
                 }
             }
             catch (NumberFormatException e)

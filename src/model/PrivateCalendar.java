@@ -41,7 +41,7 @@ public class PrivateCalendar implements Serializable
   }
 
   public Date getDateFromIndex(int i){
-    return dates.get(i);
+      return dates.get(i);
   }
 
   public Date getNextAvailableDate(Date date) {

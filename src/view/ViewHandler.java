@@ -4,18 +4,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
-import model.ExamCalendarController;
+import model.ModelControllerInterface;
 
 public class ViewHandler {
     private Scene currentScene;
     private Stage primaryStage;
-    private ExamCalendarController model;
+    private ModelControllerInterface model;
     private ViewControllerMain viewControllerMain;
-    private ViewControllerAdd viewControllerAdd;
+    private ViewControllerData viewControllerAdd;
     private int prefMinWidth = 820;
     private int prefMinHeight = 550;
 
-    public ViewHandler(ExamCalendarController model){
+    public ViewHandler(ModelControllerInterface model){
         this.model = model;
         this.currentScene = new Scene(new Region());
     }

@@ -210,9 +210,14 @@ public class Exam implements Serializable
 
   public void addPerson(Person person)
   {
-    attendees.add(person);
+    if (!attendees.contains(person))
+      attendees.add(person);
   }
 
+  public void clearAttendee(Person person)
+  {
+    attendees.remove(person);
+  }
   //End of setters
 
 
