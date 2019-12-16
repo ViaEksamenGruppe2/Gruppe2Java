@@ -331,6 +331,14 @@ public class ViewControllerMain {
             viewHandler.openView("AddObject", 3);
             viewHandler.carryObject(selectedPerson,3);
         }
+        else {
+            String alertMessage = "Only teachers can be chosen when adding vacation.";
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Wrong Select");
+            alert.setHeaderText(null);
+            alert.setContentText(alertMessage);
+            alert.showAndWait();
+        }
     }
     public void editExamPressed() {
         Exam selectedExam = (Exam) examsTable.getSelectionModel().getSelectedItem();
