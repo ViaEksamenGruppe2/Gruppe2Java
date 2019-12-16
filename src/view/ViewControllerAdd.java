@@ -9,13 +9,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
 import javafx.util.Duration;
 import model.Exam;
-import model.ExamCalendarController;
+import model.ModelControllerInterface;
 import model.Person;
 import model.Room;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.stream.Collectors;
 
 public class ViewControllerAdd {
     @FXML private Tab addPerson;
@@ -51,10 +49,10 @@ public class ViewControllerAdd {
     private boolean enteredFromEdit;
     private Object objectToRemove;
     private Region root;
-    private ExamCalendarController model;
+    private ModelControllerInterface model;
     private ViewHandler viewHandler;
 
-    public void init(ViewHandler viewHandler, ExamCalendarController model, Region root){
+    public void init(ViewHandler viewHandler, ModelControllerInterface model, Region root){
         this.model = model;
         this.viewHandler = viewHandler;
         this.root = root;

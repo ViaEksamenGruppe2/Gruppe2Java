@@ -4,7 +4,7 @@ import model.*;
 
 import java.util.ArrayList;
 
-public class Controller implements ExamCalendarController
+public class ModelController implements ModelControllerInterface
 {
   // Start of field variables
   private ArrayList<Person> persons;
@@ -13,7 +13,7 @@ public class Controller implements ExamCalendarController
   // End of field variables
 
   // CONSTRUCTOR
-  public Controller()
+  public ModelController()
   {
     persons = new ArrayList<>();
     exams = new ArrayList<>();

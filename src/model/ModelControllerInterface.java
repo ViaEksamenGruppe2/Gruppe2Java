@@ -2,7 +2,7 @@ package model;
 
 import java.util.ArrayList;
 
-public interface ExamCalendarController
+public interface ModelControllerInterface
 {
   // Start of all getters
   public Object getPrivateCalendar(Object obj);

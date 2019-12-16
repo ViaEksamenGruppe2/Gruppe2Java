@@ -1,6 +1,5 @@
 package view;
 
-import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -10,7 +9,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
 import model.*;
 
-import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -32,10 +30,10 @@ public class ViewControllerMain {
     @FXML private TableView examsTable;
     @FXML private TableView personsTable;
     private Region root;
-    private ExamCalendarController model;
+    private ModelControllerInterface model;
     private ViewHandler viewHandler;
 
-    public void init(ViewHandler viewHandler, ExamCalendarController model, Region root){
+    public void init(ViewHandler viewHandler, ModelControllerInterface model, Region root){
         this.model = model;
         this.viewHandler = viewHandler;
         this.root = root;
