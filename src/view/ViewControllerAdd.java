@@ -193,6 +193,9 @@ public class ViewControllerAdd {
                 {
                     Exam examToRemove = (Exam) objectToRemove;
                     model.getExams().remove(examToRemove);
+                    // set all for object instead of removing it.
+                    // add else model.getExams().add(exam)
+                    // Then it will be edited instead of added anew
                 }
             }
             catch (NumberFormatException e)
@@ -253,12 +256,20 @@ public class ViewControllerAdd {
                 hasVGA = hasVGACheckBox.selectedProperty().get();
                 hasProjector = hasProjectorCheckBox.selectedProperty().get();
                 Room room = new Room(capacity,hasHDMI,hasVGA,hasProjector,name);
-                model.getRooms().add(room);
                 submitLabel(2);
                 if (enteredFromEdit)
                 {
-                    Room roomToRemove = (Room) objectToRemove;
-                    model.getRooms().remove(roomToRemove);
+                    Room roomToEdit = (Room) objectToRemove;
+                    for (int i = 0; i < model.getRooms().size(); i++)
+                    {
+                        if (model.getRooms().get(i).equals(roomToEdit))
+                        {
+                            model.getRooms().get(i).setAll(capacity, hasHDMI, hasVGA,hasProjector, name);
+                        }
+                    }
+                }
+                else {
+                    model.getRooms().add(room);
                 }
             }
             catch (NumberFormatException e)

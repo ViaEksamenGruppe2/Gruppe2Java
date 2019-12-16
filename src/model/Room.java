@@ -100,6 +100,32 @@ public class Room implements Serializable
   public void setProjector(boolean state){
     hasProjector = state;
   }
+
+  public void setAll(int studentCapacity, boolean hasHDMI, boolean hasVGA, boolean hasProjector, String roomName)
+  {
+    this.studentCapacity = studentCapacity;
+    this.hasHDMI = hasHDMI;
+    this.hasProjector = hasProjector;
+    this.hasVGA = hasVGA;
+    this.roomName = roomName;
+    capacityString = Integer.toString(studentCapacity);
+    if (hasHDMI && hasVGA && hasProjector)
+    {
+      equipment = "HDMI, VGA & Projector";
+    }
+    else if (hasHDMI && hasProjector)
+    {
+      equipment = "HDMI & Projector";
+    }
+    else if (hasVGA && hasProjector)
+    {
+      equipment = "VGA & Projector";
+    }
+    else
+    {
+      equipment = "None";
+    }
+  }
   // End of setters for Room object
 
 
