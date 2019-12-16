@@ -15,7 +15,8 @@ import model.Room;
 
 import java.util.ArrayList;
 
-public class ViewControllerAdd {
+public class ViewControllerData
+{
     @FXML private Tab addPerson;
     @FXML private Tab addExam;
     @FXML private Tab addRoom;
@@ -215,6 +216,8 @@ public class ViewControllerAdd {
             alert.setContentText(alertMessage);
             alert.showAndWait();
         }
+        isGroupExamCheckBox.setVisible(true);
+        isWrittenCheckBox.setVisible(true);
         Exam.saveToBinary(model.getExams());
         reset(1);
     }

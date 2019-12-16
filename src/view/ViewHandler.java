@@ -11,7 +11,7 @@ public class ViewHandler {
     private Stage primaryStage;
     private ModelControllerInterface model;
     private ViewControllerMain viewControllerMain;
-    private ViewControllerAdd viewControllerAdd;
+    private ViewControllerData viewControllerAdd;
     private int prefMinWidth = 820;
     private int prefMinHeight = 550;
 
