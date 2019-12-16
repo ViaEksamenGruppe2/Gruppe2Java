@@ -63,31 +63,28 @@ public class Controller implements ExamCalendarController
 
   // Start of all setters
 
-  @Override public ArrayList<Room> setAllRooms(ArrayList<Room> roomsToSet)
+  @Override public void setAllRooms(ArrayList<Room> roomsToSet)
   {
     for (int i = 0; i < roomsToSet.size(); i++)
     {
       rooms.add(roomsToSet.get(i));
     }
-    return rooms;
   }
 
-  @Override public ArrayList<Exam> setAllExams(ArrayList<Exam> examsToSet)
+  @Override public void setAllExams(ArrayList<Exam> examsToSet)
   {
     for (int i = 0; i < examsToSet.size(); i++)
     {
       exams.add(examsToSet.get(i));
     }
-    return exams;
   }
 
-  @Override public ArrayList<Person> setAllPersons(ArrayList<Person> personsToSet)
+  @Override public void setAllPersons(ArrayList<Person> personsToSet)
   {
     for (int i = 0; i < personsToSet.size(); i++)
     {
       persons.add(personsToSet.get(i));
     }
-    return persons;
   }
 
   public void addPerson(String name, String VIAID, ArrayList<String> assignedCourses, boolean isTeacher)

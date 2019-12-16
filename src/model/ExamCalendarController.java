@@ -13,9 +13,9 @@ public interface ExamCalendarController
   // End of all getters
 
   // Start of all setters
-  public ArrayList<Room> setAllRooms(ArrayList<Room> roomsToSet);
-  public ArrayList<Exam> setAllExams(ArrayList<Exam> examsToSet);
-  public ArrayList<Person> setAllPersons(ArrayList<Person> personsToSet);
+  public void setAllRooms(ArrayList<Room> roomsToSet);
+  public void setAllExams(ArrayList<Exam> examsToSet);
+  public void setAllPersons(ArrayList<Person> personsToSet);
   public void addPerson(String name, String VIAID, ArrayList<String> assignedCourses, boolean isTeacher);
   public void addExam(String courseName, double duration, Room priorityRoom, boolean isGroupExam, boolean isWrittenExam, boolean seventhSemester);
   public void addExam(String courseName, double duration, boolean isGroupExam, boolean isWrittenExam, boolean seventhSemester);
