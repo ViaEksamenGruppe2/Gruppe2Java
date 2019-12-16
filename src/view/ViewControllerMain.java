@@ -203,7 +203,7 @@ public class ViewControllerMain {
                         System.out.println(plannedExamSchedule.get(i).get(0));
                         System.out.println(plannedExamSchedule.get(i).get(2));
                     }
-                    ExamCalendar.saveToJS(plannedExamSchedule);
+                    model.getExamCalendar().saveToJS(plannedExamSchedule);
                 }
                 }
             }
