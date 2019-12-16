@@ -153,8 +153,8 @@ public class ViewControllerMain {
                 }
                 else
                 {
-                    ExamCalendar examSchedule = new ExamCalendar(startDate,
-                        endDate, model.getPersons(), model.getRooms(), model.getExams());
+                    model.setExamCalendar(startDate, endDate);
+                    ExamCalendar examSchedule = model.getExamCalendar();
 
                     ArrayList<ArrayList<Object>> plannedExamSchedule;
                     plannedExamSchedule = examSchedule.generateExamSchedule();

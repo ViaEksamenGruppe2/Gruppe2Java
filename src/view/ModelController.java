@@ -10,6 +10,7 @@ public class ModelController implements ModelControllerInterface
   private ArrayList<Person> persons;
   private ArrayList<Exam> exams;
   private ArrayList<Room> rooms;
+  private ExamCalendar examCalendar;
   // End of field variables
 
   // CONSTRUCTOR
@@ -18,6 +19,7 @@ public class ModelController implements ModelControllerInterface
     persons = new ArrayList<>();
     exams = new ArrayList<>();
     rooms = new ArrayList<>();
+    examCalendar = null;
   }
 
   // Start of all getters
@@ -59,6 +61,11 @@ public class ModelController implements ModelControllerInterface
   {
     return exams;
   };
+
+  @Override public ExamCalendar getExamCalendar()
+  {
+    return examCalendar;
+  }
   // End of all getters
 
   // Start of all setters
@@ -85,6 +92,11 @@ public class ModelController implements ModelControllerInterface
     {
       persons.add(personsToSet.get(i));
     }
+  }
+
+  public void setExamCalendar(Date firstExamDate, Date lastExamDate)
+  {
+    examCalendar = new ExamCalendar(firstExamDate, lastExamDate, persons, rooms, exams);
   }
 
   public void addPerson(String name, String VIAID, ArrayList<String> assignedCourses, boolean isTeacher)
