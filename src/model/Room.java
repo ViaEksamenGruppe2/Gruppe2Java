@@ -121,6 +121,18 @@ public class Room implements Serializable
     {
       equipment = "VGA & Projector";
     }
+    else if (hasVGA)
+    {
+      equipment = "VGA";
+    }
+    else if (hasHDMI)
+    {
+      equipment = "HDMI";
+    }
+    else if (hasProjector)
+    {
+      equipment = "Projector";
+    }
     else
     {
       equipment = "None";

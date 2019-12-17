@@ -166,7 +166,6 @@ public class ExamCalendar implements Serializable
             if (rooms.get(j).isAvailable(plannerDate)
                 && exams.get(i).isRoomOkayForExam(rooms.get(j)))
             {
-
               // Here we create an ArrayList of Objects which is used to add to
               // the 2D ArrayList. We also add the date entry.
               ArrayList<Object> addList = new ArrayList<>();
