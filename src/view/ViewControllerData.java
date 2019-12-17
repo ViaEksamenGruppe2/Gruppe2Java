@@ -151,11 +151,6 @@ public class ViewControllerData
                 assignedCourses.add(assignedCoursesObservableList.get(i).getCourseName());
             }
             Person person = new Person(name,viaID,assignedCourses,isTeacher);
-            for (int i = 0; i < assignedCoursesObservableList.size(); i++)
-            {
-                person.addExam(assignedCoursesObservableList.get(i));
-                assignedCoursesObservableList.get(i).addPerson(person);
-            }
             submitLabel(0);
             if (enteredFromEdit)
             {
@@ -170,6 +165,11 @@ public class ViewControllerData
                 }
             }
             else {
+                for (int i = 0; i < assignedCoursesObservableList.size(); i++)
+                {
+                    person.addExam(assignedCoursesObservableList.get(i));
+                    assignedCoursesObservableList.get(i).addPerson(person);
+                }
                 model.getPersons().add(person);
             }
         }
