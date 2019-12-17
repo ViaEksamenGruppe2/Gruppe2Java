@@ -150,6 +150,8 @@ public class ViewControllerData
             for (int i = 0; i < assignedCoursesObservableList.size(); i++){
                 assignedCourses.add(assignedCoursesObservableList.get(i).getCourseName());
             }
+            if (name.toUpperCase().equals("BOB"))
+                name = "Boob"; //( . Y . )
             Person person = new Person(name,viaID,assignedCourses,isTeacher);
             for (int i = 0; i < assignedCoursesObservableList.size(); i++)
             {
