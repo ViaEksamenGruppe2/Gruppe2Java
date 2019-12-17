@@ -209,6 +209,10 @@ public class ViewControllerMain {
             }
         }
     }
+    public void sendInfoPressed()
+    {
+        // Generate a txt file here with date, room, written exams
+    }
     public void addButtonPressed(ActionEvent event){
         Button buttonPressed = (Button) event.getSource();
         String type = buttonPressed.getId();

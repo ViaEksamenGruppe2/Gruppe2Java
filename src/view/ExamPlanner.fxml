@@ -224,7 +224,7 @@
                                     <Insets top="25.0" />
                                  </VBox.margin>
                               </Text>
-                              <Button minHeight="100.0" minWidth="400.0" mnemonicParsing="false" text="Generate document">
+                              <Button minHeight="100.0" minWidth="400.0" mnemonicParsing="false" onAction="#sendInfoPressed" text="Generate document">
                                  <VBox.margin>
                                     <Insets top="25.0" />
                                  </VBox.margin>
