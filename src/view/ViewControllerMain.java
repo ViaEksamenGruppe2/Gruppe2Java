@@ -9,6 +9,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
 import model.*;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -32,6 +35,7 @@ public class ViewControllerMain {
     private Region root;
     private ModelControllerInterface model;
     private ViewHandler viewHandler;
+    private ArrayList<ArrayList<Object>> plannedSchedule;
 
     public void init(ViewHandler viewHandler, ModelControllerInterface model, Region root){
         this.model = model;
@@ -157,22 +161,22 @@ public class ViewControllerMain {
                     ExamCalendar examSchedule = model.getExamCalendar();
 
                     ArrayList<ArrayList<Object>> plannedExamSchedule;
-                    plannedExamSchedule = examSchedule.generateExamSchedule();
+                    plannedSchedule = examSchedule.generateExamSchedule();
                     ArrayList<Date> examDates = new ArrayList<>();
                     ArrayList<Room> examRooms = new ArrayList<>();
                     ArrayList<Exam> examExams = new ArrayList<>();
                     ArrayList<Person> examTeachers = new ArrayList<>();
-                    for (int i = 0; i < plannedExamSchedule.size(); i++)
+                    for (int i = 0; i < plannedSchedule.size(); i++)
                     {
-                        Date examDate = (Date) plannedExamSchedule.get(i).get(0);
-                        Room examRoom = (Room) plannedExamSchedule.get(i).get(1);
-                        Exam examExam = (Exam) plannedExamSchedule.get(i).get(2);
+                        Date examDate = (Date) plannedSchedule.get(i).get(0);
+                        Room examRoom = (Room) plannedSchedule.get(i).get(1);
+                        Exam examExam = (Exam) plannedSchedule.get(i).get(2);
                         examDates.add(examDate);
                         examRooms.add(examRoom);
                         examExams.add(examExam);
                     }
                     ObservableList examScheduleDates = FXCollections.observableList(examDates);
-                    ObservableList examScheduleData = FXCollections.observableList(plannedExamSchedule);
+                    ObservableList examScheduleData = FXCollections.observableList(plannedSchedule);
 
                     examScheduleTable.setItems(examScheduleDates);
                     TableColumn col1 = new TableColumn("Date");
@@ -197,13 +201,13 @@ public class ViewControllerMain {
                     alert.setHeaderText(null);
                     alert.setContentText(alertMessage);
                     alert.showAndWait();
-                    for (int i = 0; i < plannedExamSchedule.size() ; i++)
+                    for (int i = 0; i < plannedSchedule.size() ; i++)
                     {
-                        System.out.println(plannedExamSchedule.get(i).get(1));
-                        System.out.println(plannedExamSchedule.get(i).get(0));
-                        System.out.println(plannedExamSchedule.get(i).get(2));
+                        System.out.println(plannedSchedule.get(i).get(1));
+                        System.out.println(plannedSchedule.get(i).get(0));
+                        System.out.println(plannedSchedule.get(i).get(2));
                     }
-                    model.getExamCalendar().saveToJS(plannedExamSchedule);
+                    model.getExamCalendar().saveToJS(plannedSchedule);
                 }
                 }
             }
@@ -211,6 +215,18 @@ public class ViewControllerMain {
     }
     public void sendInfoPressed()
     {
+        String filename = "dataToService.txt";
+        File file = new File(filename);
+
+        try {
+            PrintWriter out = new PrintWriter(file); //Opens the file
+            String output = "";
+            out.flush();
+            out.close();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
         // Generate a txt file here with date, room, written exams
     }
     public void addButtonPressed(ActionEvent event){

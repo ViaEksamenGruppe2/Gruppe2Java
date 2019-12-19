@@ -165,6 +165,11 @@ public class ViewControllerData
                         model.getPersons().get(i).setAll(name, viaID, assignedCourses,isTeacher);
                     }
                 }
+                for (int i = 0; i < assignedCoursesObservableList.size(); i++)
+                {
+                    person.addExam(assignedCoursesObservableList.get(i));
+                    assignedCoursesObservableList.get(i).addPerson(person);
+                }
             }
             else {
                 for (int i = 0; i < assignedCoursesObservableList.size(); i++)
@@ -354,6 +359,20 @@ public class ViewControllerData
         // NEEDS TO SELECT WHAT WAS CHOSEN IN CHOICE BOX
         isWrittenCheckBox.setSelected(exam.isWrittenExam());
         isGroupExamCheckBox.setSelected(exam.isGroupExam());
+        if (isWrittenCheckBox.selectedProperty().get())
+        {
+            isGroupExamCheckBox.setVisible(false);
+        }
+        else {
+            isGroupExamCheckBox.setVisible(true);
+        }
+        if (isGroupExamCheckBox.selectedProperty().get())
+        {
+            isWrittenCheckBox.setVisible(false);
+        }
+        else {
+            isWrittenCheckBox.setVisible(true);
+        }
     }
     public void vacation(Person teacher){
         ObservableList courseData = FXCollections.observableList(teacher.getPrivateCalendar().getPersonalDates());
