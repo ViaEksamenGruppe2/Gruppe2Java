@@ -210,7 +210,12 @@ public class Exam implements Serializable
 
   public void addPerson(Person person)
   {
-    if (!attendees.contains(person))
+    int c = 0;
+    for (int i = 0; i < attendees.size(); i++) {
+      if (attendees.get(i).getViaID().equals(person.getViaID()))
+        c++;
+    }
+    if (c == 0)
       attendees.add(person);
   }
 

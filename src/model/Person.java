@@ -74,7 +74,15 @@ public class Person implements Serializable
   }
   public void setAll(String name, String viaID, ArrayList<String> assignedCourses, boolean isTeacher)
   {
-
+    this.name = name;
+    this.viaID = viaID;
+    this.assignedCourses = assignedCourses;
+    this.isTeacher = isTeacher;
+    exams = new ArrayList<>();
+    if (isTeacher)
+      role = "Teacher";
+    else
+      role = "Student";
   }
   // End of setters for Person object
 

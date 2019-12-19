@@ -109,6 +109,7 @@ public class ViewControllerData
                 personNameField.clear();
                 VIAIDField.clear();
                 isTeacherCheckbox.setSelected(false);
+                VIAIDField.setDisable(false);
                 break;
             case 1:
                 courseNameField.clear();
@@ -175,7 +176,9 @@ public class ViewControllerData
         }
         else {
             String alertMessage = "You haven't entered all the required input to add a person. \nPlease try again.";
-            if (personNameField.getText().length() <= 256 && VIAIDField.getText().length() <= 16)
+            if (assignedCoursesObservableList.isEmpty())
+                alertMessage = "You haven't picked any courses \nPlease try again.";
+            else if (personNameField.getText().length() >= 256 && VIAIDField.getText().length() >= 16)
                 alertMessage = "You have entered too long a name or VIA ID. \nPlease try again.";
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Wrong input");
@@ -339,6 +342,7 @@ public class ViewControllerData
 
     public void editPerson(Person person)
     {
+        VIAIDField.setDisable(true);
         personNameField.setText(person.getName());
         VIAIDField.setText(person.getViaID());
         isTeacherCheckbox.setSelected(person.isTeacher());
