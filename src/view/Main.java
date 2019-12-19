@@ -17,9 +17,6 @@ public class Main extends Application {
             model.setAllPersons(Person.loadFromBinary());
             view.start(primaryStage);
     }
-
-
-
     public static void main(String[] args) {
         Application.launch(Main.class);
     }

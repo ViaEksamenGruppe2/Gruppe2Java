@@ -7,7 +7,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 
-// SOMETHING WRONG WITH WRITTEN EXAMS :-c
 public class ExamCalendar implements Serializable
 {
   private Date firstExamDate;
@@ -129,7 +128,6 @@ public class ExamCalendar implements Serializable
               plannerDate.stepForwardOneDay();
             }
           }
-
           // Finally we add the room, the exam and the teacher to the 2D ArrayList.
           addList.add(exams.get(i).getPriorityRoom());
           addList.add(exams.get(i));
@@ -195,10 +193,6 @@ public class ExamCalendar implements Serializable
             }
           }
         }
-      for (int j = 0; j < examPlanList.size(); j++)
-      {
-        System.out.println(examPlanList.get(j).get(2));
-      }
     }
 
     // Here we print out if the planner was successful or not & return the

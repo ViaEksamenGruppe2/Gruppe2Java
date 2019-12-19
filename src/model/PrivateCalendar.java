@@ -83,9 +83,7 @@ public class PrivateCalendar implements Serializable
 
   @Override
   public String toString() {
-    return "PrivateCalendar{" +
-            "dates=" + dates +
-            '}';
+    return "" + dates;
   }
 
 

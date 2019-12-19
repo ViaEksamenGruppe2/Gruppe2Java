@@ -176,9 +176,10 @@ public class ViewControllerMain {
                         examExams.add(examExam);
                     }
                     ObservableList examScheduleDates = FXCollections.observableList(examDates);
+                    ObservableList examScheduleRooms = FXCollections.observableList(examRooms);
+                    ObservableList examScheduleExam = FXCollections.observableList(examExams);
                     ObservableList examScheduleData = FXCollections.observableList(plannedSchedule);
 
-                    examScheduleTable.setItems(examScheduleDates);
                     TableColumn col1 = new TableColumn("Date");
                     TableColumn col2 = new TableColumn("Course Name");
                     TableColumn col3 = new TableColumn("Room");
@@ -186,27 +187,27 @@ public class ViewControllerMain {
                     TableColumn col5 = new TableColumn("Exam Type");
                     examScheduleTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
                     col1.setPrefWidth(83);
-                    col1.setCellValueFactory(new PropertyValueFactory<Date, Date>("Date"));
+                    examScheduleTable.setItems(examScheduleExam);
+                    col1.setCellValueFactory(new PropertyValueFactory<ArrayList<String>, ArrayList<String>>("privateCalendar"));
                     col2.setPrefWidth(122);
-                    //col2.setCellValueFactory(new PropertyValueFactory<String, String>("courseName"));
+                    col2.setCellValueFactory(new PropertyValueFactory<String, String>("courseName"));
                     col3.setPrefWidth(124);
                     //col3.setCellValueFactory(new PropertyValueFactory<ArrayList<String>, ArrayList<String>>("assignedCourses"));
                     col4.setPrefWidth(180);
-                    // col4.setCellValueFactory(new PropertyValueFactory<String, String>("role"));
+                    //col4.setCellValueFactory(new PropertyValueFactory<ArrayList<String>, ArrayList<String>>("getTeacher"));
                     col5.setPrefWidth(96);
+                    col5.setCellValueFactory(new PropertyValueFactory<String, String>("type"));
                     examScheduleTable.getColumns().setAll(col1, col2, col3, col4, col5);
+
+
+
+
                     String alertMessage = examSchedule.getSuccess();
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Information");
                     alert.setHeaderText(null);
                     alert.setContentText(alertMessage);
                     alert.showAndWait();
-                    for (int i = 0; i < plannedSchedule.size() ; i++)
-                    {
-                        System.out.println(plannedSchedule.get(i).get(1));
-                        System.out.println(plannedSchedule.get(i).get(0));
-                        System.out.println(plannedSchedule.get(i).get(2));
-                    }
                     model.getExamCalendar().saveToJS(plannedSchedule);
                 }
                 }
@@ -215,18 +216,43 @@ public class ViewControllerMain {
     }
     public void sendInfoPressed()
     {
-        String filename = "dataToService.txt";
-        File file = new File(filename);
+        String alertMessage = "";
+        if(plannedSchedule != null){
+            String filename = "src/savefiles/dataToService.txt";
+            File file = new File(filename);
 
-        try {
-            PrintWriter out = new PrintWriter(file); //Opens the file
-            String output = "";
-            out.flush();
-            out.close();
+            try {
+                PrintWriter out = new PrintWriter(file); //Opens the file
+                out.println("Dear service department");
+                out.println("The following are rooms that need to be ready for written exams:");
+                for (int i = 0; i < plannedSchedule.size(); i++) {
+                    Exam exam = (Exam) plannedSchedule.get(i).get(2);
+                    Room room = (Room) plannedSchedule.get(i).get(1);
+                    if (exam.isWrittenExam()){
+                        String output = "[" + plannedSchedule.get(i).get(0).toString() + "] ";
+                        output += "Room: " + room.getRoomName() + " needs to be ready for " + exam.getAllStudents().size() + " students";
+                        out.println(output);
+                    }
+                }
+                out.println("Best regards");
+                out.println("Department of exam planning");
+                out.flush();
+                out.close();
+                alertMessage = "File was generated and is located in src/saveFiles/dataToService.txt";
+            }
+            catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-        catch (IOException e) {
-            e.printStackTrace();
+        else{
+            alertMessage = "Please generate an exam schedule before trying to send data to service department";
         }
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Attention");
+        alert.setHeaderText(null);
+        alert.setContentText(alertMessage);
+        alert.showAndWait();
+
         // Generate a txt file here with date, room, written exams
     }
     public void addButtonPressed(ActionEvent event){
