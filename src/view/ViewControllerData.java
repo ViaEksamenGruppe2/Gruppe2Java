@@ -157,18 +157,11 @@ public class ViewControllerData
             if (enteredFromEdit)
             {
                 Person personToEdit = (Person) objectToRemove;
-                for (int i = 0; i < model.getPersons().size(); i++)
-                {
-                    if (model.getPersons().get(i).equals(personToEdit))
-                    {
-                        //  model.getRooms().get(i).setAll(capacity, hasHDMI, hasVGA,hasProjector, name);
-                        model.getPersons().get(i).setAll(name, viaID, assignedCourses,isTeacher);
-                    }
-                }
+                personToEdit.setAll(name, viaID, assignedCourses,isTeacher);
                 for (int i = 0; i < assignedCoursesObservableList.size(); i++)
                 {
-                    person.addExam(assignedCoursesObservableList.get(i));
-                    assignedCoursesObservableList.get(i).addPerson(person);
+                    personToEdit.addExam(assignedCoursesObservableList.get(i));
+                    assignedCoursesObservableList.get(i).addPerson(personToEdit);
                 }
             }
             else {
